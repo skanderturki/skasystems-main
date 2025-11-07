@@ -1,17 +1,30 @@
 # Build stage
-FROM node:18-alpine AS builder
+FROM node:18-alpine as build
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Install necessary build tools
+RUN apk add --no-cache python3 make g++
+
+# Debug: List contents of current directory
+RUN ls -la
+
+# Copy package files first
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Debug: Verify package.json was copied
+RUN ls -la
 
-# Copy source code
+# Install dependencies with legacy peer deps
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the source code
 COPY . .
+
+# Debug: List contents after copying all files
+RUN ls -la
+RUN ls -la public/
 
 # Build the application
 RUN npm run build
@@ -20,10 +33,10 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built files from builder stage
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY react-nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80
 EXPOSE 80

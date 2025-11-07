@@ -1,0 +1,7 @@
+node_modules
+build
+.git
+.gitignore
+README.md
+# Don't ignore public directory
+!public/ 
