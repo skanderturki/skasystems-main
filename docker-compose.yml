@@ -28,6 +28,31 @@ services:
     networks:
       - app-network
 
+  nadart-evo:
+    build:
+      context: ./mygalery/nadart_evo
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - JWT_SECRET=${NADART_JWT_SECRET:-nadart-jwt-secret-change-in-production}
+      - ADMIN_EMAIL=${NADART_ADMIN_EMAIL:-nadart.galery@gmail.com}
+      - ADMIN_PASSWORD=${NADART_ADMIN_PASSWORD:-changeme123}
+      - GOOGLE_CLIENT_ID=${NADART_GOOGLE_CLIENT_ID:-}
+      - N8N_WEBHOOK_URL=https://n8n.skasystems.com/webhook/contact
+      - N8N_AUTH_USER=${NADART_N8N_AUTH_USER:-nadart}
+      - N8N_AUTH_PASSWORD=${NADART_N8N_AUTH_PASSWORD:-}
+      - MAX_FILE_SIZE=10485760
+      - UPLOAD_DIR=/app/resources/galleries
+    volumes:
+      - ./mygalery/nadart_evo/data:/app/data
+      - ./mygalery/nadart_evo/resources:/app/resources
+    networks:
+      - app-network
+
   # NOTE: nginx service disabled - using system nginx as reverse proxy instead
   # nginx:
   #   image: nginx:alpine
