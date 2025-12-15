@@ -3,6 +3,10 @@ FROM node:20-alpine AS client-builder
 
 WORKDIR /app/client
 
+# Build argument for Vite environment variable
+ARG VITE_GOOGLE_CLIENT_ID
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+
 # Copy client package files
 COPY client/package*.json ./
 
@@ -12,7 +16,7 @@ RUN npm ci
 # Copy client source
 COPY client/ ./
 
-# Build client
+# Build client (VITE_GOOGLE_CLIENT_ID will be baked in)
 RUN npm run build
 
 # Build stage for server
