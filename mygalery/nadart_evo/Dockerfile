@@ -48,6 +48,9 @@ COPY --from=server-builder /app/server/dist ./server/dist
 COPY --from=server-builder /app/server/node_modules ./server/node_modules
 COPY --from=server-builder /app/server/package*.json ./server/
 
+# Copy schema.sql (not compiled by TypeScript)
+COPY --from=server-builder /app/server/src/db/schema.sql ./server/dist/db/
+
 # Copy client built files
 COPY --from=client-builder /app/client/dist ./client/dist
 
