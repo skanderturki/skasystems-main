@@ -3,7 +3,6 @@ import { z } from 'zod'
 import { OAuth2Client } from 'google-auth-library'
 import { authService } from '../services/auth.service.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
-import '../types/express.js' // Import express type extensions
 
 const router = Router()
 
