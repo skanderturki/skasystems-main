@@ -1,44 +1,793 @@
+/* Material Design 3 App Styles */
+
 .App {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--md-background);
 }
 
-.App-logo {
-  height: 40vmin;
+/* Header Styles - Material Design 3 */
+.App-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--md-elevation-2);
+}
+
+/* Banner Background with Complex Computing Theme */
+.banner-background {
+  background: linear-gradient(135deg, #0d47a1 0%, #0277bd 25%, #0288d1 50%, #039be5 75%, #03a9f4 100%);
+  position: relative;
+  overflow: hidden;
+  padding: var(--md-spacing-5) 0;
+  min-height: 200px;
+}
+
+/* Animated circuit pattern background */
+.banner-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Circuit board lines */
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    /* Neural network nodes pattern */
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    /* Data flow patterns */
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.02) 40px, rgba(255, 255, 255, 0.02) 41px),
+    repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.02) 40px, rgba(255, 255, 255, 0.02) 41px);
+  background-size: 
+    50px 50px,
+    50px 50px,
+    150px 150px,
+    180px 180px,
+    100px 100px,
+    80px 80px,
+    80px 80px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  animation: circuitMove 20s linear infinite;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes circuitMove {
+  0% {
+    background-position: 
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position: 
+      50px 50px,
+      50px 50px,
+      150px 150px,
+      -180px -180px,
+      100px 100px,
+      80px 80px,
+      -80px -80px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 60vh;
+/* Complex overlay with depth */
+.banner-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Multiple radial gradients for depth */
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+    /* Geometric patterns */
+    repeating-conic-gradient(from 0deg at 50% 50%, 
+      transparent 0deg, 
+      rgba(255, 255, 255, 0.02) 2deg, 
+      transparent 4deg, 
+      rgba(255, 255, 255, 0.02) 6deg, 
+      transparent 8deg);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Floating particles effect */
+.banner-background::before {
+  animation: circuitMove 20s linear infinite, particleFloat 15s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  color: var(--md-on-primary);
+}
+
+/* Additional computing-themed decorative elements */
+.banner-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: floatOrb 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.banner-content::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: floatOrb 15s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+.banner-branding {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--md-spacing-3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Additional tech decorative elements */
+.banner-branding::before {
+  content: '01001000 01100101 01101100 01101100 01101111';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  animation: binaryScroll 30s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes binaryScroll {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.15;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--md-spacing-3);
+}
+
+.logo-container {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-shrink: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.logo-svg {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: logoPulse 3s ease-in-out infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.logo-svg:hover {
+  transform: scale(1.08) rotate(5deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.6));
   }
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--md-on-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.brand-tagline {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: var(--md-spacing-1) 0 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.95;
+}
+
+.brand-features {
+  display: flex;
+  gap: var(--md-spacing-4);
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-spacing-1);
+  color: var(--md-on-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: var(--md-spacing-1) var(--md-spacing-2);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: var(--md-radius-full);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.feature-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Navbar Container */
+.navbar-container {
+  background-color: var(--md-surface);
+  border-bottom: 1px solid var(--md-outline-variant);
+  padding: var(--md-spacing-1) 0;
+}
+
+.navbar-brand {
+  font-size: 1.125rem !important;
+  padding: var(--md-spacing-1) 0 !important;
+  color: var(--md-on-surface) !important;
+  font-weight: 500;
+}
+
+.navbar-brand small {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+main {
+  flex: 1;
+  padding: var(--md-spacing-4) 0;
+}
+
+footer {
+  background-color: var(--md-surface);
+  border-top: 1px solid var(--md-outline-variant);
+  padding: var(--md-spacing-4) 0;
+  margin-top: auto;
+  color: var(--md-on-surface-variant);
 }
 
 .img-max {
   max-width: 200px;
   width: 100%;
   margin: auto;
+}
+
+/* Compact header image - not used anymore but keeping for reference */
+
+/* Section Spacing - Following 8dp grid */
+.hero-section {
+  padding: var(--md-spacing-8) 0;
+}
+
+.services-section {
+  padding: var(--md-spacing-6) 0;
+}
+
+.why-choose-section {
+  padding: var(--md-spacing-6) 0;
+  background-color: var(--md-surface-variant);
+}
+
+.contact-section {
+  padding: var(--md-spacing-6) 0;
+}
+
+/* Material Design 3 Card Styles */
+.card {
+  background-color: var(--md-surface);
+  border: none;
+  border-radius: var(--md-radius-large);
+  box-shadow: var(--md-elevation-1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--md-elevation-3);
+  transform: translateY(-2px);
+}
+
+.card-body {
+  padding: var(--md-spacing-3);
+}
+
+.card-title {
+  color: var(--md-on-surface);
+  font-weight: 500;
+  margin-bottom: var(--md-spacing-2);
+}
+
+.card-text {
+  color: var(--md-on-surface-variant);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Material Design 3 Button Styles */
+.btn {
+  border-radius: var(--md-radius-full);
+  padding: var(--md-spacing-1) var(--md-spacing-3);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.15px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  border: none;
+  min-height: 40px;
+}
+
+.btn-primary {
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--md-on-primary-container);
+  box-shadow: var(--md-elevation-2);
+  transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--md-primary);
+  color: var(--md-primary);
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--md-primary-container);
+  border-color: var(--md-primary);
+  color: var(--md-on-primary-container);
+  box-shadow: var(--md-elevation-1);
+}
+
+.btn-lg {
+  padding: var(--md-spacing-2) var(--md-spacing-4);
+  font-size: 1rem;
+  min-height: 48px;
+}
+
+/* Navbar Styles - Material Design 3 */
+.navbar {
+  background-color: transparent !important;
+  padding: var(--md-spacing-2) 0;
+}
+
+.navbar-brand {
+  font-weight: 500;
+  color: var(--md-on-surface) !important;
+  font-size: 1.25rem;
+}
+
+.nav-link {
+  color: var(--md-on-surface-variant) !important;
+  font-weight: 500;
+  padding: var(--md-spacing-1) var(--md-spacing-2) !important;
+  border-radius: var(--md-radius-medium);
+  transition: all 0.2s ease;
+  margin: 0 var(--md-spacing-1);
+}
+
+.nav-link:hover {
+  background-color: var(--md-primary-container);
+  color: var(--md-on-primary-container) !important;
+}
+
+/* Badge Styles - Material Design 3 */
+.badge {
+  border-radius: var(--md-radius-full);
+  padding: var(--md-spacing-1) var(--md-spacing-2);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.badge.bg-primary {
+  background-color: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+}
+
+.badge.bg-success {
+  background-color: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+.badge.bg-info {
+  background-color: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+}
+
+.badge.bg-warning {
+  background-color: #fff3e0 !important;
+  color: #e65100 !important;
+}
+
+.badge.bg-danger {
+  background-color: var(--md-error-container) !important;
+  color: var(--md-on-error-container) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--md-surface-variant) !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+/* Container adjustments */
+.container {
+  max-width: 1200px;
+}
+
+/* Material Design 3 List Styles */
+.list-unstyled li {
+  padding: var(--md-spacing-1) 0;
+  color: var(--md-on-surface-variant);
+  font-size: 0.9375rem;
+}
+
+/* Material Design 3 Form Styles */
+.form-control {
+  border-radius: var(--md-radius-medium);
+  border: 1px solid var(--md-outline-variant);
+  padding: var(--md-spacing-2);
+  transition: all 0.2s ease;
+  background-color: var(--md-surface);
+  color: var(--md-on-surface);
+}
+
+.form-control:focus {
+  border-color: var(--md-primary);
+  box-shadow: 0 0 0 2px var(--md-primary-container);
+  outline: none;
+}
+
+.form-label {
+  color: var(--md-on-surface);
+  font-weight: 500;
+  margin-bottom: var(--md-spacing-1);
+}
+
+/* Alert Styles */
+.alert {
+  border-radius: var(--md-radius-medium);
+  border: none;
+  padding: var(--md-spacing-2) var(--md-spacing-3);
+}
+
+.alert-danger {
+  background-color: var(--md-error-container);
+  color: var(--md-on-error-container);
+}
+
+/* Background utilities */
+.bg-light {
+  background-color: var(--md-surface-variant) !important;
+}
+
+.bg-primary-subtle {
+  background-color: var(--md-primary-container) !important;
+}
+
+.bg-secondary-subtle {
+  background-color: var(--md-surface-variant) !important;
+}
+
+/* Text utilities */
+.text-muted {
+  color: var(--md-on-surface-variant) !important;
+}
+
+/* Display utilities */
+.display-4 {
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.25px;
+  color: var(--md-on-surface);
+}
+
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--md-on-surface);
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--md-on-surface-variant);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .banner-background {
+    padding: var(--md-spacing-3) 0;
+  }
+  
+  .brand-title {
+    font-size: 1.5rem;
+  }
+  
+  .brand-tagline {
+    font-size: 0.875rem;
+  }
+  
+  .logo-svg {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .banner-background {
+    min-height: 180px;
+    padding: var(--md-spacing-3) 0;
+  }
+  
+  .brand-features {
+    gap: var(--md-spacing-2);
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .feature-item {
+    font-size: 0.75rem;
+    padding: var(--md-spacing-1);
+  }
+  
+  .feature-item span {
+    display: none;
+  }
+  
+  .hero-section {
+    padding: var(--md-spacing-4) 0;
+  }
+  
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .display-5 {
+    font-size: 1.75rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .card-body {
+    padding: var(--md-spacing-2);
+  }
+  
+  .services-section,
+  .why-choose-section,
+  .contact-section {
+    padding: var(--md-spacing-4) 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-branding {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .brand-features {
+    justify-content: flex-start;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--md-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-radius-small);
+}
+
+/* Material Design 3 Icon Styles */
+svg {
+  vertical-align: middle;
+}
+
+/* Additional Material Design 3 Enhancements */
+.text-center {
+  text-align: center;
+}
+
+/* Improved spacing for sections */
+section {
+  margin-bottom: var(--md-spacing-4);
+}
+
+/* Material Design 3 Link Styles */
+a.text-decoration-none {
+  color: var(--md-primary);
+  transition: color 0.2s ease;
+}
+
+a.text-decoration-none:hover {
+  color: var(--md-on-primary-container);
+  text-decoration: underline;
+}
+
+/* Footer link styles */
+footer a {
+  color: var(--md-primary);
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: var(--md-on-primary-container);
+}
+
+/* Material Design 3 Container max-width */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* Portfolio Styles */
+.portfolio-page {
+  padding: var(--md-spacing-4) 0;
+}
+
+.workflow-card {
+  transition: all 0.3s ease;
+}
+
+.workflow-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--md-elevation-4) !important;
+}
+
+.workflow-icon {
+  flex-shrink: 0;
+}
+
+.workflow-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--md-spacing-1);
+}
+
+.workflow-nodes .badge {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.portfolio-header {
+  background: linear-gradient(135deg, var(--md-primary-container) 0%, var(--md-secondary-container) 100%);
+  border-radius: var(--md-radius-large);
+  padding: var(--md-spacing-5) var(--md-spacing-3);
+}
+
+.portfolio-filters {
+  padding: var(--md-spacing-2) 0;
+}
+
+.modal-header .badge {
+  font-size: 0.75rem;
+}
+
+.modal-body h5 {
+  color: var(--md-on-surface);
+  font-weight: 500;
+  margin-bottom: var(--md-spacing-2);
+}
+
+.modal-body ul, .modal-body ol {
+  padding-left: var(--md-spacing-3);
+}
+
+.modal-body li {
+  margin-bottom: var(--md-spacing-1);
+  color: var(--md-on-surface-variant);
 }
