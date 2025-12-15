@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database
+data/*.db
+
+# Uploaded files (keep folder structure)
+resources/galleries/*/originals/*
+resources/galleries/*/thumbnails/*
+!resources/galleries/main/
+!resources/galleries/main/originals/.gitkeep
+!resources/galleries/main/thumbnails/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo

@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-nadart-bg-primary text-nadart-text-primary font-sans;
+    line-height: 1.6;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  a {
+    @apply text-nadart-text-primary no-underline transition-colors duration-300;
+  }
+
+  a:hover {
+    @apply text-nadart-text-muted;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-nadart-bg-primary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-nadart-accent rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-nadart-accent-hover;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded cursor-pointer transition-all duration-300 font-medium;
+  }
+
+  .btn-primary {
+    @apply bg-nadart-accent text-nadart-text-primary hover:bg-nadart-accent-hover;
+  }
+
+  .btn-success {
+    @apply bg-nadart-accent-success text-white hover:opacity-90;
+  }
+
+  .btn-danger {
+    @apply bg-nadart-accent-error text-white hover:opacity-90;
+  }
+
+  .input {
+    @apply w-full p-3 bg-nadart-accent text-nadart-text-primary border-none rounded text-base transition-colors duration-300;
+  }
+
+  .input:focus {
+    @apply outline-none bg-nadart-accent-hover;
+  }
+
+  .card {
+    @apply bg-nadart-bg-secondary rounded-lg overflow-hidden shadow-lg;
+  }
+}

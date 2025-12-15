@@ -1,0 +1,5 @@
+.ai-memory/
+docs/
+.env
+n8n-emailer/
+.mcp.json
