@@ -1,11 +1,19 @@
-import { Request } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
+// Extend Express Request with our user type
 export interface AuthRequest extends Request {
   user?: {
     id: number
     email: string
   }
 }
+
+// Type for auth middleware handlers
+export type AuthHandler = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => void | Promise<void>
 
 export interface Gallery {
   id: number

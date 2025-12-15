@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3'
+import Database, { Database as DatabaseType } from 'better-sqlite3'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -15,8 +15,8 @@ if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true })
 }
 
-// Create database instance
-const db = new Database(dbPath)
+// Create database instance with explicit type
+const db: DatabaseType = new Database(dbPath)
 
 // Enable foreign keys
 db.pragma('foreign_keys = ON')

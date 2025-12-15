@@ -1,9 +1,9 @@
-import { Router, Response } from 'express'
+import { Router } from 'express'
 import { z } from 'zod'
 import { OAuth2Client } from 'google-auth-library'
 import { authService } from '../services/auth.service.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
-import type { AuthRequest } from '../types/index.js'
+import '../types/express.js' // Import express type extensions
 
 const router = Router()
 
@@ -82,7 +82,7 @@ router.post('/google', async (req, res, next) => {
 })
 
 // Get current user
-router.get('/me', authMiddleware, async (req: AuthRequest, res: Response, next) => {
+router.get('/me', authMiddleware, async (req, res, next) => {
   try {
     const user = await authService.getUserById(req.user!.id)
     if (!user) {
@@ -101,7 +101,7 @@ router.post('/logout', authMiddleware, (_req, res) => {
 })
 
 // Change password
-router.post('/change-password', authMiddleware, async (req: AuthRequest, res: Response, next) => {
+router.post('/change-password', authMiddleware, async (req, res, next) => {
   try {
     const data = changePasswordSchema.parse(req.body)
     const result = await authService.changePassword(req.user!.id, data.currentPassword, data.newPassword)

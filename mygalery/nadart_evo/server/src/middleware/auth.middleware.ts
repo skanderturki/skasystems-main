@@ -1,8 +1,8 @@
-import { Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { verifyToken } from '../utils/jwt.utils.js'
-import type { AuthRequest } from '../types/index.js'
+import '../types/express.js' // Import express type extensions
 
-export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction): void {
+export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
   try {
     const authHeader = req.headers.authorization
 

@@ -28,3 +28,4 @@ yarn-error.log*
 .mcp.json
 /.ai-memory
 /aichat
+.claude/
