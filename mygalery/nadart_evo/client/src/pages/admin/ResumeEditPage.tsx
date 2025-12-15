@@ -157,7 +157,7 @@ function TimelineSection({ timeline }: { timeline: TimelineEntry[] }) {
   const updateEntry = useUpdateTimelineEntry()
   const deleteEntry = useDeleteTimelineEntry()
 
-  const { register, handleSubmit, reset, setValue, watch } = useForm<{
+  const { register, handleSubmit, reset } = useForm<{
     date_range: string
     title: string
     description: string
@@ -185,8 +185,8 @@ function TimelineSection({ timeline }: { timeline: TimelineEntry[] }) {
     const payload = {
       date_range: data.date_range,
       title: data.title,
-      description: data.description || undefined,
-      items: data.items ? data.items.split('\n').filter(Boolean) : undefined,
+      description: data.description || null,
+      items: data.items ? data.items.split('\n').filter(Boolean) : null,
       display_order: editing?.display_order ?? timeline.length,
     }
 
@@ -332,7 +332,7 @@ function ExpertiseSection({ expertise }: { expertise: ExpertiseArea[] }) {
   const onSubmit = (data: { icon: string; title: string; description: string }) => {
     const payload = {
       ...data,
-      description: data.description || undefined,
+      description: data.description || null,
       display_order: editing?.display_order ?? expertise.length,
     }
 
