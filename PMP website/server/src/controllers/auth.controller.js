@@ -4,8 +4,6 @@ const User = require('../models/User');
 const { JWT_SECRET, NODE_ENV } = require('../config/env');
 const { generateVerificationCode, sendVerificationEmail } = require('../services/email.service');
 
-const ALLOWED_DOMAIN = '@psu.edu.sa';
-
 const generateToken = (userId) => {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
 };
@@ -27,11 +25,6 @@ exports.register = async (req, res, next) => {
     }
 
     const { firstName, lastName, email, password } = req.body;
-
-    // Domain restriction
-    if (!email.toLowerCase().endsWith(ALLOWED_DOMAIN)) {
-      return res.status(400).json({ message: 'Only @psu.edu.sa email addresses are allowed to register' });
-    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {

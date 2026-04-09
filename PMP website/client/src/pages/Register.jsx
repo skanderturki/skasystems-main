@@ -14,9 +14,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email.toLowerCase().endsWith('@psu.edu.sa')) {
-      return toast.error('Only @psu.edu.sa email addresses are allowed');
-    }
     if (form.password !== form.confirmPassword) {
       return toast.error('Passwords do not match');
     }
@@ -88,9 +85,8 @@ export default function Register() {
                 value={form.email}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-                placeholder="yourname@psu.edu.sa"
+                placeholder="you@example.com"
               />
-              <p className="text-xs text-gray-500 mt-1">Only @psu.edu.sa emails are accepted</p>
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
