@@ -12,6 +12,18 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
+// Shuffle options and relabel them A, B, C, D... in their new order so the
+// client always displays labels in sequence even though the content is
+// randomized. isCorrect stays attached to the same option through the remap.
+const LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
+function shuffleAndRelabel(options) {
+  return shuffleArray(options).map((o, i) => ({
+    label: LABELS[i],
+    text: o.text,
+    isCorrect: Boolean(o.isCorrect),
+  }));
+}
+
 exports.getAvailable = async (req, res, next) => {
   try {
     const exams = await Exam.find({ examType: 'practice', isPublished: true })
@@ -41,14 +53,13 @@ exports.start = async (req, res, next) => {
     // Shuffle and limit
     questions = shuffleArray(questions).slice(0, exam.questionCount);
 
-    // Shuffle options if configured
-    if (exam.shuffleOptions) {
-      questions = questions.map((q) => {
-        const qObj = q.toObject();
-        qObj.options = shuffleArray(qObj.options);
-        return qObj;
-      });
-    }
+    // Always shuffle + relabel options so display is A, B, C, D in order
+    // but the content at each letter is randomized per attempt.
+    questions = questions.map((q) => {
+      const qObj = q.toObject();
+      qObj.options = shuffleAndRelabel(qObj.options);
+      return qObj;
+    });
 
     // Create attempt
     const attempt = await PracticeAttempt.create({

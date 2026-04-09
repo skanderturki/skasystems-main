@@ -14,6 +14,18 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
+// Shuffle options and relabel them A, B, C, D... in their new order so the
+// client always displays labels in sequence even though the content is
+// randomized. isCorrect stays attached to the same option through the remap.
+const LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
+function shuffleAndRelabel(options) {
+  return shuffleArray(options).map((o, i) => ({
+    label: LABELS[i],
+    text: o.text,
+    isCorrect: Boolean(o.isCorrect),
+  }));
+}
+
 exports.getAvailable = async (req, res, next) => {
   try {
     const exams = await Exam.find({ examType: 'formal', isPublished: true })
@@ -54,21 +66,22 @@ exports.start = async (req, res, next) => {
 
     questions = shuffleArray(questions).slice(0, exam.questionCount);
 
-    if (exam.shuffleOptions) {
-      questions = questions.map((q) => {
-        const qObj = q.toObject();
-        qObj.options = shuffleArray(qObj.options);
-        return qObj;
-      });
-    }
+    // Always shuffle + relabel options so display is A, B, C, D in order.
+    questions = questions.map((q) => {
+      const qObj = q.toObject();
+      qObj.options = shuffleAndRelabel(qObj.options);
+      return qObj;
+    });
 
-    // Create attempt
+    // Create attempt — store the post-shuffle correct label per question
+    // so grading on submit doesn't need to reconstruct the shuffle order.
     const attempt = await ExamAttempt.create({
       user: req.user._id,
       exam: exam._id,
       examTitle: exam.title,
       questions: questions.map((q) => ({
         question: q._id,
+        correctOption: q.options.find((o) => o.isCorrect)?.label,
         selectedOption: null,
         isCorrect: false,
       })),
@@ -111,14 +124,6 @@ exports.submit = async (req, res, next) => {
       return res.status(400).json({ message: 'This exam has already been submitted' });
     }
 
-    // Get the actual questions to grade
-    const questionIds = attempt.questions.map((q) => q.question);
-    const questions = await Question.find({ _id: { $in: questionIds } });
-    const questionMap = {};
-    questions.forEach((q) => {
-      questionMap[q._id.toString()] = q;
-    });
-
     const answerMap = {};
     if (answers) {
       answers.forEach((a) => {
@@ -126,16 +131,17 @@ exports.submit = async (req, res, next) => {
       });
     }
 
+    // Grade using the per-attempt correctOption stored at start time
+    // (the shuffled+relabeled correct answer).
     let correctCount = 0;
     attempt.questions = attempt.questions.map((aq) => {
-      const q = questionMap[aq.question.toString()];
       const selected = answerMap[aq.question.toString()] || null;
-      const correctOption = q?.options.find((o) => o.isCorrect);
-      const isCorrect = selected === correctOption?.label;
+      const isCorrect = selected != null && selected === aq.correctOption;
       if (isCorrect) correctCount++;
 
       return {
         question: aq.question,
+        correctOption: aq.correctOption,
         selectedOption: selected,
         isCorrect,
       };

@@ -16,6 +16,7 @@ const examAttemptSchema = new mongoose.Schema(
     questions: [
       {
         question: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+        correctOption: String, // post-shuffle label (A/B/C/D) of the correct answer
         selectedOption: String,
         isCorrect: Boolean,
       },
