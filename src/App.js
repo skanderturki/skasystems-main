@@ -9,41 +9,12 @@ import { cn } from './lib/utils';
 
 function BrandLogo({ className }) {
   return (
-    <svg
-      width="72"
-      height="72"
-      viewBox="0 0 128 128"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <img
+      src="/logo.png"
+      alt="SKA Systems"
       className={className}
-      aria-label="SKA Systems"
-      role="img"
-    >
-      {/*
-        Flat-top hexagon outline with a small bracket "C" detail at the
-        top-right — based on the supplied SKA Systems identity.
-        Uses currentColor so the mark inherits its fill from the parent
-        (white on the site's dark chrome, navy on light backgrounds).
-      */}
-      <path
-        d="M 40 24 L 96 24 L 120 64 L 96 104 L 40 104 L 16 64 Z"
-        stroke="currentColor"
-        strokeWidth="10"
-        strokeLinejoin="miter"
-        strokeLinecap="square"
-        fill="none"
-      />
-
-      {/* Top-right "C" / bracket detail — sits just inside the top-right edge */}
-      <path
-        d="M 108 32 L 96 32 L 96 58 L 108 58"
-        stroke="currentColor"
-        strokeWidth="10"
-        strokeLinejoin="miter"
-        strokeLinecap="square"
-        fill="none"
-      />
-    </svg>
+      draggable={false}
+    />
   );
 }
 
@@ -130,7 +101,7 @@ function App() {
                     className="absolute inset-0 rounded-full bg-brand-blue/40 blur-xl animate-glow"
                     aria-hidden="true"
                   />
-                  <BrandLogo className="relative h-14 w-14 sm:h-[72px] sm:w-[72px] animate-pulse-slow drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition hover:scale-105 hover:rotate-3" />
+                  <BrandLogo className="relative h-14 w-auto sm:h-[72px] object-contain animate-pulse-slow drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition hover:scale-105 hover:rotate-3" />
                 </div>
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
@@ -162,7 +133,7 @@ function App() {
         <nav className="relative border-b border-white/10 bg-brand-deep/80 backdrop-blur-lg supports-[backdrop-filter]:bg-brand-deep/60">
           <div className="container-page flex h-14 items-center justify-between">
             <a href="#home" className="flex items-center gap-2 text-white font-semibold">
-              <BrandLogo className="h-7 w-7" />
+              <BrandLogo className="h-8 w-auto object-contain" />
               <span>SKA Systems</span>
             </a>
 
@@ -278,7 +249,7 @@ function App() {
             {/* Brand col */}
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <BrandLogo className="h-10 w-10" />
+                <BrandLogo className="h-10 w-auto object-contain" />
                 <span className="font-bold text-white text-lg">SKA Systems</span>
               </div>
               <p className="text-sm text-white/60 leading-relaxed max-w-sm">
