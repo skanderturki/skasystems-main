@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 
 # Set working directory
 WORKDIR /app
@@ -7,14 +7,8 @@ WORKDIR /app
 # Install necessary build tools
 RUN apk add --no-cache python3 make g++
 
-# Debug: List contents of current directory
-RUN ls -la
-
 # Copy package files first
 COPY package*.json ./
-
-# Debug: Verify package.json was copied
-RUN ls -la
 
 # Install dependencies with legacy peer deps
 RUN npm install --legacy-peer-deps
@@ -22,24 +16,26 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the source code
 COPY . .
 
-# Debug: List contents after copying all files
-RUN ls -la
-RUN ls -la public/
-
-# Build the application
+# Build the React application (CRA outputs to /app/build)
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:20-alpine
 
-# Copy built files from builder stage
-COPY --from=build /app/build /usr/share/nginx/html
+WORKDIR /app
 
-# Copy custom nginx configuration
-COPY react-nginx.conf /etc/nginx/nginx.conf
+# Copy built React app, server, and node_modules from build stage
+COPY --from=build /app/build ./build
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/server.js ./server.js
 
-# Expose port 80
-EXPOSE 80
+# Environment
+ENV NODE_ENV=production
+ENV PORT=3000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port
+EXPOSE 3000
+
+# Start Node server (serves build/ and handles /api/contact)
+CMD ["node", "server.js"]

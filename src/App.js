@@ -87,32 +87,30 @@ function App() {
                     </svg>
                   </div>
                   <div className="brand-text">
-                    <h1 className="brand-title">FoxTrek Systems</h1>
-                    <p className="brand-tagline">n8n Consulting Services</p>
+                    <h1 className="brand-title">SKA Systems</h1>
+                    <p className="brand-tagline">Intelligent Software for Education &amp; Academia</p>
                   </div>
                 </div>
                 <div className="brand-features">
                   <div className="feature-item">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                      <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                     </svg>
-                    <span>Expert Solutions</span>
+                    <span>Learning Platforms</span>
                   </div>
                   <div className="feature-item">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                      <path d="M9 12l2 2 4-4"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <span>Trusted Partner</span>
+                    <span>Academic Automation</span>
                   </div>
                   <div className="feature-item">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="3" width="7" height="7"></rect>
-                      <rect x="14" y="3" width="7" height="7"></rect>
-                      <rect x="14" y="14" width="7" height="7"></rect>
-                      <rect x="3" y="14" width="7" height="7"></rect>
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    <span>Custom Solutions</span>
+                    <span>AI Student Advisors</span>
                   </div>
                 </div>
               </div>
@@ -129,30 +127,28 @@ function App() {
                     width="28"
                     height="28"
                     className="d-inline-block align-top me-2"
-                    alt="n8n Consulting"
+                    alt="SKA Systems"
                   />
-                  <span className="fw-bold">FoxTrek Systems</span>
+                  <span className="fw-bold">SKA Systems</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#about">About</Nav.Link>
                     <Nav.Link href="#services">Services</Nav.Link>
-                    <Nav.Link href="#portfolio">Portfolio</Nav.Link>
                     <Nav.Link href="#contact">Contact</Nav.Link>
-                    {isAuthenticated ? (
+                    <Nav.Link href="https://pmp.skasystems.com" target="_blank" rel="noopener noreferrer">
+                      PMP Platform
+                    </Nav.Link>
+                    {isAuthenticated && (
                       <>
                         <Nav.Link href="https://n8n.skasystems.com" target="_blank" rel="noopener noreferrer">
-                          My n8n server
+                          n8n Server
                         </Nav.Link>
                         <Nav.Link onClick={handleLogout} style={{ cursor: 'pointer' }}>
                           Logout
                         </Nav.Link>
-                      </>
-                    ) : (
-                      <>
-                        <Nav.Link href="#login">Login</Nav.Link>
-                        <Nav.Link href="#register">Register</Nav.Link>
                       </>
                     )}
                   </Nav>
@@ -175,11 +171,13 @@ function App() {
         <Container>
           <Row>
             <Col className="m-3 text-center">
-              <p className="mb-2">© 2025 SKA Systems - n8n Consulting Services</p>
+              <p className="mb-2">© {new Date().getFullYear()} SKA Systems — Intelligent Software for Education &amp; Academia</p>
               <p className="mb-2">
                 <a href="mailto:skanderturki@gmail.com" className="text-decoration-none">Contact Us</a>
                 {' | '}
-                <a href="https://docs.n8n.io/" target="_blank" rel="noopener noreferrer" className="text-decoration-none">n8n Documentation</a>
+                <a href="https://pmp.skasystems.com" target="_blank" rel="noopener noreferrer" className="text-decoration-none">PMP Platform</a>
+                {' | '}
+                <a href="https://n8n.skasystems.com" target="_blank" rel="noopener noreferrer" className="text-decoration-none">n8n Server</a>
               </p>
             </Col>
             {/* <Col className="m-3">
