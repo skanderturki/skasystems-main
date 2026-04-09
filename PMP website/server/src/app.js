@@ -18,6 +18,10 @@ const progressRoutes = require('./routes/progress.routes');
 
 const app = express();
 
+// Trust the first proxy (system nginx) so req.ip and X-Forwarded-For
+// are honored correctly by express-rate-limit and cookie `secure` checks.
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet());
 app.use(
