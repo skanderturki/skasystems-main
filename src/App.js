@@ -12,56 +12,37 @@ function BrandLogo({ className }) {
     <svg
       width="72"
       height="72"
-      viewBox="0 0 64 64"
+      viewBox="0 0 128 128"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-label="SKA Systems"
       role="img"
     >
-      <defs>
-        {/* Brand gradient — blue → cyan → violet, matches text-gradient-brand */}
-        <linearGradient id="ska-tile" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1976d2" />
-          <stop offset="55%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#8b5cf6" />
-        </linearGradient>
-        {/* Top highlight for subtle 3D lift */}
-        <linearGradient id="ska-highlight" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </linearGradient>
-        {/* Inner shadow for depth on the letterform */}
-        <filter id="ska-letter-shadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow
-            dx="0"
-            dy="1"
-            stdDeviation="0.8"
-            floodColor="#0b1220"
-            floodOpacity="0.35"
-          />
-        </filter>
-      </defs>
-
-      {/* Rounded-square tile */}
-      <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#ska-tile)" />
-
-      {/* Top highlight band — gives the tile a lit-from-above feel */}
-      <rect x="2" y="2" width="60" height="28" rx="14" fill="url(#ska-highlight)" />
-
-      {/* Bold "S" monogram — single smooth bezier curve */}
+      {/*
+        Flat-top hexagon outline with a small bracket "C" detail at the
+        top-right — based on the supplied SKA Systems identity.
+        Uses currentColor so the mark inherits its fill from the parent
+        (white on the site's dark chrome, navy on light backgrounds).
+      */}
       <path
-        d="M44 20 C44 12 20 12 20 22 C20 32 44 32 44 42 C44 52 20 52 20 44"
-        stroke="#ffffff"
-        strokeWidth="6"
-        strokeLinecap="round"
+        d="M 40 24 L 96 24 L 120 64 L 96 104 L 40 104 L 16 64 Z"
+        stroke="currentColor"
+        strokeWidth="10"
+        strokeLinejoin="miter"
+        strokeLinecap="square"
         fill="none"
-        filter="url(#ska-letter-shadow)"
       />
 
-      {/* AI spark — neural core accent at the S's top-right */}
-      <circle cx="48" cy="17" r="5.5" fill="#22d3ee" opacity="0.35" />
-      <circle cx="48" cy="17" r="2.5" fill="#ffffff" />
+      {/* Top-right "C" / bracket detail — sits just inside the top-right edge */}
+      <path
+        d="M 108 32 L 96 32 L 96 58 L 108 58"
+        stroke="currentColor"
+        strokeWidth="10"
+        strokeLinejoin="miter"
+        strokeLinecap="square"
+        fill="none"
+      />
     </svg>
   );
 }
