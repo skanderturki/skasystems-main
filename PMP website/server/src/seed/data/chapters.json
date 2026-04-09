@@ -1,0 +1,68 @@
+[
+  {
+    "chapterCode": "CH01-1",
+    "title": "Introduction to Project Management",
+    "description": "Fundamentals of project management including definitions, history, the role of project managers, and the PMBOK framework.",
+    "order": 1
+  },
+  {
+    "chapterCode": "CH01-2",
+    "title": "Project Performance Domains",
+    "description": "The eight project performance domains that are critical for effective delivery of project outcomes, including stakeholder, team, development approach, planning, project work, delivery, measurement, and uncertainty.",
+    "order": 2
+  },
+  {
+    "chapterCode": "CH01-3",
+    "title": "Tailoring, Models, Methods & Artifacts",
+    "description": "How to adapt project management approaches to fit the project context, and common models, methods, and artifacts used in project management.",
+    "order": 3
+  },
+  {
+    "chapterCode": "CH02",
+    "title": "PM in the Organization",
+    "description": "How projects relate to organizational strategy, structure, and culture. Understanding the organizational context in which projects operate.",
+    "order": 4
+  },
+  {
+    "chapterCode": "CH03",
+    "title": "Team Management",
+    "description": "Team development stages, building trust, managing conflict, embracing accountability, and leadership in project teams.",
+    "order": 5
+  },
+  {
+    "chapterCode": "CH05",
+    "title": "Risk Management",
+    "description": "Identifying, analyzing, planning responses to, and monitoring project risks throughout the project lifecycle.",
+    "order": 6
+  },
+  {
+    "chapterCode": "CH06-1",
+    "title": "Estimation",
+    "description": "Estimation methodologies including expert judgment, analogous estimation, parametric estimation, function points, and COCOMO.",
+    "order": 7
+  },
+  {
+    "chapterCode": "CH06-2",
+    "title": "Scheduling and Tracking",
+    "description": "Work Breakdown Structures, network analysis, critical path method, Gantt charts, and project tracking techniques.",
+    "order": 8
+  },
+  {
+    "chapterCode": "CH07",
+    "title": "Quality Management",
+    "description": "Software quality concepts, quality assurance, quality control, testing strategies, and measurement metrics.",
+    "order": 9
+  },
+  {
+    "chapterCode": "CH08",
+    "title": "Stakeholder Management",
+    "description": "Identifying stakeholders, stakeholder analysis, communication management, and engagement strategies.",
+    "order": 10
+  },
+  {
+    "chapterCode": "CH09",
+    "title": "Change Management",
+    "description": "Integrated change control, configuration management, software maintenance, and managing project changes systematically.",
+    "order": 11
+  }
+]

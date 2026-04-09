@@ -1,0 +1,1052 @@
+[
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A company is considering launching an initiative to upgrade its internal payroll system. Which characteristic BEST distinguishes this initiative as a project rather than ongoing operations?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "It requires a dedicated budget allocation", "isCorrect": false },
+      { "label": "B", "text": "It is a temporary endeavor with a defined beginning and end", "isCorrect": true },
+      { "label": "C", "text": "It involves multiple departments working together", "isCorrect": false },
+      { "label": "D", "text": "It will be managed by a senior executive", "isCorrect": false }
+    ],
+    "explanation": "A project is defined as a temporary endeavor undertaken to create a unique product, service, or result. The key distinguishing factor from operations is its temporary nature with a definite start and finish.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "Which of the following BEST describes the role of a project manager?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "A person who performs the technical work on the project", "isCorrect": false },
+      { "label": "B", "text": "A person assigned by the performing organization to lead the team responsible for achieving the project objectives", "isCorrect": true },
+      { "label": "C", "text": "A person who funds the project and makes all final decisions", "isCorrect": false },
+      { "label": "D", "text": "A person who approves scope changes and budget increases", "isCorrect": false }
+    ],
+    "explanation": "The project manager is the person assigned by the performing organization to lead the team that is responsible for achieving the project objectives. The sponsor funds the project, while the CCB typically approves changes.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project manager is asked to deliver a software application with additional features while keeping the same deadline and budget. Which concept does this situation BEST illustrate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Gold plating", "isCorrect": false },
+      { "label": "B", "text": "Scope creep", "isCorrect": false },
+      { "label": "C", "text": "The triple constraint", "isCorrect": true },
+      { "label": "D", "text": "Progressive elaboration", "isCorrect": false }
+    ],
+    "explanation": "The triple constraint (scope, time, cost) states that changing one constraint will impact at least one of the others. Adding scope without adjusting time or cost directly illustrates this interdependency.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "The PMBOK Guide is BEST described as which of the following?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "A mandatory methodology that all projects must follow", "isCorrect": false },
+      { "label": "B", "text": "A guide that identifies a subset of the project management body of knowledge generally recognized as good practice", "isCorrect": true },
+      { "label": "C", "text": "A regulatory standard enforced by PMI for certified professionals", "isCorrect": false },
+      { "label": "D", "text": "A step-by-step manual for managing IT projects", "isCorrect": false }
+    ],
+    "explanation": "The PMBOK Guide provides guidelines and identifies generally recognized good practices for project management. It is not a prescriptive methodology nor limited to any specific industry.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "During which phase of the project life cycle is the level of uncertainty typically the HIGHEST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Executing", "isCorrect": false },
+      { "label": "B", "text": "Closing", "isCorrect": false },
+      { "label": "C", "text": "Initiating", "isCorrect": true },
+      { "label": "D", "text": "Monitoring and controlling", "isCorrect": false }
+    ],
+    "explanation": "Uncertainty and risk are highest at the beginning of the project during initiation because many factors are unknown. As the project progresses and more information becomes available, uncertainty decreases.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A stakeholder insists that the project must be completed two weeks earlier than planned. The project manager analyzes the impact and determines that either cost must increase or scope must decrease. This scenario demonstrates which principle?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Parkinson's Law", "isCorrect": false },
+      { "label": "B", "text": "Law of diminishing returns", "isCorrect": false },
+      { "label": "C", "text": "The interrelationship of the project constraints", "isCorrect": true },
+      { "label": "D", "text": "Monte Carlo analysis", "isCorrect": false }
+    ],
+    "explanation": "The triple constraint dictates that scope, schedule, and cost are interrelated. Compressing the schedule typically requires adding resources (cost) or reducing scope to maintain feasibility.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project manager notices that the cost of making changes is rising significantly as the project progresses. This is BEST explained by which concept?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Sunk cost fallacy", "isCorrect": false },
+      { "label": "B", "text": "The cost of change curve across the project life cycle", "isCorrect": true },
+      { "label": "C", "text": "Earned value management", "isCorrect": false },
+      { "label": "D", "text": "Variable cost escalation", "isCorrect": false }
+    ],
+    "explanation": "The cost of changes and correcting errors generally increases as the project progresses through its life cycle. Changes made late in the project are more expensive because more work may need to be redone.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "Which of the following activities would be classified as operations rather than a project?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Building a new data center", "isCorrect": false },
+      { "label": "B", "text": "Developing a new mobile application", "isCorrect": false },
+      { "label": "C", "text": "Processing daily customer service requests", "isCorrect": true },
+      { "label": "D", "text": "Migrating an existing database to the cloud", "isCorrect": false }
+    ],
+    "explanation": "Operations are ongoing, repetitive activities that sustain the business. Processing daily customer service requests is a routine, continuous function, unlike projects which are temporary and unique.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project manager is managing a construction project where the client wants to add a rooftop garden. The project manager evaluates the impact on schedule and cost before accepting the change. Which aspect of the PM role does this BEST demonstrate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Technical expertise", "isCorrect": false },
+      { "label": "B", "text": "Integration management and balancing constraints", "isCorrect": true },
+      { "label": "C", "text": "Stakeholder avoidance", "isCorrect": false },
+      { "label": "D", "text": "Quality assurance", "isCorrect": false }
+    ],
+    "explanation": "A key role of the project manager is integration management, which involves evaluating the impact of changes across all project constraints and coordinating the various aspects of the project.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "In a predictive project life cycle, when does the majority of project spending typically occur?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "During the initiating phase", "isCorrect": false },
+      { "label": "B", "text": "During the planning phase", "isCorrect": false },
+      { "label": "C", "text": "During the executing phase", "isCorrect": true },
+      { "label": "D", "text": "During the closing phase", "isCorrect": false }
+    ],
+    "explanation": "The executing phase involves the largest commitment of resources and budget as the project deliverables are being produced. Staffing levels and spending peak during execution.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "Which of the following is NOT a characteristic of a project?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "It creates a unique product, service, or result", "isCorrect": false },
+      { "label": "B", "text": "It has a definite beginning and end", "isCorrect": false },
+      { "label": "C", "text": "It is ongoing and repetitive in nature", "isCorrect": true },
+      { "label": "D", "text": "It is progressively elaborated", "isCorrect": false }
+    ],
+    "explanation": "Projects are temporary and unique. Ongoing, repetitive work is characteristic of operations, not projects. Progressive elaboration means details are refined as more information becomes available.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project manager is leading a team of 30 people across three countries. She spends most of her time facilitating communication, resolving conflicts, and setting expectations. This illustrates that effective project management requires strong skills in which area?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Technical project management", "isCorrect": false },
+      { "label": "B", "text": "Strategic and business management", "isCorrect": false },
+      { "label": "C", "text": "Leadership and interpersonal skills", "isCorrect": true },
+      { "label": "D", "text": "Organizational process assets", "isCorrect": false }
+    ],
+    "explanation": "The PMI Talent Triangle highlights leadership and interpersonal skills as critical competencies. Facilitating communication, resolving conflicts, and managing expectations are core interpersonal activities.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A pharmaceutical company is developing a new drug. After each phase of clinical trials, management reviews results before deciding whether to proceed to the next phase. What type of project life cycle does this BEST represent?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Agile life cycle", "isCorrect": false },
+      { "label": "B", "text": "Iterative life cycle", "isCorrect": false },
+      { "label": "C", "text": "Predictive life cycle with phase gates", "isCorrect": true },
+      { "label": "D", "text": "Hybrid life cycle", "isCorrect": false }
+    ],
+    "explanation": "A predictive life cycle with phase gates (also known as stage gates) requires formal review and approval at the end of each phase before the project can proceed. This is common in regulated industries like pharmaceuticals.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project to construct a bridge has been completed, and the bridge is now open to traffic. Ongoing maintenance of the bridge would be considered what?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "A subproject of the original bridge project", "isCorrect": false },
+      { "label": "B", "text": "Part of the closing phase", "isCorrect": false },
+      { "label": "C", "text": "Operations", "isCorrect": true },
+      { "label": "D", "text": "A new project phase", "isCorrect": false }
+    ],
+    "explanation": "Once a project delivers its product, the ongoing maintenance and upkeep become operational activities. Operations are continuous and repetitive, unlike the temporary nature of the project that created the bridge.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-1",
+    "questionText": "A project manager is asked to deliver a product that has never been built before using an emerging technology. Requirements are unclear and likely to evolve. The sponsor wants to see working increments every two weeks. Which project life cycle approach is MOST appropriate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Predictive (waterfall)", "isCorrect": false },
+      { "label": "B", "text": "Adaptive (agile)", "isCorrect": true },
+      { "label": "C", "text": "Incremental only", "isCorrect": false },
+      { "label": "D", "text": "Phase-gate predictive", "isCorrect": false }
+    ],
+    "explanation": "An adaptive (agile) life cycle is most appropriate when requirements are uncertain and expected to evolve, and when the sponsor wants frequent delivery of working increments for feedback and course correction.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "How many performance domains are identified in the PMBOK Guide, Seventh Edition?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "5", "isCorrect": false },
+      { "label": "B", "text": "8", "isCorrect": true },
+      { "label": "C", "text": "10", "isCorrect": false },
+      { "label": "D", "text": "12", "isCorrect": false }
+    ],
+    "explanation": "The PMBOK Guide Seventh Edition identifies 8 project performance domains: Stakeholders, Team, Development Approach and Life Cycle, Planning, Project Work, Delivery, Measurement, and Uncertainty.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project manager discovers that a key regulatory agency was not included in the stakeholder register. This omission is MOST likely to cause problems in which performance domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Team", "isCorrect": false },
+      { "label": "B", "text": "Stakeholder", "isCorrect": true },
+      { "label": "C", "text": "Delivery", "isCorrect": false },
+      { "label": "D", "text": "Measurement", "isCorrect": false }
+    ],
+    "explanation": "The Stakeholder performance domain focuses on identifying, understanding, and engaging all stakeholders. Missing a key regulatory agency indicates a failure in stakeholder identification and analysis.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project manager is building a high-performing team by fostering shared ownership and encouraging collaborative decision-making. Which performance domain is she PRIMARILY working within?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Stakeholder", "isCorrect": false },
+      { "label": "B", "text": "Planning", "isCorrect": false },
+      { "label": "C", "text": "Team", "isCorrect": true },
+      { "label": "D", "text": "Delivery", "isCorrect": false }
+    ],
+    "explanation": "The Team performance domain addresses activities and functions associated with the people responsible for producing project deliverables, including building high-performing teams and fostering shared ownership.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "During a project status meeting, the project manager reviews the burn-down chart and earned value metrics to assess whether the project is on track. Which performance domain does this activity BEST align with?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Planning", "isCorrect": false },
+      { "label": "B", "text": "Project Work", "isCorrect": false },
+      { "label": "C", "text": "Delivery", "isCorrect": false },
+      { "label": "D", "text": "Measurement", "isCorrect": true }
+    ],
+    "explanation": "The Measurement performance domain involves assessing project performance and taking appropriate actions to maintain acceptable performance through metrics like burn-down charts and earned value.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A stakeholder with high power and high interest in the project keeps changing requirements mid-sprint. According to the Stakeholder performance domain, what should the project manager do FIRST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Escalate the issue to the sponsor immediately", "isCorrect": false },
+      { "label": "B", "text": "Ignore the stakeholder since the sprint has started", "isCorrect": false },
+      { "label": "C", "text": "Engage the stakeholder to understand their needs and establish a change process", "isCorrect": true },
+      { "label": "D", "text": "Add all requested changes to the current sprint", "isCorrect": false }
+    ],
+    "explanation": "The Stakeholder domain emphasizes proactive engagement. For high-power, high-interest stakeholders, the project manager should engage them to understand underlying needs and channel their input through an appropriate process.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "The Planning performance domain emphasizes that planning should be iterative and evolve throughout the project. Which statement BEST reflects this principle?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The project plan should be finalized before execution begins and not changed", "isCorrect": false },
+      { "label": "B", "text": "Planning is done only at the beginning and revisited only if the project fails", "isCorrect": false },
+      { "label": "C", "text": "Plans are progressively elaborated as more information becomes available throughout the project", "isCorrect": true },
+      { "label": "D", "text": "Planning is unnecessary in agile projects", "isCorrect": false }
+    ],
+    "explanation": "The Planning performance domain recognizes that plans are living documents that evolve through progressive elaboration. Both predictive and adaptive approaches require ongoing planning as new information emerges.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project team delivers a product that meets all technical specifications, but the customer is dissatisfied because the product does not solve their business problem. Which performance domain was MOST likely neglected?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Team", "isCorrect": false },
+      { "label": "B", "text": "Measurement", "isCorrect": false },
+      { "label": "C", "text": "Delivery", "isCorrect": true },
+      { "label": "D", "text": "Project Work", "isCorrect": false }
+    ],
+    "explanation": "The Delivery performance domain focuses on delivering value and outcomes that meet stakeholder expectations. Meeting technical specs without solving the business problem indicates a failure to focus on delivering real value.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "Which of the following is a desired outcome of the Team performance domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "All risks are identified and mitigated", "isCorrect": false },
+      { "label": "B", "text": "Stakeholder satisfaction is measured quarterly", "isCorrect": false },
+      { "label": "C", "text": "Shared ownership and a high-performing team exist", "isCorrect": true },
+      { "label": "D", "text": "All deliverables are accepted by the customer", "isCorrect": false }
+    ],
+    "explanation": "The Team performance domain aims to establish a team culture of shared accountability and ownership, ultimately developing a high-performing team that collaborates effectively.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project manager is using key performance indicators (KPIs) and dashboards to track project health metrics such as schedule variance and cost performance index. These activities are MOST closely associated with which performance domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Planning", "isCorrect": false },
+      { "label": "B", "text": "Measurement", "isCorrect": true },
+      { "label": "C", "text": "Project Work", "isCorrect": false },
+      { "label": "D", "text": "Uncertainty", "isCorrect": false }
+    ],
+    "explanation": "The Measurement performance domain is concerned with assessing project performance through KPIs, metrics, and dashboards to ensure the project remains on track and corrective actions are taken when needed.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project team realizes that a newly passed regulation will significantly impact their project deliverables. They need to assess the impact and adjust their approach. Which TWO performance domains are MOST relevant to this situation?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Team and Delivery", "isCorrect": false },
+      { "label": "B", "text": "Uncertainty and Planning", "isCorrect": true },
+      { "label": "C", "text": "Stakeholder and Team", "isCorrect": false },
+      { "label": "D", "text": "Measurement and Project Work", "isCorrect": false }
+    ],
+    "explanation": "A new regulation represents an uncertainty (risk/threat) that must be assessed, and the Planning domain must be engaged to adjust the project approach and plans accordingly to address the regulatory impact.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "The project manager establishes clear acceptance criteria for each deliverable and validates them with the customer before starting development. This practice is BEST associated with which performance domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Delivery", "isCorrect": true },
+      { "label": "B", "text": "Team", "isCorrect": false },
+      { "label": "C", "text": "Measurement", "isCorrect": false },
+      { "label": "D", "text": "Project Work", "isCorrect": false }
+    ],
+    "explanation": "The Delivery performance domain focuses on ensuring that deliverables meet quality requirements and acceptance criteria, enabling value realization for stakeholders.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project manager notices that team members are not attending stand-up meetings and communication has broken down. Velocity has dropped by 40%. Which performance domain should the project manager focus on to address the root cause?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Measurement", "isCorrect": false },
+      { "label": "B", "text": "Planning", "isCorrect": false },
+      { "label": "C", "text": "Team", "isCorrect": true },
+      { "label": "D", "text": "Delivery", "isCorrect": false }
+    ],
+    "explanation": "The declining attendance and communication breakdown are team dynamics issues. The Team performance domain addresses team culture, collaboration, and communication, which are the root causes of the velocity drop.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "A project manager is working to ensure that the project contributes to the strategic objectives of the organization and that business value is realized throughout the project. Which performance domain is MOST concerned with these outcomes?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Project Work", "isCorrect": false },
+      { "label": "B", "text": "Delivery", "isCorrect": true },
+      { "label": "C", "text": "Stakeholder", "isCorrect": false },
+      { "label": "D", "text": "Planning", "isCorrect": false }
+    ],
+    "explanation": "The Delivery performance domain is focused on delivering value, achieving outcomes aligned with business objectives, and ensuring that the project's results contribute to the organization's strategic goals.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "An experienced project manager conducts a retrospective and discovers the team has been using metrics that do not reflect actual project progress. She decides to implement leading indicators alongside lagging indicators. This improvement targets which performance domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Planning", "isCorrect": false },
+      { "label": "B", "text": "Team", "isCorrect": false },
+      { "label": "C", "text": "Uncertainty", "isCorrect": false },
+      { "label": "D", "text": "Measurement", "isCorrect": true }
+    ],
+    "explanation": "Implementing appropriate leading and lagging indicators to accurately reflect project progress is a core activity of the Measurement performance domain, which ensures meaningful metrics are used for decision-making.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-2",
+    "questionText": "Which of the following is NOT one of the eight project performance domains in the PMBOK Guide Seventh Edition?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Stakeholder", "isCorrect": false },
+      { "label": "B", "text": "Procurement", "isCorrect": true },
+      { "label": "C", "text": "Uncertainty", "isCorrect": false },
+      { "label": "D", "text": "Delivery", "isCorrect": false }
+    ],
+    "explanation": "Procurement is a knowledge area from the PMBOK Sixth Edition, not a performance domain in the Seventh Edition. The eight domains are Stakeholders, Team, Development Approach and Life Cycle, Planning, Project Work, Delivery, Measurement, and Uncertainty.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A project manager decides to use a hybrid approach, combining waterfall for hardware development and Scrum for software development within the same project. This decision BEST demonstrates which concept?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Gold plating", "isCorrect": false },
+      { "label": "B", "text": "Tailoring", "isCorrect": true },
+      { "label": "C", "text": "Progressive elaboration", "isCorrect": false },
+      { "label": "D", "text": "Rolling wave planning", "isCorrect": false }
+    ],
+    "explanation": "Tailoring involves adapting the project management approach, governance, and processes to make them more suitable for the given environment. Using different methods for different components is a classic example of tailoring.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "Which artifact formally authorizes the existence of a project and provides the project manager with authority to apply organizational resources to project activities?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Project management plan", "isCorrect": false },
+      { "label": "B", "text": "Work breakdown structure", "isCorrect": false },
+      { "label": "C", "text": "Project charter", "isCorrect": true },
+      { "label": "D", "text": "Statement of work", "isCorrect": false }
+    ],
+    "explanation": "The project charter formally authorizes the project's existence and gives the project manager the authority to apply organizational resources. It is typically issued by the sponsor or an initiator external to the project.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A Scrum team is refining user stories and ordering them based on business value for the next sprint. Which artifact are they working with?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Work breakdown structure", "isCorrect": false },
+      { "label": "B", "text": "Requirements traceability matrix", "isCorrect": false },
+      { "label": "C", "text": "Product backlog", "isCorrect": true },
+      { "label": "D", "text": "Project charter", "isCorrect": false }
+    ],
+    "explanation": "The product backlog is an ordered list of everything that is known to be needed in the product. Refining and prioritizing user stories by business value is a key backlog management activity in Scrum.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A project manager is decomposing the project scope into smaller, more manageable components. The resulting hierarchical structure shows deliverables broken down to the work package level. What is this artifact called?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Product backlog", "isCorrect": false },
+      { "label": "B", "text": "Gantt chart", "isCorrect": false },
+      { "label": "C", "text": "Work breakdown structure (WBS)", "isCorrect": true },
+      { "label": "D", "text": "Network diagram", "isCorrect": false }
+    ],
+    "explanation": "The WBS is a hierarchical decomposition of the total scope of work to be carried out by the project team. It breaks deliverables into smaller, manageable work packages.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "When tailoring the project management approach, which of the following should be the PRIMARY consideration?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The project manager's personal preference for a methodology", "isCorrect": false },
+      { "label": "B", "text": "The unique characteristics of the project and its context", "isCorrect": true },
+      { "label": "C", "text": "The methodology used on the last successful project", "isCorrect": false },
+      { "label": "D", "text": "The availability of agile tools in the organization", "isCorrect": false }
+    ],
+    "explanation": "Tailoring should be driven by the unique characteristics and context of the project, including factors such as complexity, stakeholder needs, organizational culture, and the nature of the deliverables.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "An organization is starting a large infrastructure project with well-defined requirements, regulatory constraints, and a fixed contract. Which development approach is MOST appropriate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Agile (Scrum)", "isCorrect": false },
+      { "label": "B", "text": "Kanban", "isCorrect": false },
+      { "label": "C", "text": "Predictive (waterfall)", "isCorrect": true },
+      { "label": "D", "text": "Extreme Programming (XP)", "isCorrect": false }
+    ],
+    "explanation": "A predictive (waterfall) approach is most appropriate when requirements are well-defined, the scope is stable, regulatory constraints exist, and the project operates under a fixed contract.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "The Cynefin framework helps project managers determine the best approach by categorizing situations into different domains. A project where the relationship between cause and effect is unclear and requires experimentation falls into which domain?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Clear (Simple)", "isCorrect": false },
+      { "label": "B", "text": "Complicated", "isCorrect": false },
+      { "label": "C", "text": "Complex", "isCorrect": true },
+      { "label": "D", "text": "Chaotic", "isCorrect": false }
+    ],
+    "explanation": "In the Complex domain of the Cynefin framework, cause and effect can only be understood in retrospect. The recommended approach is to probe, sense, and respond through experimentation.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A project manager is leading a software project and decides to use timeboxed iterations of two weeks, daily stand-ups, and a prioritized backlog. Which method is the team MOST likely using?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Waterfall", "isCorrect": false },
+      { "label": "B", "text": "PRINCE2", "isCorrect": false },
+      { "label": "C", "text": "Scrum", "isCorrect": true },
+      { "label": "D", "text": "Critical chain", "isCorrect": false }
+    ],
+    "explanation": "Scrum uses timeboxed iterations (sprints), daily stand-ups (daily scrum), and a prioritized product backlog. These are defining characteristics of the Scrum framework.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "Which of the following is TRUE about tailoring in project management?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Tailoring means always using agile for software projects", "isCorrect": false },
+      { "label": "B", "text": "Tailoring involves deliberately adapting the approach, governance, and processes for the project context", "isCorrect": true },
+      { "label": "C", "text": "Tailoring is only performed during the initiating phase", "isCorrect": false },
+      { "label": "D", "text": "Tailoring eliminates the need for a project management plan", "isCorrect": false }
+    ],
+    "explanation": "Tailoring is the deliberate adaptation of the project management approach, governance, and processes to make them more suitable for the given project environment and context. It is ongoing throughout the project.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A team working on a project uses a board with columns labeled 'To Do', 'In Progress', 'Review', and 'Done' to visualize and limit work in progress. Which method are they using?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Scrum", "isCorrect": false },
+      { "label": "B", "text": "Kanban", "isCorrect": true },
+      { "label": "C", "text": "Waterfall", "isCorrect": false },
+      { "label": "D", "text": "Six Sigma", "isCorrect": false }
+    ],
+    "explanation": "Kanban uses a visual board to manage workflow and emphasizes limiting work in progress (WIP). The columns on the board represent different stages in the workflow.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "Which artifact would BEST help a project manager ensure that every approved requirement is tracked through design, development, and testing?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Risk register", "isCorrect": false },
+      { "label": "B", "text": "Requirements traceability matrix", "isCorrect": true },
+      { "label": "C", "text": "Product backlog", "isCorrect": false },
+      { "label": "D", "text": "Issue log", "isCorrect": false }
+    ],
+    "explanation": "The requirements traceability matrix links requirements to their origin and traces them throughout the project life cycle, ensuring each requirement is addressed in design, development, and testing.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A project manager is asked to justify why the team chose to omit a formal procurement management plan for a small internal project. The BEST justification is based on which concept?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The PMBOK Guide requires all knowledge area plans", "isCorrect": false },
+      { "label": "B", "text": "Tailoring allows elimination of unnecessary processes when they do not add value to the project", "isCorrect": true },
+      { "label": "C", "text": "Procurement plans are only needed for government projects", "isCorrect": false },
+      { "label": "D", "text": "The project sponsor waived the requirement", "isCorrect": false }
+    ],
+    "explanation": "Tailoring allows the project manager to adapt processes to the project context. For a small internal project with no external procurement, omitting a formal procurement plan is a valid tailoring decision.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "The Stacey Matrix is used in project management to help determine the appropriate development approach. What two dimensions does it evaluate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Cost and schedule", "isCorrect": false },
+      { "label": "B", "text": "Requirements certainty and technology certainty", "isCorrect": true },
+      { "label": "C", "text": "Risk and quality", "isCorrect": false },
+      { "label": "D", "text": "Stakeholder power and interest", "isCorrect": false }
+    ],
+    "explanation": "The Stacey Matrix evaluates the degree of agreement (requirements certainty) and the degree of certainty (technology/approach certainty) to help determine whether a predictive, adaptive, or hybrid approach is most suitable.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "In a waterfall project, the project charter has been approved. What is typically the NEXT artifact the project manager should focus on developing?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Product backlog", "isCorrect": false },
+      { "label": "B", "text": "Project management plan", "isCorrect": true },
+      { "label": "C", "text": "Burn-down chart", "isCorrect": false },
+      { "label": "D", "text": "Lessons learned register", "isCorrect": false }
+    ],
+    "explanation": "After the project charter is approved in a predictive project, the project manager develops the project management plan, which integrates all subsidiary plans and baselines needed to guide project execution.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH01-3",
+    "questionText": "A project manager is considering using the DSDM (Dynamic Systems Development Method) framework for a project with fixed time and cost constraints but flexible scope. Which category of models/methods does DSDM fall under?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Predictive methods", "isCorrect": false },
+      { "label": "B", "text": "Agile methods", "isCorrect": true },
+      { "label": "C", "text": "Lean manufacturing methods", "isCorrect": false },
+      { "label": "D", "text": "Six Sigma methods", "isCorrect": false }
+    ],
+    "explanation": "DSDM is an agile method that emphasizes fixing time and cost while allowing scope to be adjusted through prioritization (MoSCoW). It is one of the common agile methods referenced in project management.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A company decides to invest in a project because it aligns with the organization's five-year strategic plan to expand into Asian markets. This is an example of project selection based on which factor?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Net present value", "isCorrect": false },
+      { "label": "B", "text": "Strategic alignment", "isCorrect": true },
+      { "label": "C", "text": "Internal rate of return", "isCorrect": false },
+      { "label": "D", "text": "Payback period", "isCorrect": false }
+    ],
+    "explanation": "Projects are often selected based on their alignment with the organization's strategic objectives. Strategic alignment ensures that the project contributes to the organization's long-term goals and mission.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "In a functional organization, the project manager's authority is BEST described as which of the following?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Full authority over the project team and budget", "isCorrect": false },
+      { "label": "B", "text": "Little or no formal authority; the functional manager controls resources", "isCorrect": true },
+      { "label": "C", "text": "Shared authority equally with the functional manager", "isCorrect": false },
+      { "label": "D", "text": "Authority to hire and fire team members", "isCorrect": false }
+    ],
+    "explanation": "In a functional organization, the functional manager has authority over resources, budget, and team assignments. The project manager, if one is designated, has little to no formal authority.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A project team member reports to both a functional manager and a project manager. The functional manager controls the team member's performance reviews, while the project manager directs daily project work. Which organizational structure does this BEST represent?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Projectized", "isCorrect": false },
+      { "label": "B", "text": "Functional", "isCorrect": false },
+      { "label": "C", "text": "Matrix", "isCorrect": true },
+      { "label": "D", "text": "Virtual", "isCorrect": false }
+    ],
+    "explanation": "In a matrix organization, team members report to both a functional manager and a project manager. This dual-reporting structure is the defining characteristic of matrix organizations.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "An organization's PMO provides templates, best practices, training, and oversight for all projects but does not directly manage them. What type of PMO is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Directive PMO", "isCorrect": false },
+      { "label": "B", "text": "Controlling PMO", "isCorrect": true },
+      { "label": "C", "text": "Supportive PMO", "isCorrect": false },
+      { "label": "D", "text": "Agile PMO", "isCorrect": false }
+    ],
+    "explanation": "A controlling PMO provides support and requires compliance through frameworks, templates, and specific governance. A supportive PMO provides only guidance, while a directive PMO directly manages projects.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A company is evaluating two projects. Project A has an NPV of $500,000 and Project B has an NPV of $750,000. If the company can only fund one project, which should be selected and why?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Project A, because it has a lower NPV and therefore lower risk", "isCorrect": false },
+      { "label": "B", "text": "Project B, because a higher NPV indicates greater expected financial return", "isCorrect": true },
+      { "label": "C", "text": "Project A, because smaller projects are easier to manage", "isCorrect": false },
+      { "label": "D", "text": "Neither, because NPV alone is not sufficient for project selection", "isCorrect": false }
+    ],
+    "explanation": "When comparing projects using NPV, the project with the higher NPV is generally preferred because it represents a greater expected return on investment in present-value terms.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "In a strong matrix organization, the balance of power between the project manager and the functional manager shifts in favor of which role?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The functional manager", "isCorrect": false },
+      { "label": "B", "text": "The project manager", "isCorrect": true },
+      { "label": "C", "text": "Power is equally shared", "isCorrect": false },
+      { "label": "D", "text": "The PMO director", "isCorrect": false }
+    ],
+    "explanation": "In a strong matrix, the project manager has more authority than the functional manager over project resources and decisions. In a weak matrix, the opposite is true, and in a balanced matrix, power is shared equally.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A project manager in a projectized organization needs additional developers for her project. Who would she MOST likely approach to get these resources?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The functional manager of the development department", "isCorrect": false },
+      { "label": "B", "text": "The project sponsor, as the PM has direct authority to acquire resources", "isCorrect": true },
+      { "label": "C", "text": "The PMO, which controls all resource allocation", "isCorrect": false },
+      { "label": "D", "text": "The HR department, which handles all staffing decisions", "isCorrect": false }
+    ],
+    "explanation": "In a projectized organization, the project manager has significant authority over resources. She would typically work with the sponsor or have direct authority to acquire and manage project resources.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "Which of the following BEST describes a supportive PMO?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "It directly manages and controls all projects in the organization", "isCorrect": false },
+      { "label": "B", "text": "It provides a consultative role with templates, best practices, and lessons learned", "isCorrect": true },
+      { "label": "C", "text": "It requires all projects to conform to its governance framework", "isCorrect": false },
+      { "label": "D", "text": "It assigns project managers to all projects and evaluates their performance", "isCorrect": false }
+    ],
+    "explanation": "A supportive PMO provides a consultative role, supplying templates, best practices, training, and access to lessons learned. It has a low degree of control over projects.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "An organization uses a scoring model to evaluate potential projects. Each project is rated on criteria such as strategic fit, risk, ROI, and resource availability. This approach is BEST described as which type of project selection method?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Constrained optimization method", "isCorrect": false },
+      { "label": "B", "text": "Benefit measurement method", "isCorrect": true },
+      { "label": "C", "text": "Expert judgment method", "isCorrect": false },
+      { "label": "D", "text": "Delphi technique", "isCorrect": false }
+    ],
+    "explanation": "Scoring models are a type of benefit measurement method used for project selection. They evaluate projects against multiple weighted criteria to compare their relative benefits.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A project manager discovers that her organization has a rigid hierarchy, strict policies, and well-documented procedures that must be followed. This BEST describes which type of organizational influence?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Enterprise environmental factors", "isCorrect": false },
+      { "label": "B", "text": "Organizational process assets", "isCorrect": true },
+      { "label": "C", "text": "Project management information system", "isCorrect": false },
+      { "label": "D", "text": "Work authorization system", "isCorrect": false }
+    ],
+    "explanation": "Organizational process assets include policies, procedures, templates, and historical information that the organization has developed. Documented procedures and strict policies are classic examples of OPAs.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A directive PMO differs from a supportive PMO primarily in which way?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "A directive PMO only supports IT projects", "isCorrect": false },
+      { "label": "B", "text": "A directive PMO directly manages projects and assigns project managers", "isCorrect": true },
+      { "label": "C", "text": "A directive PMO provides templates but does not enforce their use", "isCorrect": false },
+      { "label": "D", "text": "A directive PMO reports to the project sponsor rather than senior management", "isCorrect": false }
+    ],
+    "explanation": "A directive PMO takes direct control of projects by managing them, assigning project managers, and exerting a high degree of control. A supportive PMO merely provides guidance and resources without direct control.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "Government regulations, market conditions, and industry standards that affect how a project is managed are examples of which type of influence?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Organizational process assets", "isCorrect": false },
+      { "label": "B", "text": "Enterprise environmental factors", "isCorrect": true },
+      { "label": "C", "text": "Project constraints", "isCorrect": false },
+      { "label": "D", "text": "Stakeholder expectations", "isCorrect": false }
+    ],
+    "explanation": "Enterprise environmental factors (EEFs) are conditions not under the immediate control of the project team that influence or constrain the project. Government regulations, market conditions, and industry standards are external EEFs.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A startup company with no formal departments assigns all team members to work directly under the project manager with full-time dedication. What organizational structure does this BEST represent?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Functional", "isCorrect": false },
+      { "label": "B", "text": "Weak matrix", "isCorrect": false },
+      { "label": "C", "text": "Projectized", "isCorrect": true },
+      { "label": "D", "text": "Balanced matrix", "isCorrect": false }
+    ],
+    "explanation": "In a projectized organization, team members are assigned directly to the project and report to the project manager, who has full authority. There are no functional department boundaries for project resources.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "An organization is trying to decide between three potential projects. Project X has a payback period of 18 months, Project Y has a payback period of 24 months, and Project Z has a payback period of 36 months. Based solely on payback period, which project should be selected?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Project Z, because it generates revenue for the longest time", "isCorrect": false },
+      { "label": "B", "text": "Project Y, because it is the median choice", "isCorrect": false },
+      { "label": "C", "text": "Project X, because a shorter payback period means faster return on investment", "isCorrect": true },
+      { "label": "D", "text": "All three are equally attractive based on payback period", "isCorrect": false }
+    ],
+    "explanation": "When using payback period as the selection criterion, the project with the shortest payback period is preferred because the organization recovers its investment sooner, reducing financial risk.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH02",
+    "questionText": "A project manager working in a weak matrix organization is struggling to get resources committed to her project because functional managers prioritize operational work. What is the BEST course of action?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Escalate to the project sponsor to negotiate resource commitments with functional managers", "isCorrect": true },
+      { "label": "B", "text": "Hire external contractors without informing the functional managers", "isCorrect": false },
+      { "label": "C", "text": "Reassign operational work to free up project resources", "isCorrect": false },
+      { "label": "D", "text": "Cancel the project due to insufficient resources", "isCorrect": false }
+    ],
+    "explanation": "In a weak matrix, the project manager has limited authority. Escalating to the sponsor is appropriate because the sponsor has organizational authority to negotiate and secure resource commitments from functional managers.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A newly formed project team is experiencing uncertainty about roles, processes, and how to work together. Team members are polite but guarded. According to Tuckman's model, which stage is the team in?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Storming", "isCorrect": false },
+      { "label": "B", "text": "Forming", "isCorrect": true },
+      { "label": "C", "text": "Norming", "isCorrect": false },
+      { "label": "D", "text": "Performing", "isCorrect": false }
+    ],
+    "explanation": "In the Forming stage, team members are getting to know each other, are uncertain about their roles, and tend to be polite and guarded. They rely on the leader for direction.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "Two team members have a disagreement about the technical approach for a key deliverable. The project manager facilitates a discussion where both parties present their viewpoints and work together to find a solution that satisfies both. Which conflict resolution technique is the project manager using?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Forcing/Directing", "isCorrect": false },
+      { "label": "B", "text": "Compromising/Reconciling", "isCorrect": false },
+      { "label": "C", "text": "Collaborating/Problem-solving", "isCorrect": true },
+      { "label": "D", "text": "Smoothing/Accommodating", "isCorrect": false }
+    ],
+    "explanation": "Collaborating (problem-solving) involves exploring the disagreement, considering multiple viewpoints, and finding a win-win solution. It is considered the best approach for long-term resolution.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "According to Maslow's hierarchy of needs, a project manager who ensures the project team has job security and stable working conditions is addressing which level of needs?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Physiological needs", "isCorrect": false },
+      { "label": "B", "text": "Safety/Security needs", "isCorrect": true },
+      { "label": "C", "text": "Social/Belonging needs", "isCorrect": false },
+      { "label": "D", "text": "Esteem needs", "isCorrect": false }
+    ],
+    "explanation": "Safety/Security needs include job security, stable working conditions, and protection from harm. In Maslow's hierarchy, these are the second level, above physiological needs.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A team has been working together for several months. Members are openly disagreeing about work assignments, challenging the project manager's authority, and forming cliques. According to Tuckman's model, the team is in which stage?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Forming", "isCorrect": false },
+      { "label": "B", "text": "Storming", "isCorrect": true },
+      { "label": "C", "text": "Norming", "isCorrect": false },
+      { "label": "D", "text": "Adjourning", "isCorrect": false }
+    ],
+    "explanation": "The Storming stage is characterized by conflict, power struggles, and disagreements as team members push boundaries and challenge authority. It is a normal and necessary phase of team development.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project manager assigns roles to team members using a chart that shows who is Responsible, Accountable, Consulted, and Informed for each task. What is this chart called?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Organizational breakdown structure", "isCorrect": false },
+      { "label": "B", "text": "Responsibility assignment matrix (RACI)", "isCorrect": true },
+      { "label": "C", "text": "Resource histogram", "isCorrect": false },
+      { "label": "D", "text": "Stakeholder register", "isCorrect": false }
+    ],
+    "explanation": "The RACI matrix (Responsibility Assignment Matrix) maps tasks to team roles, clarifying who is Responsible, Accountable, Consulted, and Informed for each activity.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project manager deals with a conflict between two senior engineers by saying, 'Let's focus on what we agree on and set aside the differences for now.' Which conflict resolution technique is being used?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Collaborating", "isCorrect": false },
+      { "label": "B", "text": "Compromising", "isCorrect": false },
+      { "label": "C", "text": "Smoothing/Accommodating", "isCorrect": true },
+      { "label": "D", "text": "Withdrawing/Avoiding", "isCorrect": false }
+    ],
+    "explanation": "Smoothing (accommodating) emphasizes areas of agreement and de-emphasizes areas of difference. It is a temporary measure that does not fully resolve the conflict but maintains harmony.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "According to Herzberg's two-factor theory, which of the following is a motivator (satisfier) rather than a hygiene factor?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Salary", "isCorrect": false },
+      { "label": "B", "text": "Working conditions", "isCorrect": false },
+      { "label": "C", "text": "Recognition for achievement", "isCorrect": true },
+      { "label": "D", "text": "Company policies", "isCorrect": false }
+    ],
+    "explanation": "Herzberg identified recognition, achievement, responsibility, and growth as motivators that increase job satisfaction. Salary, working conditions, and company policies are hygiene factors that prevent dissatisfaction but do not motivate.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project team has moved past its initial conflicts and established ground rules, mutual trust, and effective working relationships. Members support each other and are beginning to collaborate smoothly. Which Tuckman stage is the team in?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Forming", "isCorrect": false },
+      { "label": "B", "text": "Storming", "isCorrect": false },
+      { "label": "C", "text": "Norming", "isCorrect": true },
+      { "label": "D", "text": "Performing", "isCorrect": false }
+    ],
+    "explanation": "In the Norming stage, the team resolves earlier conflicts, establishes norms and ground rules, develops trust, and begins working together cohesively. Collaboration improves significantly.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A critical project issue arises and the project manager makes a unilateral decision without consulting the team due to time pressure. Which leadership style does this BEST represent?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Laissez-faire", "isCorrect": false },
+      { "label": "B", "text": "Democratic/Participative", "isCorrect": false },
+      { "label": "C", "text": "Autocratic/Directive", "isCorrect": true },
+      { "label": "D", "text": "Servant leadership", "isCorrect": false }
+    ],
+    "explanation": "An autocratic or directive leadership style involves making decisions without team input. While generally not preferred, it can be appropriate in crisis or time-critical situations where quick decisions are needed.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "In a RACI matrix, only ONE person should be assigned which designation for each task?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Responsible", "isCorrect": false },
+      { "label": "B", "text": "Accountable", "isCorrect": true },
+      { "label": "C", "text": "Consulted", "isCorrect": false },
+      { "label": "D", "text": "Informed", "isCorrect": false }
+    ],
+    "explanation": "In a RACI matrix, only one person should be Accountable for each task to ensure clear ownership. Multiple people can be Responsible, Consulted, or Informed, but accountability must not be shared.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project manager notices that a team member is performing exceptionally well and decides to give her more challenging work and additional responsibilities. According to Herzberg's theory, the project manager is applying which motivational technique?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Improving hygiene factors", "isCorrect": false },
+      { "label": "B", "text": "Job enrichment through motivators", "isCorrect": true },
+      { "label": "C", "text": "Extrinsic motivation through monetary rewards", "isCorrect": false },
+      { "label": "D", "text": "McGregor's Theory X management", "isCorrect": false }
+    ],
+    "explanation": "Herzberg's motivators include responsibility, challenging work, and growth opportunities. Providing more challenging work and responsibilities is job enrichment, which directly addresses intrinsic motivation.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A team has reached a point where members work independently and interdependently, resolve conflicts internally, and consistently deliver high-quality results. According to Tuckman's model, this team is in which stage?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Norming", "isCorrect": false },
+      { "label": "B", "text": "Performing", "isCorrect": true },
+      { "label": "C", "text": "Storming", "isCorrect": false },
+      { "label": "D", "text": "Adjourning", "isCorrect": false }
+    ],
+    "explanation": "In the Performing stage, the team functions at a high level with autonomy, resolves its own issues, and delivers results efficiently. This is the most productive stage of team development.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "Two team members cannot agree on the testing approach. The project manager proposes that each person give up something to reach a mutually acceptable solution. Which Thomas-Kilmann conflict resolution mode is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Collaborating", "isCorrect": false },
+      { "label": "B", "text": "Compromising", "isCorrect": true },
+      { "label": "C", "text": "Accommodating", "isCorrect": false },
+      { "label": "D", "text": "Avoiding", "isCorrect": false }
+    ],
+    "explanation": "Compromising involves both parties giving up something to reach a middle-ground solution. It provides a partially satisfactory resolution for both parties but is not a full win-win.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project manager who focuses on removing obstacles for the team, serving the team's needs, and empowering team members to make decisions is demonstrating which leadership style?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Transactional leadership", "isCorrect": false },
+      { "label": "B", "text": "Autocratic leadership", "isCorrect": false },
+      { "label": "C", "text": "Servant leadership", "isCorrect": true },
+      { "label": "D", "text": "Laissez-faire leadership", "isCorrect": false }
+    ],
+    "explanation": "Servant leadership focuses on serving the needs of the team, removing impediments, and empowering team members. It is the preferred leadership style in agile environments and increasingly valued in all project contexts.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH03",
+    "questionText": "A project manager reviews the RACI matrix and discovers that one team member is listed as 'Responsible' for 15 out of 20 work packages. What is the MOST likely risk this situation presents?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The team member will demand a promotion", "isCorrect": false },
+      { "label": "B", "text": "The team member is a single point of failure and is likely overloaded", "isCorrect": true },
+      { "label": "C", "text": "Other team members will feel more motivated", "isCorrect": false },
+      { "label": "D", "text": "The RACI matrix needs to be converted to a RAM", "isCorrect": false }
+    ],
+    "explanation": "Having one person responsible for the majority of work packages creates a resource bottleneck and single point of failure. If that person becomes unavailable, most of the project's work would be impacted.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  }
+]

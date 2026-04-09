@@ -1,0 +1,172 @@
+[
+  {
+    "title": "What is Project Management?",
+    "slug": "what-is-project-management",
+    "order": 1,
+    "estimatedReadTime": 8,
+    "content": {
+      "sections": [
+        {
+          "heading": "Definition of a Project",
+          "body": "A **project** is a temporary endeavor undertaken to create a unique product, service, or result. Projects are distinct from operations in that they have a definite beginning and end, while operations are ongoing and repetitive.\n\nKey characteristics of a project include:\n- **Temporary** — has a defined start and finish\n- **Unique** — creates something that has not existed before\n- **Progressive elaboration** — characteristics are refined as more information becomes available\n- **Purpose-driven** — undertaken to achieve specific objectives",
+          "keyPoints": [
+            "Projects are temporary with a defined beginning and end",
+            "Every project creates a unique deliverable",
+            "Projects are progressively elaborated as understanding grows",
+            "Projects differ from operations which are ongoing and repetitive"
+          ]
+        },
+        {
+          "heading": "What is Project Management?",
+          "body": "**Project management** is the application of knowledge, skills, tools, and techniques to project activities to meet project requirements. It involves guiding the project work from initiation to completion.\n\nProject management involves balancing competing constraints including:\n- **Scope** — what the project will deliver\n- **Schedule** — when the project will be completed\n- **Cost** — the budget for the project\n- **Quality** — the standards the deliverables must meet\n- **Resources** — the people and materials needed\n- **Risk** — uncertain events that may affect the project\n\nThe **Project Management Triangle** (also called the Triple Constraint) illustrates the relationship between scope, time, and cost. Changing one constraint inevitably affects the others.",
+          "keyPoints": [
+            "Project management balances scope, schedule, cost, quality, resources, and risk",
+            "The Triple Constraint links scope, time, and cost — changing one affects the others",
+            "Effective PM requires both technical and interpersonal skills"
+          ]
+        },
+        {
+          "heading": "The Growing Importance of Project Management",
+          "body": "The Project Management Institute (PMI) reported that by 2027, employers will need **87.7 million individuals** working in project management-oriented roles across all industries.\n\nOrganizations today face increasing complexity, rapid technological change, and competitive pressure. Project management provides a structured approach to managing this complexity.\n\nProject management is applied across all industries including:\n- Information Technology\n- Construction\n- Healthcare\n- Manufacturing\n- Government\n- Education\n- Financial Services",
+          "keyPoints": [
+            "PMI projects 87.7 million PM-oriented roles needed by 2027",
+            "Project management is used across all industries",
+            "Increasing complexity drives demand for PM skills"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Define what constitutes a project and its key characteristics",
+        "Explain what project management involves",
+        "Describe the Triple Constraint and how constraints interact",
+        "Recognize the growing importance of project management"
+      ],
+      "keyTerms": [
+        { "term": "Project", "definition": "A temporary endeavor undertaken to create a unique product, service, or result." },
+        { "term": "Project Management", "definition": "The application of knowledge, skills, tools, and techniques to project activities to meet project requirements." },
+        { "term": "Triple Constraint", "definition": "The relationship between scope, time, and cost in a project — changing one affects the others." },
+        { "term": "Progressive Elaboration", "definition": "The iterative process of increasing the level of detail as more information becomes available." },
+        { "term": "Operations", "definition": "Ongoing, repetitive activities that sustain an organization, as opposed to temporary projects." }
+      ]
+    }
+  },
+  {
+    "title": "History of Project Management",
+    "slug": "history-of-project-management",
+    "order": 2,
+    "estimatedReadTime": 6,
+    "content": {
+      "sections": [
+        {
+          "heading": "Early Project Management",
+          "body": "Project management has ancient roots — the construction of the pyramids, the Great Wall of China, and Roman aqueducts all required sophisticated project planning and coordination.\n\nModern project management emerged in the mid-20th century with:\n- **Henry Gantt** (1910s) — developed the Gantt chart for scheduling\n- **PERT/CPM** (1950s) — U.S. Navy developed Program Evaluation and Review Technique for the Polaris missile program\n- **PMI founded** (1969) — the Project Management Institute was established\n- **PMBOK Guide** (1996) — first edition of the Guide to the Project Management Body of Knowledge",
+          "keyPoints": [
+            "Gantt charts were developed in the 1910s by Henry Gantt",
+            "PERT was developed in the 1950s for the Polaris missile program",
+            "PMI was founded in 1969",
+            "The PMBOK Guide first edition was published in 1996"
+          ]
+        },
+        {
+          "heading": "Evolution of Approaches",
+          "body": "Project management has evolved from purely **predictive** (waterfall) approaches to include **adaptive** (agile) methodologies:\n\n- **Predictive/Waterfall**: Plan-driven, sequential phases, defined scope upfront\n- **Agile**: Iterative, incremental delivery, embraces change\n- **Hybrid**: Combines elements of both approaches\n\nThe PMBOK Guide 7th Edition (2021) shifted from a process-based approach to a **principle-based** approach, recognizing that there is no one-size-fits-all methodology.",
+          "keyPoints": [
+            "PM evolved from purely predictive to include adaptive approaches",
+            "PMBOK 7th Edition shifted to a principle-based approach",
+            "Modern PM recognizes that approaches must be tailored to context"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Trace the history of modern project management",
+        "Identify key milestones in PM evolution",
+        "Understand the shift from process-based to principle-based frameworks"
+      ],
+      "keyTerms": [
+        { "term": "Gantt Chart", "definition": "A bar chart that shows project tasks against a timeline, developed by Henry Gantt." },
+        { "term": "PERT", "definition": "Program Evaluation and Review Technique — a statistical tool for analyzing and representing project tasks." },
+        { "term": "PMBOK", "definition": "Project Management Body of Knowledge — the PMI standard describing PM practices, processes, and knowledge areas." },
+        { "term": "Predictive Approach", "definition": "A development approach where scope, time, and cost are determined early (also called Waterfall)." },
+        { "term": "Adaptive Approach", "definition": "An iterative approach that embraces change and delivers in increments (also called Agile)." }
+      ]
+    }
+  },
+  {
+    "title": "The Role of the Project Manager",
+    "slug": "role-of-project-manager",
+    "order": 3,
+    "estimatedReadTime": 7,
+    "content": {
+      "sections": [
+        {
+          "heading": "Project Manager Responsibilities",
+          "body": "The project manager is the person assigned by the performing organization to lead the team responsible for achieving the project objectives.\n\nKey responsibilities include:\n- **Planning** — defining scope, creating schedules, estimating costs\n- **Organizing** — assembling the team, assigning roles and responsibilities\n- **Leading** — motivating the team, resolving conflicts, facilitating decisions\n- **Controlling** — monitoring progress, managing changes, taking corrective action\n- **Communicating** — keeping stakeholders informed, managing expectations",
+          "keyPoints": [
+            "The PM leads the team to achieve project objectives",
+            "Core functions: planning, organizing, leading, controlling, communicating",
+            "The PM balances technical and people management"
+          ]
+        },
+        {
+          "heading": "Essential Skills",
+          "body": "Effective project managers need a combination of skills across three domains:\n\n**1. Technical Project Management Skills**\n- Scheduling, budgeting, risk management\n- Knowledge of tools and methodologies\n\n**2. Leadership Skills**\n- Vision and motivation\n- Team building and conflict resolution\n- Decision-making and problem-solving\n\n**3. Strategic and Business Management Skills**\n- Understanding organizational strategy\n- Business acumen and market awareness\n- Benefits management and value delivery\n\nThe **PMI Talent Triangle** represents these three skill areas as essential for PM competence.",
+          "keyPoints": [
+            "PMs need technical, leadership, and strategic/business skills",
+            "The PMI Talent Triangle represents the three essential skill domains",
+            "Interpersonal skills are as important as technical skills"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Describe the key responsibilities of a project manager",
+        "Identify the three skill domains in the PMI Talent Triangle",
+        "Explain why leadership and interpersonal skills are critical for PMs"
+      ],
+      "keyTerms": [
+        { "term": "Project Manager", "definition": "The person assigned to lead the team responsible for achieving project objectives." },
+        { "term": "PMI Talent Triangle", "definition": "A framework identifying three essential skill areas: technical PM, leadership, and strategic/business management." },
+        { "term": "Servant Leadership", "definition": "A leadership style where the leader focuses on serving the team and removing obstacles." }
+      ]
+    }
+  },
+  {
+    "title": "The PMBOK Framework",
+    "slug": "pmbok-framework",
+    "order": 4,
+    "estimatedReadTime": 8,
+    "content": {
+      "sections": [
+        {
+          "heading": "PMBOK Guide Overview",
+          "body": "The **Guide to the Project Management Body of Knowledge (PMBOK Guide)** is PMI's flagship publication and provides the foundational standard for project management.\n\nThe PMBOK Guide 7th Edition (2021) introduced a major shift:\n- Moved from **49 processes** across 10 knowledge areas to **12 principles** and **8 performance domains**\n- Focuses on outcomes rather than deliverables\n- Embraces all development approaches (predictive, adaptive, hybrid)\n\nThe **12 Principles** of project management provide guidance for behavior and decision-making:\n1. Be a diligent, respectful, and caring steward\n2. Create a collaborative team environment\n3. Effectively engage with stakeholders\n4. Focus on value\n5. Recognize, evaluate, and respond to system interactions\n6. Demonstrate leadership behaviors\n7. Tailor based on context\n8. Build quality into processes and deliverables\n9. Navigate complexity\n10. Optimize risk responses\n11. Embrace adaptability and resiliency\n12. Enable change to achieve the envisioned future state",
+          "keyPoints": [
+            "PMBOK 7th Edition has 12 principles and 8 performance domains",
+            "Focus shifted from processes to principles and outcomes",
+            "The framework now supports predictive, adaptive, and hybrid approaches"
+          ]
+        },
+        {
+          "heading": "Project Life Cycle",
+          "body": "Every project goes through a **project life cycle** — the series of phases from beginning to end. A typical life cycle includes:\n\n1. **Initiation** — defining the project and obtaining authorization\n2. **Planning** — establishing scope, objectives, and course of action\n3. **Execution** — performing the work defined in the plan\n4. **Monitoring & Controlling** — tracking and regulating progress\n5. **Closing** — formalizing acceptance and bringing the project to an orderly end\n\nThe life cycle can be:\n- **Predictive**: phases are sequential and planned upfront\n- **Iterative/Incremental**: repeated cycles of work\n- **Adaptive/Agile**: scope is defined and approved incrementally\n- **Hybrid**: combination of predictive and adaptive elements",
+          "keyPoints": [
+            "The project life cycle includes initiation, planning, execution, monitoring & controlling, and closing",
+            "Life cycles can be predictive, iterative, adaptive, or hybrid",
+            "The choice of life cycle depends on project characteristics and context"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Describe the structure of the PMBOK Guide 7th Edition",
+        "List the 12 principles of project management",
+        "Explain the phases of a project life cycle",
+        "Distinguish between predictive, adaptive, and hybrid life cycles"
+      ],
+      "keyTerms": [
+        { "term": "PMBOK Guide", "definition": "The Guide to the Project Management Body of Knowledge — PMI's foundational standard for project management." },
+        { "term": "Project Life Cycle", "definition": "The series of phases that a project passes through from start to finish." },
+        { "term": "Knowledge Area", "definition": "An identified area of PM defined by its knowledge requirements (used in PMBOK 6th edition)." },
+        { "term": "Performance Domain", "definition": "A group of related activities critical for effective delivery of project outcomes (used in PMBOK 7th edition)." }
+      ]
+    }
+  }
+]

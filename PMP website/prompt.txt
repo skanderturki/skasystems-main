@@ -1,0 +1,8 @@
+my objective is to develop a SAAS platform using react node.js mongodb and express. 
+The idea is to provide students with a platform to learn software project management
+ by going through topic summaries, then taking practice tests with feedback about
+  performance at the end of practice tests, then they can take more formal exams with more questions
+   without feedback at the end but they get their result they need to achieve at least 80%
+   to pass and the system delivers them a certificate with a QRcode that allows anyone toverify authenticity of the certificate.
+   The content and the course material and topics should be taken from official sources and from the resources 
+   in the current workspace

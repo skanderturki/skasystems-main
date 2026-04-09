@@ -1,0 +1,1262 @@
+[
+  {
+    "chapterCode": "CH05",
+    "questionText": "A project manager identifies that a key vendor may go bankrupt during the project. The probability is assessed as 0.3 and the impact would be $100,000. What is the Expected Monetary Value (EMV) of this risk?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "$30,000", "isCorrect": true },
+      { "label": "B", "text": "$100,000", "isCorrect": false },
+      { "label": "C", "text": "$70,000", "isCorrect": false },
+      { "label": "D", "text": "$130,000", "isCorrect": false }
+    ],
+    "explanation": "EMV is calculated by multiplying the probability of occurrence by the impact: 0.3 x $100,000 = $30,000.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "Which of the following is NOT a risk response strategy for negative risks (threats)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Avoid", "isCorrect": false },
+      { "label": "B", "text": "Transfer", "isCorrect": false },
+      { "label": "C", "text": "Exploit", "isCorrect": true },
+      { "label": "D", "text": "Mitigate", "isCorrect": false }
+    ],
+    "explanation": "Exploit is a response strategy for positive risks (opportunities), not for threats. The four threat response strategies are avoid, transfer, mitigate, and accept.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "During a brainstorming session, the team identifies 40 potential risks. What should the project manager do NEXT?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Develop risk response plans for all 40 risks immediately", "isCorrect": false },
+      { "label": "B", "text": "Perform qualitative risk analysis to prioritize the risks", "isCorrect": true },
+      { "label": "C", "text": "Eliminate risks with low probability", "isCorrect": false },
+      { "label": "D", "text": "Perform quantitative risk analysis using Monte Carlo simulation", "isCorrect": false }
+    ],
+    "explanation": "After risk identification, the next step is qualitative risk analysis using tools like the Probability/Impact matrix to prioritize risks before developing response strategies or performing quantitative analysis.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A project team decides to outsource a complex software module to a specialized vendor to handle the technical uncertainty. Which risk response strategy is being applied?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Avoid", "isCorrect": false },
+      { "label": "B", "text": "Mitigate", "isCorrect": false },
+      { "label": "C", "text": "Transfer", "isCorrect": true },
+      { "label": "D", "text": "Accept", "isCorrect": false }
+    ],
+    "explanation": "Transfer shifts the negative impact of a threat to a third party. Outsourcing the work to a specialized vendor transfers the risk of technical failure to the vendor.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "In a Probability/Impact matrix, a risk is assessed with a probability of 0.7 and an impact score of 0.8. What is the risk score, and how would it typically be classified?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "0.56 - High priority risk", "isCorrect": true },
+      { "label": "B", "text": "1.50 - Critical risk", "isCorrect": false },
+      { "label": "C", "text": "0.56 - Low priority risk", "isCorrect": false },
+      { "label": "D", "text": "0.75 - Medium priority risk", "isCorrect": false }
+    ],
+    "explanation": "The risk score is calculated as Probability x Impact = 0.7 x 0.8 = 0.56. A score of 0.56 is typically classified as a high priority risk in most P/I matrix scales.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A company discovers a new market opportunity that could increase project revenue by 25%. The project manager decides to allocate the best resources and adjust the schedule to ensure this opportunity is realized. Which opportunity response strategy is being used?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Share", "isCorrect": false },
+      { "label": "B", "text": "Enhance", "isCorrect": false },
+      { "label": "C", "text": "Exploit", "isCorrect": true },
+      { "label": "D", "text": "Accept", "isCorrect": false }
+    ],
+    "explanation": "Exploit is used when the organization wants to ensure that the opportunity is realized by taking actions to make it happen with certainty. Allocating top resources to guarantee the outcome is an exploit strategy.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "Which risk identification technique involves interviewing subject matter experts individually to avoid groupthink?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Brainstorming", "isCorrect": false },
+      { "label": "B", "text": "Delphi technique", "isCorrect": true },
+      { "label": "C", "text": "SWOT analysis", "isCorrect": false },
+      { "label": "D", "text": "Checklist analysis", "isCorrect": false }
+    ],
+    "explanation": "The Delphi technique gathers expert opinions anonymously and iteratively, specifically to prevent groupthink and undue influence by dominant personalities.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A project has two decision paths. Path A has a 60% chance of yielding $200,000 profit and a 40% chance of a $50,000 loss. Path B has a guaranteed outcome of $80,000 profit. Using EMV analysis via a decision tree, which path should the project manager choose?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Path A, because its EMV of $100,000 is higher than Path B", "isCorrect": true },
+      { "label": "B", "text": "Path B, because it has no risk", "isCorrect": false },
+      { "label": "C", "text": "Path A, because its EMV of $120,000 is higher than Path B", "isCorrect": false },
+      { "label": "D", "text": "Either path, because both have the same EMV", "isCorrect": false }
+    ],
+    "explanation": "Path A EMV = (0.6 x $200,000) + (0.4 x -$50,000) = $120,000 - $20,000 = $100,000. Path B EMV = $80,000. Since $100,000 > $80,000, Path A should be chosen.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "The risk register is updated throughout the project lifecycle. Which of the following is NOT typically included in a risk register entry?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Risk description and category", "isCorrect": false },
+      { "label": "B", "text": "Probability and impact assessment", "isCorrect": false },
+      { "label": "C", "text": "Project charter approval signatures", "isCorrect": true },
+      { "label": "D", "text": "Risk response strategy and owner", "isCorrect": false }
+    ],
+    "explanation": "Project charter approval signatures belong in the project charter, not the risk register. The risk register contains risk descriptions, assessments, response strategies, owners, and status information.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "During project execution, a previously identified risk has its probability increase from 'low' to 'very high' after a critical team member resigns. What should the project manager do FIRST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Escalate to the project sponsor immediately", "isCorrect": false },
+      { "label": "B", "text": "Re-assess the risk and update the risk register with a revised response plan", "isCorrect": true },
+      { "label": "C", "text": "Close the risk since conditions have changed", "isCorrect": false },
+      { "label": "D", "text": "Add the risk to the issues log since it has already occurred", "isCorrect": false }
+    ],
+    "explanation": "When conditions change for an identified risk, the project manager should re-assess the risk, update the risk register, and revise the response plan accordingly as part of risk monitoring.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "Two organizations agree to form a joint venture to pursue a large contract opportunity that neither could win alone. Which positive risk response strategy does this represent?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Exploit", "isCorrect": false },
+      { "label": "B", "text": "Enhance", "isCorrect": false },
+      { "label": "C", "text": "Share", "isCorrect": true },
+      { "label": "D", "text": "Accept", "isCorrect": false }
+    ],
+    "explanation": "Share allocates the ownership of an opportunity to a third party that is best able to capture the benefit. Joint ventures and partnerships are classic examples of the share strategy.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A risk has been identified with an extremely high impact but very low probability. The team decides to set aside a contingency reserve but take no proactive action. Which risk response strategy is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Avoid", "isCorrect": false },
+      { "label": "B", "text": "Active acceptance", "isCorrect": true },
+      { "label": "C", "text": "Passive acceptance", "isCorrect": false },
+      { "label": "D", "text": "Mitigate", "isCorrect": false }
+    ],
+    "explanation": "Active acceptance involves establishing a contingency reserve (time, money, or resources) to handle the risk if it occurs, while passive acceptance involves no proactive action at all.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A project manager is analyzing a complex risk scenario using Monte Carlo simulation. This technique is part of which risk management process?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Risk identification", "isCorrect": false },
+      { "label": "B", "text": "Qualitative risk analysis", "isCorrect": false },
+      { "label": "C", "text": "Quantitative risk analysis", "isCorrect": true },
+      { "label": "D", "text": "Risk response planning", "isCorrect": false }
+    ],
+    "explanation": "Monte Carlo simulation is a quantitative risk analysis technique that uses probability distributions to model and analyze the combined effect of risks on project objectives numerically.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A project manager notices that a secondary risk has emerged from implementing a risk response for the original risk. The mitigation plan to outsource testing introduced a new risk of communication delays with the offshore team. What should the project manager do?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Ignore the secondary risk since the primary risk is handled", "isCorrect": false },
+      { "label": "B", "text": "Revert the original risk response immediately", "isCorrect": false },
+      { "label": "C", "text": "Document the secondary risk in the risk register and develop an appropriate response", "isCorrect": true },
+      { "label": "D", "text": "Escalate to the sponsor to decide on the secondary risk", "isCorrect": false }
+    ],
+    "explanation": "Secondary risks are new risks that arise as a direct result of implementing a risk response. They must be identified, analyzed, and managed just like any other risk in the risk register.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH05",
+    "questionText": "A decision tree analysis shows three branches for a product development decision. Branch 1: 50% chance of $500K profit. Branch 2: 30% chance of $200K profit. Branch 3: 20% chance of $100K loss. What is the EMV of this decision node?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "$290,000", "isCorrect": true },
+      { "label": "B", "text": "$300,000", "isCorrect": false },
+      { "label": "C", "text": "$310,000", "isCorrect": false },
+      { "label": "D", "text": "$250,000", "isCorrect": false }
+    ],
+    "explanation": "EMV = (0.5 x $500,000) + (0.3 x $200,000) + (0.2 x -$100,000) = $250,000 + $60,000 - $20,000 = $290,000.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "During the early phases of a project, the sponsor asks for a cost estimate. The project scope is not yet well-defined. What type of estimate is most appropriate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Definitive estimate", "isCorrect": false },
+      { "label": "B", "text": "Rough Order of Magnitude (ROM) estimate", "isCorrect": true },
+      { "label": "C", "text": "Bottom-up estimate", "isCorrect": false },
+      { "label": "D", "text": "Budget estimate", "isCorrect": false }
+    ],
+    "explanation": "ROM estimates are used early in the project when scope is poorly defined, providing a range of -25% to +75% (or sometimes -50% to +100%) accuracy.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A project manager estimates the current project will cost $400,000 because a similar project completed last year cost $380,000 with minor scope differences. Which estimation technique is being used?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Parametric estimation", "isCorrect": false },
+      { "label": "B", "text": "Bottom-up estimation", "isCorrect": false },
+      { "label": "C", "text": "Analogous estimation", "isCorrect": true },
+      { "label": "D", "text": "Three-point estimation", "isCorrect": false }
+    ],
+    "explanation": "Analogous estimation uses historical data from similar past projects to estimate the current project. It is a top-down technique that is quick but less accurate than detailed methods.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A task has the following PERT estimates: Optimistic = 4 days, Most Likely = 7 days, Pessimistic = 16 days. What is the expected duration using the PERT formula?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "7 days", "isCorrect": false },
+      { "label": "B", "text": "8 days", "isCorrect": true },
+      { "label": "C", "text": "9 days", "isCorrect": false },
+      { "label": "D", "text": "10 days", "isCorrect": false }
+    ],
+    "explanation": "PERT expected duration = (O + 4M + P) / 6 = (4 + 4(7) + 16) / 6 = (4 + 28 + 16) / 6 = 48 / 6 = 8 days.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A software company uses the number of screens, reports, and interfaces to estimate effort. Each screen takes 10 person-hours, each report takes 15 person-hours, and each interface takes 20 person-hours. The project has 20 screens, 10 reports, and 5 interfaces. What is the total estimated effort?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "350 person-hours", "isCorrect": false },
+      { "label": "B", "text": "450 person-hours", "isCorrect": true },
+      { "label": "C", "text": "500 person-hours", "isCorrect": false },
+      { "label": "D", "text": "550 person-hours", "isCorrect": false }
+    ],
+    "explanation": "This is parametric estimation: (20 x 10) + (10 x 15) + (5 x 20) = 200 + 150 + 100 = 450 person-hours.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "Which estimation technique requires a detailed WBS and estimates each work package individually before aggregating to get the total project estimate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Analogous estimation", "isCorrect": false },
+      { "label": "B", "text": "Parametric estimation", "isCorrect": false },
+      { "label": "C", "text": "ROM estimation", "isCorrect": false },
+      { "label": "D", "text": "Bottom-up estimation", "isCorrect": true }
+    ],
+    "explanation": "Bottom-up estimation involves estimating each work package or activity individually and then aggregating them to produce the total project estimate. It is the most accurate but most time-consuming technique.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "The COCOMO model is primarily used for estimating which aspect of a software project?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Number of defects", "isCorrect": false },
+      { "label": "B", "text": "Development effort and schedule based on lines of code", "isCorrect": true },
+      { "label": "C", "text": "Number of stakeholders required", "isCorrect": false },
+      { "label": "D", "text": "Risk probability and impact", "isCorrect": false }
+    ],
+    "explanation": "COCOMO (Constructive Cost Model) estimates software development effort, cost, and schedule based on the size of the software (typically measured in thousands of lines of code - KLOC).",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A project manager is asked to provide an estimate with an accuracy range of -5% to +10%. Which type of estimate is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Rough Order of Magnitude (ROM)", "isCorrect": false },
+      { "label": "B", "text": "Budget estimate", "isCorrect": false },
+      { "label": "C", "text": "Definitive estimate", "isCorrect": true },
+      { "label": "D", "text": "Analogous estimate", "isCorrect": false }
+    ],
+    "explanation": "A definitive estimate has an accuracy range of approximately -5% to +10% and is produced later in the project when detailed scope information is available.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "Function Point Analysis measures software size based on which of the following?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Lines of code and complexity metrics", "isCorrect": false },
+      { "label": "B", "text": "User-visible functionality such as inputs, outputs, inquiries, files, and interfaces", "isCorrect": true },
+      { "label": "C", "text": "Number of developers and estimated hours", "isCorrect": false },
+      { "label": "D", "text": "Number of test cases and defect rates", "isCorrect": false }
+    ],
+    "explanation": "Function Point Analysis measures software size based on functionality delivered to the user, counting external inputs, external outputs, external inquiries, internal logical files, and external interface files.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A PERT estimate for a task gives: Optimistic = 10 days, Most Likely = 15 days, Pessimistic = 26 days. What is the standard deviation of this estimate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "2.0 days", "isCorrect": false },
+      { "label": "B", "text": "2.67 days", "isCorrect": true },
+      { "label": "C", "text": "3.0 days", "isCorrect": false },
+      { "label": "D", "text": "5.33 days", "isCorrect": false }
+    ],
+    "explanation": "The PERT standard deviation is calculated as (P - O) / 6 = (26 - 10) / 6 = 16 / 6 = 2.67 days.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "Which of the following best describes a key challenge in software estimation?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Software requirements are always fully defined upfront", "isCorrect": false },
+      { "label": "B", "text": "Historical data from past projects is always directly applicable", "isCorrect": false },
+      { "label": "C", "text": "Requirements volatility and scope creep make accurate early estimation inherently difficult", "isCorrect": true },
+      { "label": "D", "text": "Estimation tools eliminate all uncertainty from the process", "isCorrect": false }
+    ],
+    "explanation": "Software estimation is challenging primarily because requirements often change, scope evolves, and early project phases have high uncertainty, making precise estimation difficult.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A project manager needs a quick estimate for budgeting purposes with an accuracy range of -10% to +25%. Which type of estimate should be prepared?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "ROM estimate", "isCorrect": false },
+      { "label": "B", "text": "Definitive estimate", "isCorrect": false },
+      { "label": "C", "text": "Budget estimate", "isCorrect": true },
+      { "label": "D", "text": "Bottom-up estimate", "isCorrect": false }
+    ],
+    "explanation": "A budget estimate has an accuracy range of approximately -10% to +25% and is used during planning to allocate funds. It falls between ROM and definitive estimates in terms of accuracy.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A team uses parametric estimation with a rate of $150 per function point. The system has 300 adjusted function points. An additional 15% overhead is added for project management activities. What is the total estimated cost?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "$45,000", "isCorrect": false },
+      { "label": "B", "text": "$49,500", "isCorrect": false },
+      { "label": "C", "text": "$51,750", "isCorrect": true },
+      { "label": "D", "text": "$52,500", "isCorrect": false }
+    ],
+    "explanation": "Base cost = 300 x $150 = $45,000. With 15% overhead: $45,000 x 1.15 = $51,750.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "Which COCOMO model variant accounts for detailed cost drivers such as product reliability, database size, and analyst capability?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Basic COCOMO", "isCorrect": false },
+      { "label": "B", "text": "Intermediate COCOMO", "isCorrect": true },
+      { "label": "C", "text": "Simple COCOMO", "isCorrect": false },
+      { "label": "D", "text": "Agile COCOMO", "isCorrect": false }
+    ],
+    "explanation": "Intermediate COCOMO extends the basic model by incorporating cost driver attributes such as product complexity, hardware constraints, personnel capability, and project characteristics.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A project has three sequential work packages with the following PERT estimates (in days): WP1: O=4, M=6, P=14; WP2: O=2, M=5, P=8; WP3: O=6, M=9, P=18. What is the total expected duration?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "18 days", "isCorrect": false },
+      { "label": "B", "text": "20 days", "isCorrect": false },
+      { "label": "C", "text": "22 days", "isCorrect": true },
+      { "label": "D", "text": "24 days", "isCorrect": false }
+    ],
+    "explanation": "Using PERT (O+4M+P)/6 for each: WP1=(4+24+14)/6=42/6=7, WP2=(2+20+8)/6=30/6=5, WP3=(6+36+18)/6=60/6=10. Total=7+5+10=22 days.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-1",
+    "questionText": "A project manager has historical data showing that each database table takes approximately 8 person-hours to design and implement. The new project requires 25 tables. What estimation technique is being used, and what is the estimated effort?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Analogous estimation; 200 person-hours", "isCorrect": false },
+      { "label": "B", "text": "Parametric estimation; 200 person-hours", "isCorrect": true },
+      { "label": "C", "text": "Bottom-up estimation; 200 person-hours", "isCorrect": false },
+      { "label": "D", "text": "Parametric estimation; 250 person-hours", "isCorrect": false }
+    ],
+    "explanation": "This is parametric estimation, which uses a statistical relationship between historical data and other variables. The effort is 25 tables x 8 person-hours = 200 person-hours.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "What is the primary purpose of a Work Breakdown Structure (WBS)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "To assign resources to project tasks", "isCorrect": false },
+      { "label": "B", "text": "To decompose the total scope of work into manageable components", "isCorrect": true },
+      { "label": "C", "text": "To create the project schedule", "isCorrect": false },
+      { "label": "D", "text": "To track project costs against the budget", "isCorrect": false }
+    ],
+    "explanation": "The WBS is a hierarchical decomposition of the total scope of work to be carried out by the project team. It organizes and defines the total scope into manageable work packages.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "In a Precedence Diagramming Method (PDM) network, Activity B cannot start until Activity A finishes. What type of dependency is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Start-to-Start (SS)", "isCorrect": false },
+      { "label": "B", "text": "Finish-to-Finish (FF)", "isCorrect": false },
+      { "label": "C", "text": "Finish-to-Start (FS)", "isCorrect": true },
+      { "label": "D", "text": "Start-to-Finish (SF)", "isCorrect": false }
+    ],
+    "explanation": "Finish-to-Start (FS) is the most common dependency type where the successor activity cannot start until the predecessor activity finishes.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project network has the following paths: Path 1: A(3)-B(5)-C(4) = 12 days; Path 2: A(3)-D(8)-E(2) = 13 days; Path 3: A(3)-F(6)-G(3) = 12 days. What is the critical path and the project duration?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Path 1, 12 days", "isCorrect": false },
+      { "label": "B", "text": "Path 2, 13 days", "isCorrect": true },
+      { "label": "C", "text": "Path 3, 12 days", "isCorrect": false },
+      { "label": "D", "text": "All paths are critical", "isCorrect": false }
+    ],
+    "explanation": "The critical path is the longest path through the network, which determines the minimum project duration. Path 2 at 13 days is the longest, making it the critical path.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "Activity X has an Early Start of day 5, Early Finish of day 10, Late Start of day 8, and Late Finish of day 13. What is the total float of Activity X?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "0 days", "isCorrect": false },
+      { "label": "B", "text": "2 days", "isCorrect": false },
+      { "label": "C", "text": "3 days", "isCorrect": true },
+      { "label": "D", "text": "5 days", "isCorrect": false }
+    ],
+    "explanation": "Total float = Late Start - Early Start = 8 - 5 = 3 days (or equivalently, Late Finish - Early Finish = 13 - 10 = 3 days).",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project is behind schedule. The project manager decides to add more resources to critical path activities at additional cost. Which schedule compression technique is being used?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Fast-tracking", "isCorrect": false },
+      { "label": "B", "text": "Crashing", "isCorrect": true },
+      { "label": "C", "text": "Resource leveling", "isCorrect": false },
+      { "label": "D", "text": "Lead and lag adjustment", "isCorrect": false }
+    ],
+    "explanation": "Crashing involves adding extra resources to critical path activities to compress the schedule, which typically increases project cost.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project has PV = $50,000, EV = $45,000, and AC = $55,000. What is the Schedule Performance Index (SPI)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "0.82", "isCorrect": false },
+      { "label": "B", "text": "0.90", "isCorrect": true },
+      { "label": "C", "text": "1.10", "isCorrect": false },
+      { "label": "D", "text": "1.22", "isCorrect": false }
+    ],
+    "explanation": "SPI = EV / PV = $45,000 / $50,000 = 0.90. An SPI less than 1.0 indicates the project is behind schedule.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "Using the same project data (PV = $50,000, EV = $45,000, AC = $55,000), what is the Cost Performance Index (CPI) and what does it indicate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "CPI = 0.82; the project is over budget", "isCorrect": true },
+      { "label": "B", "text": "CPI = 1.22; the project is under budget", "isCorrect": false },
+      { "label": "C", "text": "CPI = 0.90; the project is slightly over budget", "isCorrect": false },
+      { "label": "D", "text": "CPI = 1.10; the project is on budget", "isCorrect": false }
+    ],
+    "explanation": "CPI = EV / AC = $45,000 / $55,000 = 0.818 (approximately 0.82). A CPI less than 1.0 means the project is spending more than planned for the work accomplished.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "The project manager decides to overlap the design and development phases to save time, even though design is not fully complete. Which schedule compression technique is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Crashing", "isCorrect": false },
+      { "label": "B", "text": "Fast-tracking", "isCorrect": true },
+      { "label": "C", "text": "Resource smoothing", "isCorrect": false },
+      { "label": "D", "text": "Schedule compression", "isCorrect": false }
+    ],
+    "explanation": "Fast-tracking involves performing activities in parallel that would normally be done in sequence. It can save time but increases risk due to potential rework.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project has a Budget at Completion (BAC) of $200,000. The project is 40% complete with an AC of $90,000 and an EV of $80,000. Assuming current cost performance continues, what is the Estimate at Completion (EAC)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "$200,000", "isCorrect": false },
+      { "label": "B", "text": "$225,000", "isCorrect": true },
+      { "label": "C", "text": "$250,000", "isCorrect": false },
+      { "label": "D", "text": "$210,000", "isCorrect": false }
+    ],
+    "explanation": "EAC = BAC / CPI. CPI = EV / AC = $80,000 / $90,000 = 0.889. EAC = $200,000 / 0.889 = $224,972, approximately $225,000.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "Which type of PDM dependency means that the successor activity cannot finish until the predecessor activity finishes?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Finish-to-Start (FS)", "isCorrect": false },
+      { "label": "B", "text": "Start-to-Start (SS)", "isCorrect": false },
+      { "label": "C", "text": "Finish-to-Finish (FF)", "isCorrect": true },
+      { "label": "D", "text": "Start-to-Finish (SF)", "isCorrect": false }
+    ],
+    "explanation": "Finish-to-Finish (FF) means the successor cannot finish until the predecessor finishes. For example, testing cannot finish until coding finishes.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "On a Gantt chart, which of the following can typically be represented?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Activity durations, start/end dates, and dependencies", "isCorrect": true },
+      { "label": "B", "text": "Only the critical path activities", "isCorrect": false },
+      { "label": "C", "text": "Resource costs and budget variances", "isCorrect": false },
+      { "label": "D", "text": "Only milestones without durations", "isCorrect": false }
+    ],
+    "explanation": "Gantt charts display activity durations as horizontal bars against a timeline, showing start and end dates, milestones, and task dependencies.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project has a BAC of $300,000, EV of $120,000, AC of $150,000, and PV of $130,000. What is the cost variance (CV) and schedule variance (SV)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "CV = -$30,000 (over budget); SV = -$10,000 (behind schedule)", "isCorrect": true },
+      { "label": "B", "text": "CV = +$30,000 (under budget); SV = +$10,000 (ahead of schedule)", "isCorrect": false },
+      { "label": "C", "text": "CV = -$30,000 (over budget); SV = +$10,000 (ahead of schedule)", "isCorrect": false },
+      { "label": "D", "text": "CV = +$30,000 (under budget); SV = -$10,000 (behind schedule)", "isCorrect": false }
+    ],
+    "explanation": "CV = EV - AC = $120,000 - $150,000 = -$30,000 (over budget). SV = EV - PV = $120,000 - $130,000 = -$10,000 (behind schedule).",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "During forward pass calculation, Activity D has two predecessors: Activity B (EF=10) and Activity C (EF=14). Both have a Finish-to-Start relationship with Activity D. What is the Early Start (ES) of Activity D?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "10", "isCorrect": false },
+      { "label": "B", "text": "12", "isCorrect": false },
+      { "label": "C", "text": "14", "isCorrect": true },
+      { "label": "D", "text": "24", "isCorrect": false }
+    ],
+    "explanation": "In a forward pass, when an activity has multiple predecessors, its Early Start equals the maximum of the Early Finish values of all predecessors. ES(D) = max(10, 14) = 14.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "A project with a BAC of $500,000 has completed 60% of the work. The actual cost is $350,000. The project manager expects the remaining work to be completed at the budgeted rate. What is the EAC?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "$500,000", "isCorrect": false },
+      { "label": "B", "text": "$550,000", "isCorrect": true },
+      { "label": "C", "text": "$583,333", "isCorrect": false },
+      { "label": "D", "text": "$350,000", "isCorrect": false }
+    ],
+    "explanation": "When remaining work is expected at the budgeted rate: EAC = AC + (BAC - EV) = $350,000 + ($500,000 - $300,000) = $350,000 + $200,000 = $550,000. EV = 60% of BAC = $300,000.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH06-2",
+    "questionText": "In a Start-to-Finish (SF) dependency, which statement is correct?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The successor cannot start until the predecessor finishes", "isCorrect": false },
+      { "label": "B", "text": "The successor cannot finish until the predecessor starts", "isCorrect": true },
+      { "label": "C", "text": "The successor cannot start until the predecessor starts", "isCorrect": false },
+      { "label": "D", "text": "The successor cannot finish until the predecessor finishes", "isCorrect": false }
+    ],
+    "explanation": "Start-to-Finish (SF) means the predecessor's start triggers the successor's ability to finish. It is the rarest dependency type and is sometimes used in just-in-time scheduling.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Which of the following best describes the difference between Quality Assurance (QA) and Quality Control (QC)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "QA focuses on testing; QC focuses on prevention", "isCorrect": false },
+      { "label": "B", "text": "QA is process-oriented and preventive; QC is product-oriented and detective", "isCorrect": true },
+      { "label": "C", "text": "QA and QC are the same activity performed by different teams", "isCorrect": false },
+      { "label": "D", "text": "QA is done after deployment; QC is done during development", "isCorrect": false }
+    ],
+    "explanation": "QA is a proactive, process-oriented approach focused on preventing defects through proper processes. QC is a reactive, product-oriented approach focused on detecting defects through inspection and testing.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Which of the following is categorized as a 'cost of nonconformance' in the Cost of Quality framework?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Training costs", "isCorrect": false },
+      { "label": "B", "text": "Inspection costs", "isCorrect": false },
+      { "label": "C", "text": "Rework and defect repair costs", "isCorrect": true },
+      { "label": "D", "text": "Quality planning costs", "isCorrect": false }
+    ],
+    "explanation": "Rework and defect repair are internal failure costs, which fall under the cost of nonconformance. Training and planning are prevention costs (conformance), and inspection is an appraisal cost (conformance).",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A project team wants to identify the root cause of recurring defects in a software module. Which of the 7 basic quality tools would be MOST appropriate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Pareto chart", "isCorrect": false },
+      { "label": "B", "text": "Cause-and-effect (Ishikawa) diagram", "isCorrect": true },
+      { "label": "C", "text": "Control chart", "isCorrect": false },
+      { "label": "D", "text": "Histogram", "isCorrect": false }
+    ],
+    "explanation": "The cause-and-effect (fishbone/Ishikawa) diagram is specifically designed for root cause analysis, helping teams systematically identify potential causes of a problem across categories.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A control chart shows a process with data points that all fall within the upper and lower control limits but seven consecutive points are above the mean. What does this indicate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The process is in control and performing well", "isCorrect": false },
+      { "label": "B", "text": "The process exhibits a special cause variation (Rule of Seven)", "isCorrect": true },
+      { "label": "C", "text": "The control limits need to be recalculated", "isCorrect": false },
+      { "label": "D", "text": "The process has too much common cause variation", "isCorrect": false }
+    ],
+    "explanation": "The Rule of Seven states that seven consecutive data points on one side of the mean indicate a non-random pattern (special cause variation), even if all points are within control limits. The process should be investigated.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Which testing level verifies that individual software components or modules work correctly in isolation?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Integration testing", "isCorrect": false },
+      { "label": "B", "text": "System testing", "isCorrect": false },
+      { "label": "C", "text": "Unit testing", "isCorrect": true },
+      { "label": "D", "text": "Acceptance testing", "isCorrect": false }
+    ],
+    "explanation": "Unit testing verifies individual components or modules in isolation. It is typically performed by developers and is the first level of testing.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A quality analyst wants to determine whether 80% of defects come from 20% of the causes. Which quality tool should be used?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Scatter diagram", "isCorrect": false },
+      { "label": "B", "text": "Pareto chart", "isCorrect": true },
+      { "label": "C", "text": "Flowchart", "isCorrect": false },
+      { "label": "D", "text": "Check sheet", "isCorrect": false }
+    ],
+    "explanation": "A Pareto chart arranges defect categories in descending order of frequency, applying the 80/20 principle to identify the vital few causes that produce the majority of defects.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "During which testing level is the complete integrated system evaluated against specified requirements to verify it meets business needs?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Unit testing", "isCorrect": false },
+      { "label": "B", "text": "Integration testing", "isCorrect": false },
+      { "label": "C", "text": "System testing", "isCorrect": true },
+      { "label": "D", "text": "Acceptance testing", "isCorrect": false }
+    ],
+    "explanation": "System testing evaluates the complete, integrated system to verify it meets the specified requirements. It tests the system as a whole, including functional and non-functional requirements.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Which Cost of Quality category includes costs for quality audits, process reviews, and supplier evaluations?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Prevention costs", "isCorrect": false },
+      { "label": "B", "text": "Appraisal costs", "isCorrect": true },
+      { "label": "C", "text": "Internal failure costs", "isCorrect": false },
+      { "label": "D", "text": "External failure costs", "isCorrect": false }
+    ],
+    "explanation": "Appraisal costs are incurred to evaluate products and processes to ensure quality requirements are met, including audits, inspections, reviews, and testing activities.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A software product is released and a critical defect is found by the customer, resulting in warranty repairs and reputation damage. These costs are classified as:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Prevention costs", "isCorrect": false },
+      { "label": "B", "text": "Appraisal costs", "isCorrect": false },
+      { "label": "C", "text": "Internal failure costs", "isCorrect": false },
+      { "label": "D", "text": "External failure costs", "isCorrect": true }
+    ],
+    "explanation": "External failure costs occur when defects are found by customers after delivery. They include warranty repairs, customer support, liability, and reputation damage, and are the most expensive type of quality cost.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A scatter diagram is used by the quality team and shows data points that form a pattern moving from lower-left to upper-right. What does this indicate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Negative correlation between the two variables", "isCorrect": false },
+      { "label": "B", "text": "No correlation between the two variables", "isCorrect": false },
+      { "label": "C", "text": "Positive correlation between the two variables", "isCorrect": true },
+      { "label": "D", "text": "The data is unreliable", "isCorrect": false }
+    ],
+    "explanation": "A pattern of data points moving from lower-left to upper-right indicates a positive correlation, meaning as one variable increases, the other also tends to increase.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Acceptance testing is typically performed by:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The development team", "isCorrect": false },
+      { "label": "B", "text": "The QA team only", "isCorrect": false },
+      { "label": "C", "text": "The end users or customer representatives", "isCorrect": true },
+      { "label": "D", "text": "An independent audit team", "isCorrect": false }
+    ],
+    "explanation": "Acceptance testing is performed by end users or customer representatives to verify the system meets their business requirements and is ready for deployment.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A project manager is defining quality metrics for a web application. Which of the following is the BEST example of a measurable quality metric?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The system should be fast", "isCorrect": false },
+      { "label": "B", "text": "Page load time must be under 3 seconds for 95% of requests", "isCorrect": true },
+      { "label": "C", "text": "Users should be satisfied with the system", "isCorrect": false },
+      { "label": "D", "text": "The code should be well-written", "isCorrect": false }
+    ],
+    "explanation": "Effective quality metrics must be specific, measurable, and verifiable. 'Page load time under 3 seconds for 95% of requests' provides a clear, quantifiable target.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "Integration testing in a software project primarily focuses on:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Verifying each module works in isolation", "isCorrect": false },
+      { "label": "B", "text": "Verifying the interfaces and interactions between integrated modules", "isCorrect": true },
+      { "label": "C", "text": "Validating the system against user requirements", "isCorrect": false },
+      { "label": "D", "text": "Performance testing under load conditions", "isCorrect": false }
+    ],
+    "explanation": "Integration testing focuses on verifying that the interfaces and interactions between integrated modules or components work correctly when combined.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A team is analyzing process capability data using a histogram and notices the distribution is skewed to the right with several data points beyond the upper specification limit. Which action should the project manager take FIRST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Widen the specification limits to accommodate the data", "isCorrect": false },
+      { "label": "B", "text": "Investigate the root cause of the skewness and out-of-specification results", "isCorrect": true },
+      { "label": "C", "text": "Remove the outlier data points and recalculate", "isCorrect": false },
+      { "label": "D", "text": "Switch to a different quality tool", "isCorrect": false }
+    ],
+    "explanation": "When data points fall outside specification limits, the first action should be to investigate the root cause rather than adjusting limits or discarding data, as this indicates a process problem that needs correction.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH07",
+    "questionText": "A flowchart analysis of a software deployment process reveals three decision points where defects are most likely to be introduced. The quality team recommends adding automated checks at these points. This activity is an example of:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Quality Control", "isCorrect": false },
+      { "label": "B", "text": "Quality Assurance and prevention", "isCorrect": true },
+      { "label": "C", "text": "External failure cost reduction", "isCorrect": false },
+      { "label": "D", "text": "Acceptance testing", "isCorrect": false }
+    ],
+    "explanation": "Adding automated checks to prevent defects at known risk points is a Quality Assurance (prevention) activity. QA focuses on improving processes to prevent defects rather than detecting them after they occur.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project has 10 team members. How many communication channels exist?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "20", "isCorrect": false },
+      { "label": "B", "text": "45", "isCorrect": true },
+      { "label": "C", "text": "90", "isCorrect": false },
+      { "label": "D", "text": "100", "isCorrect": false }
+    ],
+    "explanation": "The communication channels formula is n(n-1)/2 = 10(10-1)/2 = 10(9)/2 = 90/2 = 45 channels.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "In a power/interest grid, a stakeholder with HIGH power and LOW interest should be managed using which strategy?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Manage closely", "isCorrect": false },
+      { "label": "B", "text": "Keep satisfied", "isCorrect": true },
+      { "label": "C", "text": "Keep informed", "isCorrect": false },
+      { "label": "D", "text": "Monitor only", "isCorrect": false }
+    ],
+    "explanation": "Stakeholders with high power but low interest should be kept satisfied. They have the ability to impact the project but are not actively engaged, so their needs must be met without overwhelming them.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A stakeholder was initially opposed to the project but after several meetings now actively supports it and advocates for the project in leadership meetings. Their engagement level has changed from:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Unaware to Supportive", "isCorrect": false },
+      { "label": "B", "text": "Resistant to Leading", "isCorrect": true },
+      { "label": "C", "text": "Neutral to Supportive", "isCorrect": false },
+      { "label": "D", "text": "Resistant to Neutral", "isCorrect": false }
+    ],
+    "explanation": "The stakeholder moved from Resistant (opposed to the project) to Leading (actively engaged and advocating for the project). Leading is the highest level of positive engagement.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project team currently has 8 members. If 3 new members are added, how many ADDITIONAL communication channels are created?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "17", "isCorrect": false },
+      { "label": "B", "text": "27", "isCorrect": true },
+      { "label": "C", "text": "55", "isCorrect": false },
+      { "label": "D", "text": "30", "isCorrect": false }
+    ],
+    "explanation": "Original channels: 8(7)/2 = 28. New channels: 11(10)/2 = 55. Additional channels = 55 - 28 = 27.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "Which stakeholder engagement level describes a stakeholder who is aware of the project but neither supportive nor opposed?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Unaware", "isCorrect": false },
+      { "label": "B", "text": "Resistant", "isCorrect": false },
+      { "label": "C", "text": "Neutral", "isCorrect": true },
+      { "label": "D", "text": "Supportive", "isCorrect": false }
+    ],
+    "explanation": "Neutral stakeholders are aware of the project but are neither supportive nor resistant. They need to be monitored and potentially engaged to move them toward supportive.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project manager discovers a key regulatory body that was not included in the initial stakeholder analysis. The organization can block the project if compliance requirements are not met. What should the project manager do FIRST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Add the regulatory body to the stakeholder register and assess their power and interest", "isCorrect": true },
+      { "label": "B", "text": "Submit a change request to the CCB", "isCorrect": false },
+      { "label": "C", "text": "Inform the project sponsor and wait for instructions", "isCorrect": false },
+      { "label": "D", "text": "Continue the project since the stakeholder analysis is already complete", "isCorrect": false }
+    ],
+    "explanation": "Stakeholder identification is an ongoing process. When a new stakeholder is discovered, they should be immediately added to the stakeholder register and their power, interest, and influence should be assessed.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "Which communication method is MOST appropriate for distributing a monthly project status report to a large group of stakeholders?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Interactive communication (face-to-face meeting)", "isCorrect": false },
+      { "label": "B", "text": "Push communication (email distribution)", "isCorrect": true },
+      { "label": "C", "text": "Pull communication (post on intranet)", "isCorrect": false },
+      { "label": "D", "text": "Informal verbal communication", "isCorrect": false }
+    ],
+    "explanation": "Push communication sends information directly to specific recipients who need to know, such as emailing status reports. It ensures delivery without requiring a meeting but does not guarantee the information was read.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "In the power/interest grid, which quadrant requires the MOST active management and engagement effort?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "High power, low interest", "isCorrect": false },
+      { "label": "B", "text": "Low power, high interest", "isCorrect": false },
+      { "label": "C", "text": "High power, high interest", "isCorrect": true },
+      { "label": "D", "text": "Low power, low interest", "isCorrect": false }
+    ],
+    "explanation": "Stakeholders with high power and high interest must be managed closely as they can significantly impact the project and are actively engaged in its outcome.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project manager needs to share large technical documents with the team so they can access them when needed. Which communication method is most appropriate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Interactive communication", "isCorrect": false },
+      { "label": "B", "text": "Push communication", "isCorrect": false },
+      { "label": "C", "text": "Pull communication", "isCorrect": true },
+      { "label": "D", "text": "Formal verbal communication", "isCorrect": false }
+    ],
+    "explanation": "Pull communication is used for large volumes of information or large audiences where recipients access the information at their own convenience, such as document repositories, intranets, or knowledge bases.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "During stakeholder analysis, the project manager identifies that the CFO is unaware of the project even though their department's budget is significantly impacted. What engagement level change should the project manager target?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Move from Unaware to Neutral", "isCorrect": false },
+      { "label": "B", "text": "Move from Unaware to Supportive", "isCorrect": true },
+      { "label": "C", "text": "Keep at Unaware to avoid resistance", "isCorrect": false },
+      { "label": "D", "text": "Move from Unaware to Leading", "isCorrect": false }
+    ],
+    "explanation": "The CFO has high power due to budget authority. The goal should be to move them from Unaware to Supportive by proactively engaging and demonstrating the project's value to their department.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A globally distributed project team works across 4 time zones. The project manager needs to make a critical technical decision with input from all leads. Which communication approach is BEST?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Send an email and wait for responses", "isCorrect": false },
+      { "label": "B", "text": "Schedule a video conference at a time that works for all time zones", "isCorrect": true },
+      { "label": "C", "text": "Post the decision on the project wiki", "isCorrect": false },
+      { "label": "D", "text": "Have the project manager make the decision alone to save time", "isCorrect": false }
+    ],
+    "explanation": "For critical decisions requiring input from multiple stakeholders, interactive communication (video conference) is most effective as it allows real-time discussion, clarification, and consensus building.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project currently has 6 stakeholders. After a merger, 4 more stakeholders are added. What is the percentage increase in communication channels?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "67%", "isCorrect": false },
+      { "label": "B", "text": "200%", "isCorrect": true },
+      { "label": "C", "text": "133%", "isCorrect": false },
+      { "label": "D", "text": "300%", "isCorrect": false }
+    ],
+    "explanation": "Original: 6(5)/2 = 15 channels. After: 10(9)/2 = 45 channels. Increase = (45-15)/15 x 100 = 200% increase.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "Which of the following tools is used to map stakeholders based on their level of authority and their active involvement in the project?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "RACI matrix", "isCorrect": false },
+      { "label": "B", "text": "Power/interest grid", "isCorrect": true },
+      { "label": "C", "text": "Gantt chart", "isCorrect": false },
+      { "label": "D", "text": "Work Breakdown Structure", "isCorrect": false }
+    ],
+    "explanation": "The power/interest grid classifies stakeholders based on their level of authority (power) and their level of concern or active involvement (interest) regarding the project.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project manager has identified that a resistant stakeholder is the head of the IT department whose team will have to maintain the new system post-deployment. The stakeholder is concerned about increased workload. What is the BEST approach?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Ignore the stakeholder since their role is post-deployment", "isCorrect": false },
+      { "label": "B", "text": "Escalate to the sponsor to override the stakeholder's concerns", "isCorrect": false },
+      { "label": "C", "text": "Engage the stakeholder early, address their concerns about workload, and involve them in design decisions", "isCorrect": true },
+      { "label": "D", "text": "Remove the stakeholder from the project communication list", "isCorrect": false }
+    ],
+    "explanation": "Resistant stakeholders should be actively engaged by understanding and addressing their concerns. Involving them in decisions that affect their team builds ownership and can shift them toward supportive engagement.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH08",
+    "questionText": "A project manager is preparing a stakeholder engagement assessment matrix. Which of the following correctly describes the purpose of this matrix?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "To document the communication schedule for each stakeholder", "isCorrect": false },
+      { "label": "B", "text": "To compare each stakeholder's current engagement level with their desired engagement level", "isCorrect": true },
+      { "label": "C", "text": "To calculate the number of communication channels", "isCorrect": false },
+      { "label": "D", "text": "To assign RACI responsibilities to stakeholders", "isCorrect": false }
+    ],
+    "explanation": "The stakeholder engagement assessment matrix compares each stakeholder's current engagement level (C) with their desired engagement level (D) to identify gaps and plan engagement strategies.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "What is the primary purpose of a Change Control Board (CCB)?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "To implement all requested changes", "isCorrect": false },
+      { "label": "B", "text": "To review, evaluate, approve, defer, or reject changes to the project", "isCorrect": true },
+      { "label": "C", "text": "To identify defects in the software", "isCorrect": false },
+      { "label": "D", "text": "To manage the project budget", "isCorrect": false }
+    ],
+    "explanation": "The CCB is a formally constituted group responsible for reviewing, evaluating, approving, deferring, or rejecting changes to the project and for recording and communicating decisions.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A software system is modified to fix a reported bug that causes incorrect calculations. What type of maintenance is this?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Adaptive maintenance", "isCorrect": false },
+      { "label": "B", "text": "Corrective maintenance", "isCorrect": true },
+      { "label": "C", "text": "Perfective maintenance", "isCorrect": false },
+      { "label": "D", "text": "Preventive maintenance", "isCorrect": false }
+    ],
+    "explanation": "Corrective maintenance involves fixing defects and bugs in the software. Repairing incorrect calculations is a classic example of corrective maintenance.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A development team modifies a system to support a new operating system version required by the organization's IT policy. This is an example of:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Corrective maintenance", "isCorrect": false },
+      { "label": "B", "text": "Adaptive maintenance", "isCorrect": true },
+      { "label": "C", "text": "Perfective maintenance", "isCorrect": false },
+      { "label": "D", "text": "Preventive maintenance", "isCorrect": false }
+    ],
+    "explanation": "Adaptive maintenance modifies the system to accommodate changes in the environment, such as new operating systems, hardware, or regulatory requirements.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "Which of the following is the correct sequence in the change control process?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Implement change -> Submit request -> Evaluate impact -> CCB review", "isCorrect": false },
+      { "label": "B", "text": "Submit change request -> Evaluate impact -> CCB review -> Implement approved change -> Verify and close", "isCorrect": true },
+      { "label": "C", "text": "CCB review -> Submit request -> Evaluate impact -> Implement change", "isCorrect": false },
+      { "label": "D", "text": "Evaluate impact -> Submit request -> Implement change -> CCB review", "isCorrect": false }
+    ],
+    "explanation": "The proper change control process follows: request submission, impact analysis, CCB review and decision, implementation of approved changes, and verification/closure.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "Configuration management in software projects primarily ensures:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "That all team members use the same IDE", "isCorrect": false },
+      { "label": "B", "text": "The integrity and traceability of project artifacts through identification, control, status accounting, and auditing", "isCorrect": true },
+      { "label": "C", "text": "That the project stays within budget", "isCorrect": false },
+      { "label": "D", "text": "That stakeholders are kept informed of changes", "isCorrect": false }
+    ],
+    "explanation": "Configuration management ensures the integrity and traceability of all project artifacts through four key activities: configuration identification, configuration control, configuration status accounting, and configuration auditing.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A team refactors a module to improve its performance and maintainability without changing its external behavior. This is an example of:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Corrective maintenance", "isCorrect": false },
+      { "label": "B", "text": "Adaptive maintenance", "isCorrect": false },
+      { "label": "C", "text": "Perfective maintenance", "isCorrect": true },
+      { "label": "D", "text": "Preventive maintenance", "isCorrect": false }
+    ],
+    "explanation": "Perfective maintenance enhances the system by improving performance, maintainability, or adding new features based on user requests without fixing defects or adapting to environmental changes.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "According to Lehman's Law of Continuing Change, what happens to a software system that is used in a real-world environment?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "It becomes more stable over time", "isCorrect": false },
+      { "label": "B", "text": "It must be continually adapted or it becomes progressively less satisfactory", "isCorrect": true },
+      { "label": "C", "text": "It naturally improves without maintenance", "isCorrect": false },
+      { "label": "D", "text": "It can remain unchanged indefinitely if well-designed", "isCorrect": false }
+    ],
+    "explanation": "Lehman's Law of Continuing Change states that a system must be continually adapted to remain satisfactory in its environment, otherwise it becomes progressively less useful.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A developer makes a direct change to the production database to fix a critical issue without going through the change control process. What should the project manager do?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Commend the developer for acting quickly", "isCorrect": false },
+      { "label": "B", "text": "Document the change retroactively, review the emergency change process, and ensure proper procedures are followed in the future", "isCorrect": true },
+      { "label": "C", "text": "Roll back the change immediately regardless of impact", "isCorrect": false },
+      { "label": "D", "text": "Ignore it since the issue was fixed", "isCorrect": false }
+    ],
+    "explanation": "Even emergency changes must be documented. The project manager should retroactively document the change, review whether an emergency change process exists, and reinforce proper change control procedures.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "Which of the following is a key activity in configuration status accounting?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Approving or rejecting change requests", "isCorrect": false },
+      { "label": "B", "text": "Recording and reporting the status of configuration items and change requests", "isCorrect": true },
+      { "label": "C", "text": "Identifying which items need to be placed under configuration control", "isCorrect": false },
+      { "label": "D", "text": "Performing code reviews", "isCorrect": false }
+    ],
+    "explanation": "Configuration status accounting involves recording and reporting information about configuration items, including their current status, history of changes, and the status of change requests.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A team proactively restructures legacy code to reduce its complexity and improve future maintainability, even though no defects have been reported. This is an example of:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Corrective maintenance", "isCorrect": false },
+      { "label": "B", "text": "Adaptive maintenance", "isCorrect": false },
+      { "label": "C", "text": "Perfective maintenance", "isCorrect": false },
+      { "label": "D", "text": "Preventive maintenance", "isCorrect": true }
+    ],
+    "explanation": "Preventive maintenance involves making changes to prevent future problems, such as restructuring code to reduce complexity, updating documentation, or optimizing for future maintainability.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "Lehman's Law of Increasing Complexity states that:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Software complexity always decreases with proper maintenance", "isCorrect": false },
+      { "label": "B", "text": "As a system evolves, its complexity increases unless work is done to maintain or reduce it", "isCorrect": true },
+      { "label": "C", "text": "New features always reduce system complexity", "isCorrect": false },
+      { "label": "D", "text": "System complexity is determined at design time and cannot change", "isCorrect": false }
+    ],
+    "explanation": "Lehman's Law of Increasing Complexity states that as a system evolves, its complexity increases unless deliberate work is done to maintain or reduce it through refactoring and restructuring.",
+    "difficulty": "medium",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A project stakeholder requests a new feature that would require significant changes to the project scope and timeline. The project manager should FIRST:",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "Reject the request since the project scope is baselined", "isCorrect": false },
+      { "label": "B", "text": "Implement the change immediately to satisfy the stakeholder", "isCorrect": false },
+      { "label": "C", "text": "Log the change request and perform an impact analysis", "isCorrect": true },
+      { "label": "D", "text": "Escalate directly to the project sponsor", "isCorrect": false }
+    ],
+    "explanation": "All change requests should first be logged and then analyzed for their impact on scope, schedule, cost, quality, and risk before being submitted to the CCB for a decision.",
+    "difficulty": "easy",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "A configuration audit is performed on a software release and finds that two configuration items were modified without corresponding approved change requests. What does this indicate?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The change control process is functioning correctly", "isCorrect": false },
+      { "label": "B", "text": "A breakdown in the configuration control process that needs to be addressed", "isCorrect": true },
+      { "label": "C", "text": "The configuration items were not important enough to track", "isCorrect": false },
+      { "label": "D", "text": "The audit process is too strict", "isCorrect": false }
+    ],
+    "explanation": "Unauthorized modifications to configuration items indicate a breakdown in the configuration control process. The audit finding should trigger corrective action to prevent future unauthorized changes.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "Which of the following scenarios represents a change that the CCB would most likely defer rather than approve or reject?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "A critical security fix for a production vulnerability", "isCorrect": false },
+      { "label": "B", "text": "A cosmetic UI enhancement requested for a future release that has no impact on current deliverables", "isCorrect": true },
+      { "label": "C", "text": "A change required by new government regulations with a compliance deadline", "isCorrect": false },
+      { "label": "D", "text": "A bug fix that prevents users from logging into the system", "isCorrect": false }
+    ],
+    "explanation": "The CCB would likely defer a non-critical cosmetic enhancement to a future release, as it has no urgency and does not affect current deliverables. Critical fixes and regulatory requirements would be approved or fast-tracked.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  },
+  {
+    "chapterCode": "CH09",
+    "questionText": "According to Lehman's Law of Conservation of Organizational Stability, what tends to remain constant over a system's lifetime?",
+    "questionType": "multiple-choice",
+    "options": [
+      { "label": "A", "text": "The number of defects in each release", "isCorrect": false },
+      { "label": "B", "text": "The average effective global activity rate (effort) on an evolving system", "isCorrect": true },
+      { "label": "C", "text": "The size of the development team", "isCorrect": false },
+      { "label": "D", "text": "The programming language used", "isCorrect": false }
+    ],
+    "explanation": "Lehman's Law of Conservation of Organizational Stability states that the average effective global activity rate in an evolving system tends to remain constant over the product's lifetime, regardless of resources dedicated to it.",
+    "difficulty": "hard",
+    "usedIn": "both"
+  }
+]

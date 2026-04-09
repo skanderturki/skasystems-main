@@ -55,6 +55,26 @@ services:
     networks:
       - app-network
 
+  pmp-website:
+    build:
+      context: ./PMP website
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - MONGODB_URI=${PMP_MONGODB_URI:-mongodb+srv://user:password@cluster.mongodb.net/pmp-learning}
+      - JWT_SECRET=${PMP_JWT_SECRET:-pmp-jwt-secret-change-in-production}
+      - CLIENT_URL=https://pmp.skasystems.com
+      - SMTP_HOST=${PMP_SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${PMP_SMTP_PORT:-587}
+      - SMTP_USER=${PMP_SMTP_USER:-}
+      - SMTP_PASS=${PMP_SMTP_PASS:-}
+    networks:
+      - app-network
+
   # NOTE: nginx service disabled - using system nginx as reverse proxy instead
   # nginx:
   #   image: nginx:alpine

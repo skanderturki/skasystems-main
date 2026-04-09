@@ -1,0 +1,232 @@
+[
+  {
+    "title": "Work Breakdown Structure",
+    "slug": "work-breakdown-structure",
+    "order": 1,
+    "estimatedReadTime": 8,
+    "content": {
+      "sections": [
+        {
+          "heading": "What is a Work Breakdown Structure?",
+          "body": "The **Work Breakdown Structure (WBS)** is a hierarchical decomposition of the total scope of work to be carried out by the project team to accomplish the project objectives and create the required deliverables. According to the PMBOK Guide, the WBS is one of the most important project management tools because it provides the foundation for planning, estimating, scheduling, and controlling the project.\n\nThe WBS organizes and defines the **total scope** of the project. Each descending level represents an increasingly detailed definition of the project work. The top level represents the project as a whole, and subsequent levels break the work down into smaller, more manageable components.\n\nKey characteristics of a WBS include:\n- **Deliverable-oriented**: The WBS is organized around project deliverables rather than actions or activities. Each element represents a tangible output, not a process.\n- **Hierarchical**: The structure follows a parent-child relationship where each parent element is fully decomposed into its children.\n- **100% Rule**: The WBS must capture 100% of the work defined by the project scope, including project management work. Each level must represent 100% of the work in the parent element above it. No work should be missing, and no work should be included that is outside the project scope.\n- **Mutually exclusive**: Each element in the WBS should be distinct and not overlap with other elements. This prevents double-counting of work and ensures clear responsibility assignment.\n\nThe WBS is NOT a list of activities, a schedule, an organizational chart, or a statement of objectives. It is a structured representation of what the project will deliver. Activities (the specific actions needed to create deliverables) are derived from the WBS during activity definition but are not part of the WBS itself.\n\nA well-constructed WBS enables accurate estimation, clear responsibility assignment, effective progress tracking, and meaningful communication with stakeholders about the project scope.",
+          "keyPoints": [
+            "The WBS is a hierarchical decomposition of the total project scope into manageable components",
+            "It is deliverable-oriented, not activity-oriented",
+            "The 100% Rule requires the WBS to capture all project work with no gaps or overlaps",
+            "The WBS provides the foundation for estimation, scheduling, and scope control",
+            "Activities are derived from the WBS but are not part of the WBS itself"
+          ]
+        },
+        {
+          "heading": "Creating a WBS: Decomposition and Work Packages",
+          "body": "**Decomposition** is the technique used to create the WBS. It involves subdividing project deliverables into smaller, more manageable components until the work is defined at a level sufficient for planning and managing — the **work package** level.\n\nThe decomposition process typically follows these steps:\n1. **Identify the major deliverables** and project management work\n2. **Organize the WBS structure** — decide whether to structure by phase, deliverable, subproject, or a hybrid approach\n3. **Decompose upper-level elements** into lower-level detail components\n4. **Verify the decomposition** — ensure the 100% rule is satisfied, elements are mutually exclusive, and the level of detail is appropriate\n5. **Assign identification codes** — create a numbering system (e.g., 1.0, 1.1, 1.1.1) for tracking and reference\n\nThe lowest level of the WBS is called the **work package**. Work packages are the units at which work is estimated, scheduled, monitored, and controlled. A work package should be:\n- Small enough to be **estimated accurately** (typically 8-80 hours of effort, or the \"8/80 rule\")\n- Small enough to be **assigned to a single responsible person or team**\n- Large enough to be **meaningful** and not create excessive administrative overhead\n- Capable of being **completed within a single reporting period**\n\nThe **WBS Dictionary** is a companion document that provides detailed information about each WBS element. For each work package, the dictionary typically includes:\n- A description of the work involved\n- Responsible organization or individual\n- Schedule milestones\n- Associated resources\n- Cost estimates\n- Quality requirements\n- Acceptance criteria\n- Technical references\n\nTogether, the WBS and WBS Dictionary constitute the **scope baseline**, which is the approved version of the scope statement, WBS, and WBS Dictionary. The scope baseline serves as the reference point for measuring and controlling scope throughout the project.\n\nCommon WBS organizational approaches include:\n- **Phase-based**: Organized by project lifecycle phases (initiation, planning, execution, closure)\n- **Deliverable-based**: Organized by major project outputs\n- **Hybrid**: Combines phase and deliverable approaches at different levels",
+          "keyPoints": [
+            "Decomposition subdivides deliverables into work packages — the lowest WBS level",
+            "The 8/80 rule suggests work packages should require 8-80 hours of effort",
+            "Work packages are the units at which work is estimated, scheduled, and controlled",
+            "The WBS Dictionary provides detailed descriptions and criteria for each WBS element",
+            "The WBS, WBS Dictionary, and scope statement together form the scope baseline"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Define the Work Breakdown Structure and explain its purpose in project management",
+        "Apply the 100% rule and decomposition technique to create a WBS",
+        "Describe the characteristics of a well-defined work package",
+        "Explain the role of the WBS Dictionary in the scope baseline",
+        "Distinguish between different WBS organizational approaches"
+      ],
+      "keyTerms": [
+        { "term": "Work Breakdown Structure (WBS)", "definition": "A hierarchical decomposition of the total scope of work to accomplish the project objectives and create the required deliverables." },
+        { "term": "Work Package", "definition": "The lowest level of the WBS, at which work is estimated, scheduled, monitored, and controlled." },
+        { "term": "Decomposition", "definition": "The technique of subdividing project deliverables into smaller, more manageable components." },
+        { "term": "100% Rule", "definition": "The principle that the WBS must capture 100% of the project work at every level, with no gaps or overlaps." },
+        { "term": "WBS Dictionary", "definition": "A document that provides detailed descriptions, acceptance criteria, and other information for each WBS element." },
+        { "term": "Scope Baseline", "definition": "The approved scope statement, WBS, and WBS Dictionary used as a reference for measuring scope performance." },
+        { "term": "8/80 Rule", "definition": "A guideline suggesting work packages should require between 8 and 80 hours of effort." }
+      ]
+    }
+  },
+  {
+    "title": "Network Analysis and Critical Path",
+    "slug": "network-analysis-and-critical-path",
+    "order": 2,
+    "estimatedReadTime": 10,
+    "content": {
+      "sections": [
+        {
+          "heading": "Activity Sequencing and Precedence Diagramming",
+          "body": "Once activities have been identified from the WBS work packages, the next step in schedule development is **activity sequencing** — determining the logical relationships and dependencies among activities. This produces a **project schedule network diagram**, which is a graphical representation of the logical relationships (dependencies) among project activities.\n\nThe most widely used method for creating network diagrams is the **Precedence Diagramming Method (PDM)**, also known as **Activity-on-Node (AON)**. In PDM, activities are represented as nodes (boxes) and relationships are represented as arrows connecting the nodes.\n\nPDM supports four types of logical relationships:\n\n**Finish-to-Start (FS)**: The successor activity cannot start until the predecessor activity finishes. This is the most commonly used relationship. Example: \"Testing cannot start until coding is finished.\"\n\n**Start-to-Start (SS)**: The successor activity cannot start until the predecessor activity starts. Example: \"Technical writing can start once coding starts\" (they can proceed in parallel after both have started).\n\n**Finish-to-Finish (FF)**: The successor activity cannot finish until the predecessor activity finishes. Example: \"Quality review cannot finish until the coding it is reviewing finishes.\"\n\n**Start-to-Finish (SF)**: The successor activity cannot finish until the predecessor activity starts. This is the rarest relationship and is seldom used in practice. Example: \"The old security system cannot be decommissioned until the new security system starts.\"\n\nDependencies between activities are classified as:\n- **Mandatory (hard logic)**: Inherent in the nature of the work, such as physical or contractual requirements. Example: You cannot test software before it is coded.\n- **Discretionary (soft logic)**: Established based on best practices, preferences, or experience. These can be modified if needed. Example: Choosing to complete design documentation before coding, even though some parallel work is possible.\n- **External**: Relationships involving non-project activities. Example: Waiting for government approval before proceeding with construction.\n- **Internal**: Relationships between project activities that are within the team's control.\n\n**Leads and lags** modify the relationships:\n- A **lead** allows acceleration of the successor activity (e.g., FS with a 2-day lead means the successor can start 2 days before the predecessor finishes)\n- A **lag** introduces a required delay (e.g., FS with a 3-day lag means the successor must wait 3 days after the predecessor finishes before starting)",
+          "keyPoints": [
+            "PDM (Activity-on-Node) represents activities as nodes and dependencies as arrows",
+            "Four relationship types: Finish-to-Start (most common), Start-to-Start, Finish-to-Finish, Start-to-Finish (rare)",
+            "Dependencies are classified as mandatory, discretionary, external, or internal",
+            "Leads accelerate successor activities; lags introduce required delays",
+            "The network diagram is the foundation for critical path analysis"
+          ]
+        },
+        {
+          "heading": "Critical Path Method",
+          "body": "The **Critical Path Method (CPM)** is a schedule network analysis technique used to determine the longest path through the project network, which establishes the **shortest possible project duration**. The critical path is the sequence of activities that determines the earliest completion date for the project.\n\nCPM involves two passes through the network diagram:\n\n**Forward Pass** calculates the **Early Start (ES)** and **Early Finish (EF)** for each activity:\n- Start at the first activity: ES = 0 (or the project start date)\n- EF = ES + Duration\n- For successor activities: ES = maximum EF of all predecessors (for FS relationships)\n- Continue through the entire network to determine the earliest possible project completion date\n\n**Backward Pass** calculates the **Late Start (LS)** and **Late Finish (LF)** for each activity:\n- Start at the last activity: LF = project completion date (from forward pass)\n- LS = LF - Duration\n- For predecessor activities: LF = minimum LS of all successors (for FS relationships)\n- Continue backward through the entire network\n\n**Float (Slack)** is the amount of time an activity can be delayed without affecting the project completion date:\n\n**Total Float = LS - ES = LF - EF**\n\nActivities on the **critical path** have **zero total float** — any delay in these activities directly delays the project. The critical path is the longest path through the network and may change as the project progresses if activities are completed faster or slower than planned.\n\n**Free Float** is the amount of time an activity can be delayed without affecting the early start of any successor activity:\n\n**Free Float = ES(successor) - EF(current activity)**\n\nKey properties of the critical path:\n- It is the **longest** path through the network (not the shortest)\n- Activities on it have **zero total float**\n- Any delay on the critical path delays the entire project\n- A project may have **multiple critical paths**, which increases risk\n- The critical path can **change** during execution as activities are completed\n\nThe project manager must focus attention on critical path activities because they directly determine the project completion date. Non-critical activities have float that provides scheduling flexibility.",
+          "keyPoints": [
+            "The critical path is the longest path through the network, determining minimum project duration",
+            "Forward pass calculates Early Start/Early Finish; backward pass calculates Late Start/Late Finish",
+            "Total Float = LS - ES = LF - EF; critical path activities have zero total float",
+            "Free Float is the delay possible without affecting any successor's early start",
+            "A project may have multiple critical paths, and the critical path can change during execution"
+          ]
+        },
+        {
+          "heading": "Applying CPM: A Worked Example",
+          "body": "To solidify understanding of the Critical Path Method, consider a project with the following activities:\n\n| Activity | Duration (days) | Predecessors |\n|----------|----------------|-------------|\n| A | 3 | None |\n| B | 5 | None |\n| C | 4 | A |\n| D | 6 | B |\n| E | 2 | A |\n| F | 3 | C, D |\n| G | 4 | E, F |\n\n**Forward Pass:**\n- Activity A: ES=0, EF=3\n- Activity B: ES=0, EF=5\n- Activity C: ES=3 (after A), EF=7\n- Activity D: ES=5 (after B), EF=11\n- Activity E: ES=3 (after A), EF=5\n- Activity F: ES=11 (max of C=7 and D=11), EF=14\n- Activity G: ES=14 (max of E=5 and F=14), EF=18\n\nProject duration = **18 days**\n\n**Backward Pass** (starting from LF=18):\n- Activity G: LF=18, LS=14\n- Activity F: LF=14, LS=11\n- Activity E: LF=14, LS=12\n- Activity D: LF=11, LS=5\n- Activity C: LF=11, LS=7\n- Activity A: LF=min(LS_C=7, LS_E=12)=7, LS=4 ... but wait, we also need to check: A's LF = min(7,12)=7, LS=4\n- Activity B: LF=5, LS=0\n\n**Float Calculation:**\n- A: Float = 4-0 = **4 days**\n- B: Float = 0-0 = **0 days** (critical)\n- C: Float = 7-3 = **4 days**\n- D: Float = 5-5 = **0 days** (critical)\n- E: Float = 12-3 = **9 days**\n- F: Float = 11-11 = **0 days** (critical)\n- G: Float = 14-14 = **0 days** (critical)\n\n**Critical Path: B → D → F → G** (duration = 5+6+3+4 = 18 days)\n\nThis means activities B, D, F, and G must be carefully monitored because any delay in these activities will delay the project. Activities A, C, and E have float and can be delayed within their float limits without affecting the project completion date. Activity E has the most flexibility with 9 days of float.\n\nThis type of analysis enables the project manager to make informed decisions about resource allocation, risk management, and schedule optimization.",
+          "keyPoints": [
+            "Forward pass determines the earliest possible start and finish for each activity",
+            "Backward pass determines the latest allowable start and finish for each activity",
+            "Float is calculated as LS - ES or LF - EF for each activity",
+            "Activities with zero float form the critical path",
+            "Non-critical activities provide scheduling flexibility proportional to their float"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Construct a project schedule network diagram using the Precedence Diagramming Method",
+        "Identify and explain the four types of logical relationships in PDM",
+        "Perform forward and backward pass calculations to determine the critical path",
+        "Calculate total float and free float for project activities",
+        "Explain the significance of the critical path for project schedule management"
+      ],
+      "keyTerms": [
+        { "term": "Critical Path", "definition": "The longest path through the network diagram, determining the shortest possible project duration. Activities on it have zero float." },
+        { "term": "Precedence Diagramming Method (PDM)", "definition": "A network diagramming technique where activities are nodes and arrows represent dependencies, supporting four relationship types." },
+        { "term": "Total Float (Slack)", "definition": "The amount of time an activity can be delayed without affecting the project completion date, calculated as LS - ES or LF - EF." },
+        { "term": "Free Float", "definition": "The amount of time an activity can be delayed without affecting the early start of any immediate successor activity." },
+        { "term": "Forward Pass", "definition": "A network analysis calculation that determines the Early Start and Early Finish for each activity." },
+        { "term": "Backward Pass", "definition": "A network analysis calculation that determines the Late Start and Late Finish for each activity." },
+        { "term": "Lead", "definition": "The amount of time a successor activity can be advanced relative to a predecessor." },
+        { "term": "Lag", "definition": "The amount of waiting time required between a predecessor and successor activity." }
+      ]
+    }
+  },
+  {
+    "title": "Schedule Development",
+    "slug": "schedule-development",
+    "order": 3,
+    "estimatedReadTime": 9,
+    "content": {
+      "sections": [
+        {
+          "heading": "Gantt Charts and Schedule Presentation",
+          "body": "Once the network analysis is complete and the critical path has been determined, the project schedule must be presented in a format that is accessible and useful to stakeholders. The most widely used schedule presentation tool is the **Gantt chart**, developed by **Henry Gantt** in the early 1900s.\n\nA Gantt chart is a **bar chart** that displays project activities against a time scale. Each activity is represented as a horizontal bar, with the bar's length proportional to the activity's duration and its position indicating start and finish dates. Modern Gantt charts typically include:\n\n- **Activity bars**: Horizontal bars showing the duration and timing of each activity\n- **Milestone diamonds**: Diamond-shaped markers indicating significant events or deliverables with zero duration\n- **Summary bars**: Rolled-up bars showing the duration of groups of activities (WBS summary levels)\n- **Dependency lines**: Arrows connecting related activities to show logical relationships\n- **Progress indicators**: Shading or coloring within bars to show the percentage of work completed\n- **Critical path highlighting**: Visual distinction of critical path activities (often shown in red)\n- **Resource assignments**: Names or roles assigned to each activity\n- **Baseline comparison**: Display of the original schedule alongside the current schedule to show variances\n\nGantt charts excel at **communicating schedule information** to stakeholders at all levels. They provide an intuitive visual representation of when activities occur, how they overlap, and how the project progresses over time. However, they have limitations:\n- They can become unwieldy for very large projects with hundreds of activities\n- They do not inherently show the critical path as clearly as network diagrams\n- The visual simplicity can mask underlying complexity and dependencies\n\nFor complex projects, project managers often use **tiered Gantt charts** — a summary-level chart for executive stakeholders and detailed charts for the project team. This approach provides each audience with the appropriate level of detail.\n\nModern project management software (Microsoft Project, Primavera P6, Jira, etc.) automatically generates Gantt charts from the schedule data and supports dynamic updating as the project progresses.",
+          "keyPoints": [
+            "Gantt charts display activities as horizontal bars against a time scale",
+            "Key elements include activity bars, milestones, dependency lines, and progress indicators",
+            "Gantt charts excel at communicating schedule information to diverse stakeholders",
+            "Tiered Gantt charts provide different detail levels for different audiences",
+            "Modern PM software automatically generates and updates Gantt charts"
+          ]
+        },
+        {
+          "heading": "Resource Leveling and Schedule Compression",
+          "body": "The initial schedule produced by network analysis often requires adjustment to account for resource constraints and project deadlines. Two key techniques address these challenges: **resource leveling** and **schedule compression**.\n\n**Resource Leveling** adjusts the schedule to resolve resource over-allocation — situations where a resource is assigned to more work than it can handle in a given time period. For example, if a developer is scheduled to work on two full-time activities simultaneously, resource leveling would delay one activity to eliminate the conflict.\n\nResource leveling typically:\n- Extends the project duration (the critical path may change)\n- Smooths resource usage over time to avoid peaks and valleys\n- May convert non-critical activities into critical ones by consuming their float\n- Uses activity float as the primary mechanism — activities with the most float are delayed first\n\n**Resource Smoothing** is a related technique that adjusts activities only within their available float, so the project completion date is not affected. It produces a less optimal resource profile than leveling but preserves the schedule.\n\n**Schedule Compression** techniques are used when the project must be completed faster than the network analysis indicates. Two primary methods exist:\n\n**Crashing** adds resources to critical path activities to reduce their duration. It involves analyzing the cost-duration trade-offs for critical activities and selecting the approach that provides the maximum schedule compression for the minimum additional cost. Key considerations:\n- Only critical path activities can reduce the project duration\n- Crashing increases project cost (overtime, additional staff, expedited procurement)\n- Not all activities can be crashed — some have incompressible durations\n- Crashing may change the critical path\n- The **crash cost per unit time** helps prioritize which activities to crash first (crash cheapest activities first)\n\n**Fast-tracking** involves performing activities in parallel that were originally planned to be sequential. For example, starting construction before design is fully complete. Fast-tracking:\n- Does not necessarily increase costs\n- **Increases risk** significantly — rework may be required if upstream activities produce changes\n- Is only possible when activities can logically overlap\n- May require additional coordination and communication\n\nThe project manager should use crashing and fast-tracking judiciously, understanding that both involve trade-offs. Crashing trades cost for time, while fast-tracking trades risk for time.",
+          "keyPoints": [
+            "Resource leveling resolves over-allocation but typically extends the project duration",
+            "Resource smoothing adjusts within float so the completion date is unchanged",
+            "Crashing adds resources to critical path activities — increases cost, reduces duration",
+            "Fast-tracking performs sequential activities in parallel — increases risk, may not increase cost",
+            "Crashing trades cost for time; fast-tracking trades risk for time"
+          ]
+        },
+        {
+          "heading": "Agile Scheduling Concepts",
+          "body": "While traditional scheduling techniques like CPM and Gantt charts remain essential for predictive (waterfall) projects, **agile scheduling** takes a fundamentally different approach suited to projects with evolving requirements and high uncertainty.\n\nIn agile frameworks such as **Scrum**, work is organized into **iterations** (called **sprints** in Scrum) — fixed-duration time boxes typically lasting **1-4 weeks**. Rather than creating a detailed upfront schedule for the entire project, agile teams plan at multiple levels:\n\n**Release Planning** establishes a high-level plan for when groups of features will be delivered. It considers the total backlog, team velocity, and business priorities. Release plans are regularly updated as new information emerges. This is analogous to a ROM estimate in traditional project management.\n\n**Sprint Planning** occurs at the start of each sprint. The team selects a set of high-priority items from the **product backlog** and commits to completing them within the sprint. The team's **velocity** — the average number of story points completed per sprint — guides how much work can be realistically committed.\n\n**Daily Stand-ups** (Daily Scrums) provide a 15-minute daily synchronization point where team members share what they completed, what they plan to do, and any impediments they face. This replaces formal status reporting with real-time, transparent communication.\n\n**Velocity** is the key scheduling metric in agile. It is calculated as the average number of **story points** (a relative measure of effort and complexity) completed per sprint over several sprints. For example, if a team averages 30 story points per two-week sprint and the remaining backlog contains 180 story points, the team can estimate approximately **6 more sprints** (12 weeks) to completion.\n\nAgile scheduling tools include:\n- **Burndown charts**: Show remaining work over time within a sprint or release, revealing whether the team is on track\n- **Burnup charts**: Show completed work accumulating over time against the total scope, making scope changes visible\n- **Cumulative flow diagrams**: Visualize the amount of work in different stages (to do, in progress, done), revealing bottlenecks and flow issues\n\nAgile and traditional scheduling are not mutually exclusive. Many organizations use a **hybrid approach** where high-level milestones and dependencies are managed with traditional techniques while individual team execution follows agile practices. This provides both the governance required by the organization and the flexibility needed by the development team.",
+          "keyPoints": [
+            "Agile scheduling uses fixed-duration sprints (1-4 weeks) instead of detailed upfront plans",
+            "Planning occurs at multiple levels: release planning, sprint planning, and daily stand-ups",
+            "Velocity (average story points per sprint) is the key metric for agile schedule forecasting",
+            "Burndown, burnup, and cumulative flow diagrams provide visual progress tracking",
+            "Hybrid approaches combine traditional milestone management with agile team execution"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Create and interpret Gantt charts with milestones, dependencies, and progress indicators",
+        "Apply resource leveling and resource smoothing to resolve scheduling conflicts",
+        "Compare crashing and fast-tracking as schedule compression techniques",
+        "Explain agile scheduling concepts including sprints, velocity, and burndown charts",
+        "Evaluate when to use traditional versus agile scheduling approaches"
+      ],
+      "keyTerms": [
+        { "term": "Gantt Chart", "definition": "A bar chart that displays project activities against a time scale, showing durations, dependencies, and progress." },
+        { "term": "Resource Leveling", "definition": "A technique that adjusts the schedule to resolve resource over-allocation, typically extending the project duration." },
+        { "term": "Crashing", "definition": "A schedule compression technique that adds resources to critical path activities to reduce duration, increasing project cost." },
+        { "term": "Fast-Tracking", "definition": "A schedule compression technique that performs sequential activities in parallel, increasing project risk." },
+        { "term": "Velocity", "definition": "The average number of story points a team completes per sprint, used to forecast future delivery." },
+        { "term": "Sprint", "definition": "A fixed-duration iteration (typically 1-4 weeks) in Scrum during which a potentially shippable product increment is created." },
+        { "term": "Burndown Chart", "definition": "A chart showing the remaining work over time within a sprint or release, indicating whether the team is on track." },
+        { "term": "Resource Smoothing", "definition": "A technique that adjusts activities only within their available float to improve resource profiles without changing the completion date." }
+      ]
+    }
+  },
+  {
+    "title": "Project Tracking and Earned Value",
+    "slug": "project-tracking-and-earned-value",
+    "order": 4,
+    "estimatedReadTime": 11,
+    "content": {
+      "sections": [
+        {
+          "heading": "Fundamentals of Project Tracking",
+          "body": "**Project tracking** is the process of monitoring the execution of the project plan and comparing actual performance against the baseline to identify variances. Effective tracking enables the project manager to detect problems early, make informed decisions, and take corrective action before small deviations become major issues.\n\nThe foundation of project tracking is the **performance measurement baseline (PMB)**, which integrates the scope baseline, schedule baseline, and cost baseline. All performance measurements are compared against this integrated baseline.\n\nKey project tracking activities include:\n\n**Progress measurement** involves determining the current status of project work. This can be measured in several ways:\n- **Percent complete**: The proportion of work finished for each activity or work package. While intuitive, percent complete is often subjective and prone to the \"90% done syndrome\" where tasks appear nearly complete for extended periods.\n- **Milestones completed**: Tracking the achievement of predefined milestone events. This provides objective, binary measurement (achieved or not achieved) but offers limited granularity between milestones.\n- **Units completed**: For repetitive work, tracking the number of units produced (e.g., test cases executed, modules coded). This provides objective measurement for suitable work types.\n\n**Variance analysis** compares planned performance to actual performance to identify deviations:\n- **Schedule variance**: Difference between planned and actual progress\n- **Cost variance**: Difference between budgeted and actual costs\n- **Scope variance**: Changes in deliverables compared to the scope baseline\n\n**Status reporting** communicates project performance to stakeholders through regular reports. Effective status reports include:\n- Current status of key deliverables and milestones\n- Performance metrics and trends\n- Issues and risks requiring attention\n- Forecasts for schedule and cost at completion\n- Decisions needed from stakeholders\n\nThe frequency and detail of tracking should be proportional to the project's risk profile and the rate of change. High-risk projects or phases may require weekly or even daily tracking, while lower-risk phases may be adequately managed with bi-weekly or monthly reviews.",
+          "keyPoints": [
+            "Project tracking compares actual performance against the performance measurement baseline",
+            "Progress can be measured by percent complete, milestones, or units completed",
+            "Variance analysis identifies deviations in schedule, cost, and scope",
+            "Status reports communicate performance, issues, and forecasts to stakeholders",
+            "Tracking frequency should be proportional to project risk and rate of change"
+          ]
+        },
+        {
+          "heading": "Earned Value Management (EVM)",
+          "body": "**Earned Value Management (EVM)** is the most powerful quantitative technique for measuring project performance. EVM integrates scope, schedule, and cost data to provide objective performance metrics and forward-looking forecasts. It answers three fundamental questions: How much work was planned? How much work was accomplished? How much did the accomplished work cost?\n\nEVM is built on three foundational measurements:\n\n**Planned Value (PV)** — also called Budgeted Cost of Work Scheduled (BCWS) — is the authorized budget assigned to scheduled work. It represents the value of work that *should have been completed* by a given date according to the plan. The total PV for the project equals the **Budget at Completion (BAC)**.\n\n**Earned Value (EV)** — also called Budgeted Cost of Work Performed (BCWP) — is the measure of work performed expressed in terms of the budget authorized for that work. It represents the value of work that *has actually been completed*. EV is calculated by summing the budgeted values of completed work packages.\n\n**Actual Cost (AC)** — also called Actual Cost of Work Performed (ACWP) — is the realized cost incurred for the work performed during a specific time period. It represents *what was actually spent* to accomplish the earned value.\n\nFrom these three values, key performance metrics are derived:\n\n**Cost Variance (CV) = EV - AC**\n- CV > 0: Under budget (favorable)\n- CV < 0: Over budget (unfavorable)\n- CV = 0: On budget\n\n**Schedule Variance (SV) = EV - PV**\n- SV > 0: Ahead of schedule (favorable)\n- SV < 0: Behind schedule (unfavorable)\n- SV = 0: On schedule\n\n**Cost Performance Index (CPI) = EV / AC**\n- CPI > 1.0: Getting more value per dollar spent (under budget)\n- CPI < 1.0: Getting less value per dollar spent (over budget)\n- CPI = 1.0: Spending exactly as planned\n\n**Schedule Performance Index (SPI) = EV / PV**\n- SPI > 1.0: Accomplishing more work than planned (ahead of schedule)\n- SPI < 1.0: Accomplishing less work than planned (behind schedule)\n- SPI = 1.0: Accomplishing exactly what was planned\n\nCPI and SPI are particularly valuable because they express performance as ratios that are easy to interpret and trend over time. Research has shown that CPI tends to stabilize after about 20% of the project is complete, making it a reliable predictor of final cost performance.",
+          "keyPoints": [
+            "EVM integrates scope, schedule, and cost into a unified performance measurement system",
+            "Three foundations: Planned Value (PV), Earned Value (EV), and Actual Cost (AC)",
+            "CV = EV - AC measures cost performance; SV = EV - PV measures schedule performance",
+            "CPI = EV/AC and SPI = EV/PV express performance as easy-to-interpret ratios",
+            "CPI tends to stabilize after ~20% of the project is complete"
+          ]
+        },
+        {
+          "heading": "Forecasting and S-Curves",
+          "body": "One of EVM's greatest strengths is its ability to generate **forecasts** of final project cost and schedule based on current performance trends. These forecasts enable proactive decision-making rather than waiting until the project is complete to discover overruns.\n\n**Estimate at Completion (EAC)** predicts the total cost of the project when finished. Several formulas are used depending on assumptions about future performance:\n\n**EAC = BAC / CPI** — Used when the current cost performance trend is expected to continue for the remainder of the project. This is the most commonly used formula and is appropriate when current variances are viewed as typical of future performance.\n\n**EAC = AC + (BAC - EV)** — Used when current variances are viewed as atypical and future work is expected to be performed at the original budgeted rate. This formula essentially adds the remaining work at the original budget to the actual costs already incurred.\n\n**EAC = AC + (BAC - EV) / (CPI x SPI)** — Used when both cost and schedule performance are considered in the forecast. This is the most conservative formula and accounts for the impact of schedule pressure on cost performance.\n\n**Variance at Completion (VAC) = BAC - EAC** — The projected cost overrun or underrun at project completion. A negative VAC indicates the project is expected to exceed its budget.\n\n**To-Complete Performance Index (TCPI) = (BAC - EV) / (BAC - AC)** — The cost performance that must be achieved on the remaining work to meet the BAC. If TCPI is greater than 1.0, the team must improve its cost performance; if less than 1.0, the team has a cushion.\n\n**S-Curves** are a powerful visual tool for EVM communication. Named for their characteristic S-shape (slow start, rapid middle, slow finish), S-curves plot PV, EV, and AC over time on a single graph. The visual relationships between the three curves immediately reveal:\n- **Cost performance**: The gap between EV and AC shows whether the project is over or under budget\n- **Schedule performance**: The gap between EV and PV shows whether the project is ahead of or behind schedule\n- **Trends**: The direction and magnitude of gaps over time indicate whether performance is improving or deteriorating\n\nS-curves are effective communication tools for stakeholders because they convey complex performance information in an intuitive visual format. When combined with forecasting lines showing projected EAC and completion dates, they provide a comprehensive picture of project health and trajectory.\n\nRegular EVM analysis — typically monthly or at key milestones — enables the project manager to identify adverse trends early, evaluate the effectiveness of corrective actions, and maintain stakeholder confidence through transparent, objective performance reporting.",
+          "keyPoints": [
+            "EAC = BAC/CPI is the most common forecast formula when current trends are expected to continue",
+            "EAC = AC + (BAC-EV) assumes future work will be performed at the original budgeted rate",
+            "EAC = AC + (BAC-EV)/(CPI x SPI) is the most conservative formula considering both cost and schedule",
+            "TCPI indicates the cost performance required on remaining work to meet the budget",
+            "S-curves plot PV, EV, and AC over time, visually revealing cost and schedule performance"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Explain the purpose and components of project tracking and the performance measurement baseline",
+        "Calculate and interpret EVM metrics: PV, EV, AC, CV, SV, CPI, and SPI",
+        "Apply EAC formulas to forecast project cost at completion under different assumptions",
+        "Interpret S-curves to assess project cost and schedule health",
+        "Determine TCPI and explain its significance for remaining project work"
+      ],
+      "keyTerms": [
+        { "term": "Planned Value (PV)", "definition": "The authorized budget assigned to scheduled work — the value of work that should have been completed by a given date." },
+        { "term": "Earned Value (EV)", "definition": "The measure of work performed expressed in terms of the budget authorized for that work." },
+        { "term": "Actual Cost (AC)", "definition": "The realized cost incurred for the work performed during a specific time period." },
+        { "term": "Cost Performance Index (CPI)", "definition": "EV divided by AC — a ratio indicating cost efficiency. CPI > 1.0 means under budget." },
+        { "term": "Schedule Performance Index (SPI)", "definition": "EV divided by PV — a ratio indicating schedule efficiency. SPI > 1.0 means ahead of schedule." },
+        { "term": "Estimate at Completion (EAC)", "definition": "The expected total cost of completing all work, calculated using current performance data and assumptions about future performance." },
+        { "term": "Budget at Completion (BAC)", "definition": "The total authorized budget for the project — the sum of all planned values." },
+        { "term": "S-Curve", "definition": "A graph plotting PV, EV, and AC over time, named for its characteristic S-shape, used to visualize project performance." },
+        { "term": "To-Complete Performance Index (TCPI)", "definition": "The cost performance that must be achieved on remaining work to meet a specified budget target, calculated as (BAC-EV)/(BAC-AC)." },
+        { "term": "Variance at Completion (VAC)", "definition": "The projected budget overrun or underrun at project completion, calculated as BAC minus EAC." }
+      ]
+    }
+  }
+]

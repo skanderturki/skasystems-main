@@ -1,0 +1,219 @@
+[
+  {
+    "title": "Introduction to Performance Domains",
+    "slug": "introduction-to-performance-domains",
+    "order": 1,
+    "estimatedReadTime": 9,
+    "content": {
+      "sections": [
+        {
+          "heading": "What Are Performance Domains?",
+          "body": "The PMBOK Guide 7th Edition introduced **eight project performance domains** as a replacement for the traditional process groups and knowledge areas found in earlier editions. A performance domain is defined as a group of related activities that are critical for the effective delivery of project outcomes.\n\nUnlike the prescriptive process-based approach of previous editions, performance domains are **outcome-oriented**. They describe *what* needs to be accomplished rather than *how* to accomplish it, giving project managers the flexibility to tailor their approach based on the unique characteristics of each project.\n\nPerformance domains are not sequential phases — they operate **concurrently and interactively** throughout the project life cycle. Each domain influences and is influenced by the others. For example, how you engage stakeholders (Stakeholder Performance Domain) directly affects team dynamics (Team Performance Domain) and the approach to planning (Planning Performance Domain).\n\nThe shift to performance domains reflects PMI's recognition that modern project management requires adaptability. Whether a team uses predictive, adaptive, or hybrid approaches, the performance domains remain relevant because they focus on outcomes rather than specific processes or tools.",
+          "keyPoints": [
+            "Performance domains replaced process groups and knowledge areas in PMBOK 7th Edition",
+            "They are outcome-oriented rather than process-oriented",
+            "All eight domains operate concurrently and interact with each other throughout the project",
+            "Performance domains support predictive, adaptive, and hybrid approaches equally"
+          ]
+        },
+        {
+          "heading": "Overview of the Eight Performance Domains",
+          "body": "The **eight performance domains** defined in the PMBOK Guide 7th Edition are:\n\n1. **Stakeholders** — Activities and functions associated with stakeholders. Focuses on identifying, understanding, analyzing, prioritizing, engaging, and monitoring stakeholders to drive project success.\n\n2. **Team** — Activities and functions associated with the people responsible for producing project deliverables. Covers team development, leadership styles, building high-performing teams, and establishing a shared vision.\n\n3. **Development Approach and Life Cycle** — Activities related to the development approach, cadence, and life cycle phases. Addresses selecting the right approach (predictive, adaptive, hybrid) based on project variables.\n\n4. **Planning** — Activities required to produce the initial, ongoing, and evolving plans for delivering project outcomes. Encompasses scope, schedule, cost, resources, procurement, and communication planning.\n\n5. **Project Work** — Activities associated with establishing project processes, managing physical resources, and fostering a learning environment. Includes managing changes, maintaining focus, and continuous improvement.\n\n6. **Delivery** — Activities and functions associated with delivering the scope, quality, and value that the project was undertaken to achieve. Focuses on requirements management, quality assurance, and value realization.\n\n7. **Measurement** — Activities associated with assessing project performance and taking appropriate actions to maintain acceptable performance. Covers metrics, KPIs, dashboards, and earned value management.\n\n8. **Uncertainty** — Activities and functions associated with risk and uncertainty. Addresses threat and opportunity management, ambiguity, complexity, and volatility.\n\nEach domain has a set of **desired outcomes** that indicate effective execution. Project managers should regularly check whether these outcomes are being achieved and adjust their approach accordingly.",
+          "keyPoints": [
+            "The eight domains are: Stakeholders, Team, Development Approach and Life Cycle, Planning, Project Work, Delivery, Measurement, and Uncertainty",
+            "Each domain has specific desired outcomes that indicate effective execution",
+            "Domains are interconnected — success in one depends on effective management of the others",
+            "The domains provide a holistic view of project management responsibilities"
+          ]
+        },
+        {
+          "heading": "How Performance Domains Interact",
+          "body": "One of the most critical concepts for PMP candidates to understand is that performance domains do not function in isolation — they form an **integrated system**. Changes or decisions in one domain create ripple effects across others.\n\nConsider these examples of domain interactions:\n\n- **Stakeholder + Planning**: Stakeholder expectations and requirements directly shape the project plan. If a key stakeholder introduces new requirements, the planning domain must adapt scope, schedule, and budget accordingly.\n\n- **Team + Project Work**: The team's skills, motivation, and structure influence how project work is performed. A highly skilled, self-organizing agile team handles project work differently than a traditional hierarchical team.\n\n- **Delivery + Measurement**: What gets delivered must be measured against defined success criteria. Measurement data feeds back into delivery decisions — if quality metrics show defects, the delivery approach must be adjusted.\n\n- **Uncertainty + Planning**: Identified risks and uncertainties directly impact planning activities. Risk responses must be incorporated into the project plan, and the level of uncertainty may influence whether a predictive or adaptive approach is more appropriate.\n\n- **Development Approach + All Domains**: The chosen development approach (predictive, adaptive, or hybrid) affects how every other domain is executed. An agile project handles stakeholder engagement, planning, and measurement very differently from a waterfall project.\n\nProject managers must maintain a **systems thinking** mindset, recognizing that optimizing one domain at the expense of others can lead to suboptimal project outcomes. The goal is to achieve balance across all eight domains while keeping the focus on delivering value to stakeholders.",
+          "keyPoints": [
+            "Performance domains form an integrated system with interdependencies",
+            "Changes in one domain create ripple effects across others",
+            "The development approach influences how all other domains are executed",
+            "Systems thinking is essential for balancing all eight domains effectively"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Define what a performance domain is and how it differs from process groups",
+        "List and describe the eight project performance domains",
+        "Explain how performance domains interact and influence each other",
+        "Understand why the shift from processes to performance domains occurred"
+      ],
+      "keyTerms": [
+        { "term": "Performance Domain", "definition": "A group of related activities that are critical for the effective delivery of project outcomes, as defined in PMBOK 7th Edition." },
+        { "term": "Systems Thinking", "definition": "A holistic approach that focuses on understanding how components of a system interrelate and influence each other over time." },
+        { "term": "Desired Outcomes", "definition": "The results that indicate a performance domain is being effectively managed within a project." },
+        { "term": "Development Approach", "definition": "The method used to create and evolve the product, service, or result during the project life cycle (predictive, adaptive, or hybrid)." }
+      ]
+    }
+  },
+  {
+    "title": "Stakeholder & Team Performance Domains",
+    "slug": "stakeholder-team-performance-domains",
+    "order": 2,
+    "estimatedReadTime": 10,
+    "content": {
+      "sections": [
+        {
+          "heading": "Stakeholder Performance Domain",
+          "body": "The **Stakeholder Performance Domain** addresses activities and functions associated with stakeholders throughout the project. Stakeholders are individuals, groups, or organizations that may affect, be affected by, or perceive themselves to be affected by a decision, activity, or outcome of a project.\n\nEffective stakeholder engagement involves a continuous cycle of activities:\n\n**1. Identify Stakeholders**\nStakeholder identification begins at project initiation and continues throughout the project. Common stakeholders include the project sponsor, customers, end users, team members, functional managers, PMO, regulators, and suppliers. Tools such as the **stakeholder register** help document and track stakeholders.\n\n**2. Understand and Analyze Stakeholders**\nOnce identified, stakeholders must be analyzed to understand their interests, expectations, influence, and potential impact. Common analysis tools include:\n- **Power/Interest Grid** — classifies stakeholders by their level of authority and concern\n- **Salience Model** — considers power, urgency, and legitimacy\n- **Stakeholder Cube** — adds a third dimension such as attitude\n\n**3. Prioritize Stakeholders**\nNot all stakeholders require the same level of attention. Prioritization ensures that engagement efforts are focused on stakeholders with the greatest influence and interest. This prioritization should be revisited regularly as stakeholder dynamics change.\n\n**4. Engage Stakeholders**\nEngagement strategies should be tailored to each stakeholder or stakeholder group. The goal is to move stakeholders toward a **supportive** or **leading** engagement level. Communication frequency, format, and content should align with stakeholder preferences and needs.\n\n**5. Monitor Stakeholder Engagement**\nEngagement effectiveness should be continuously monitored using feedback, surveys, and observation. The **Stakeholder Engagement Assessment Matrix** compares current engagement levels against desired levels and highlights gaps requiring attention.",
+          "keyPoints": [
+            "Stakeholder identification is continuous — not a one-time activity",
+            "The Power/Interest Grid and Salience Model are key analysis tools",
+            "Engagement strategies must be tailored to individual stakeholder needs",
+            "The Stakeholder Engagement Assessment Matrix tracks current vs. desired engagement levels"
+          ]
+        },
+        {
+          "heading": "Team Performance Domain",
+          "body": "The **Team Performance Domain** addresses activities and functions associated with the people who are responsible for producing project deliverables that realize business outcomes. This domain focuses on building and maintaining a high-performing project team.\n\n**Project Manager as Leader**\nThe project manager's leadership role extends beyond task assignment. Effective project leaders must:\n- Establish a **shared vision** that aligns the team with project goals\n- Adapt their **leadership style** to the team's maturity and the situation (see Situational Leadership)\n- Foster **psychological safety** — an environment where team members feel safe to take risks, voice opinions, and admit mistakes\n- Practice **servant leadership** — removing obstacles, coaching, and supporting team members\n\n**Team Development**\nBruce Tuckman's model describes five stages of team development:\n1. **Forming** — Team members meet and learn about the project. Behavior is polite but guarded.\n2. **Storming** — Conflicts arise as members assert themselves. This is a critical stage where leadership is essential.\n3. **Norming** — The team establishes norms, roles are clarified, and trust develops.\n4. **Performing** — The team operates efficiently and collaboratively, producing high-quality results.\n5. **Adjourning** — The team disbands as the project concludes. Recognition and knowledge transfer are important.\n\n**Building High-Performing Teams**\nHigh-performing teams share key characteristics:\n- Clear objectives and shared accountability\n- Open communication and constructive conflict resolution\n- Trust and mutual respect among members\n- Diverse skills and perspectives that complement each other\n- Empowerment and autonomy in decision-making\n\nThe project manager must also address practical team management activities including **resource allocation**, **training and development**, **performance feedback**, and **conflict resolution** using techniques such as collaborating, compromising, smoothing, forcing, and withdrawing.",
+          "keyPoints": [
+            "Tuckman's model describes five stages: Forming, Storming, Norming, Performing, Adjourning",
+            "Servant leadership focuses on removing obstacles and supporting the team",
+            "Psychological safety is essential for high-performing teams",
+            "Conflict resolution techniques include collaborating, compromising, smoothing, forcing, and withdrawing"
+          ]
+        },
+        {
+          "heading": "Integrating Stakeholder and Team Domains",
+          "body": "The Stakeholder and Team Performance Domains are deeply interconnected. The project team itself is a critical stakeholder group, and many stakeholder engagement activities directly impact team performance and vice versa.\n\n**Team Members as Stakeholders**\nProject team members have their own expectations, career goals, and concerns that must be managed alongside external stakeholder needs. A project manager who focuses exclusively on external stakeholders while neglecting team member satisfaction risks losing motivation, productivity, and ultimately project success.\n\n**Communication as the Bridge**\nCommunication serves as the primary link between these two domains. The project manager must manage:\n- **Internal communication** — keeping the team informed, aligned, and engaged through stand-ups, retrospectives, and team meetings\n- **External communication** — keeping sponsors, customers, and other stakeholders updated through reports, presentations, and reviews\n- **Feedback loops** — ensuring that stakeholder feedback reaches the team and that team concerns are escalated to appropriate stakeholders\n\n**Shared Accountability**\nIn agile environments, the traditional boundary between the team and stakeholders becomes more fluid. The **product owner** represents the customer and works closely with the development team. Stakeholders may participate in sprint reviews and provide direct feedback. This close collaboration improves alignment but requires careful facilitation to prevent scope creep and conflicting priorities.\n\nEffective project managers recognize that stakeholder satisfaction and team performance are not competing priorities but rather **mutually reinforcing goals**. Engaged stakeholders provide clear requirements and timely decisions, which enables the team to perform effectively. Conversely, a high-performing team delivers quality results that satisfy stakeholders.",
+          "keyPoints": [
+            "Team members are stakeholders whose needs must also be managed",
+            "Communication bridges the stakeholder and team domains",
+            "In agile, stakeholders and team members collaborate more closely through the product owner role",
+            "Stakeholder satisfaction and team performance are mutually reinforcing"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Describe the stakeholder identification, analysis, and engagement process",
+        "Explain Tuckman's stages of team development",
+        "Identify characteristics of high-performing teams",
+        "Understand how the Stakeholder and Team domains interact and reinforce each other"
+      ],
+      "keyTerms": [
+        { "term": "Stakeholder", "definition": "An individual, group, or organization that may affect, be affected by, or perceive themselves to be affected by a project decision, activity, or outcome." },
+        { "term": "Power/Interest Grid", "definition": "A classification model that groups stakeholders based on their level of authority (power) and their level of concern (interest) in project outcomes." },
+        { "term": "Tuckman's Model", "definition": "A model describing five stages of team development: Forming, Storming, Norming, Performing, and Adjourning." },
+        { "term": "Servant Leadership", "definition": "A leadership philosophy where the leader's primary goal is to serve the team by removing obstacles, coaching, and enabling high performance." },
+        { "term": "Psychological Safety", "definition": "An environment where team members feel safe to take interpersonal risks, voice opinions, and admit mistakes without fear of punishment." },
+        { "term": "Stakeholder Engagement Assessment Matrix", "definition": "A tool that compares the current engagement level of each stakeholder against the desired engagement level to identify gaps." }
+      ]
+    }
+  },
+  {
+    "title": "Planning & Project Work Domains",
+    "slug": "planning-project-work-domains",
+    "order": 3,
+    "estimatedReadTime": 10,
+    "content": {
+      "sections": [
+        {
+          "heading": "Planning Performance Domain",
+          "body": "The **Planning Performance Domain** addresses activities required to produce the initial, ongoing, and evolving plans for organizing, elaborating, and coordinating project work. Effective planning is not a one-time activity — it is an **iterative process** that continues throughout the project life cycle.\n\nThe depth and formality of planning depends on the chosen **development approach**:\n\n**Predictive Planning**\nIn predictive (waterfall) projects, planning is done extensively upfront. The project management plan typically includes:\n- **Scope baseline** — project scope statement, WBS, and WBS dictionary\n- **Schedule baseline** — the approved project schedule with milestones and dependencies\n- **Cost baseline** — the time-phased project budget\n- Subsidiary plans for quality, resources, communications, risk, procurement, and stakeholder engagement\n\n**Adaptive Planning**\nIn adaptive (agile) projects, planning is done at multiple levels:\n- **Vision/Roadmap** — high-level direction and goals for the product\n- **Release planning** — features targeted for each release\n- **Iteration/Sprint planning** — detailed planning for the upcoming iteration (typically 1-4 weeks)\n- **Daily planning** — daily stand-ups to coordinate work and remove impediments\n\n**Key Planning Activities**\nRegardless of the approach, effective planning addresses:\n- **Scope definition** — what is included and excluded from the project\n- **Schedule development** — sequencing activities, estimating durations, determining the critical path\n- **Cost estimation** — estimating resources and creating the budget using techniques like analogous, parametric, bottom-up, and three-point estimating\n- **Resource planning** — identifying and acquiring the people, equipment, and materials needed\n- **Risk planning** — identifying risks, performing qualitative and quantitative analysis, and planning responses\n- **Communication planning** — determining who needs what information, when, and through which channels\n\nPlanning must balance the need for **thoroughness** with the reality that not everything can be known upfront. The concept of a **rolling wave** (progressive elaboration of the plan as more information becomes available) bridges predictive and adaptive planning philosophies.",
+          "keyPoints": [
+            "Planning is iterative and continues throughout the project life cycle",
+            "Predictive projects plan extensively upfront; adaptive projects plan in layers (vision, release, iteration, daily)",
+            "Key planning areas include scope, schedule, cost, resources, risk, and communications",
+            "Rolling wave planning progressively elaborates the plan as more information becomes available"
+          ]
+        },
+        {
+          "heading": "Project Work Performance Domain",
+          "body": "The **Project Work Performance Domain** addresses the activities and functions associated with establishing project processes, managing physical resources, and fostering a learning environment. While the Planning domain focuses on *what* will be done, the Project Work domain focuses on *how* the work gets done and how it is managed on an ongoing basis.\n\n**Establishing Project Processes**\nProject work requires well-defined processes for:\n- **Change management** — a structured approach to evaluating and implementing changes. The **Change Control Board (CCB)** reviews change requests and determines whether to approve, reject, or defer them. Every approved change should be reflected in the project baselines.\n- **Configuration management** — tracking and controlling the versions and characteristics of project deliverables to ensure integrity and traceability.\n- **Quality assurance and control** — ensuring that project processes are followed (assurance) and that deliverables meet quality standards (control).\n\n**Managing Physical Resources**\nPhysical resources include materials, equipment, facilities, and infrastructure. Effective management involves:\n- Procuring resources in a timely manner\n- Ensuring availability when needed to avoid delays\n- Managing inventory and logistics\n- Disposing of resources responsibly at project completion\n\n**Fostering a Learning Environment**\nSuccessful projects promote continuous learning and improvement through:\n- **Lessons learned** — capturing what went well and what could be improved, ideally throughout the project rather than only at the end\n- **Retrospectives** — regular team reflections (common in agile) to identify improvements for the next iteration\n- **Knowledge management** — documenting and sharing organizational process assets for future projects\n- **Continuous improvement (Kaizen)** — making incremental improvements to processes and practices\n\n**Managing Project Work in Agile**\nIn agile environments, project work is self-managed by the team within defined guardrails. The team pulls work from the **product backlog**, collaborates on execution, and holds daily stand-ups to coordinate. The **Scrum Master** or agile coach helps remove impediments and facilitate processes without directing the team's work.",
+          "keyPoints": [
+            "Change control requires a structured process and typically a Change Control Board (CCB)",
+            "Configuration management ensures deliverable integrity and version control",
+            "Lessons learned and retrospectives support continuous improvement",
+            "In agile, teams self-manage their work within defined guardrails"
+          ]
+        },
+        {
+          "heading": "Balancing Planning with Execution",
+          "body": "One of the most challenging aspects of project management is finding the right balance between planning and execution. Over-planning can lead to **analysis paralysis** — spending so much time planning that execution is delayed and opportunities are lost. Under-planning can result in **scope creep**, rework, and wasted resources.\n\nThe appropriate balance depends on several factors:\n\n- **Project complexity** — complex projects with many interdependencies typically require more upfront planning. Simple projects may benefit from a lighter planning approach with more emphasis on rapid execution.\n\n- **Uncertainty level** — when requirements are well understood and technology is proven, predictive planning is effective. When uncertainty is high, adaptive planning with shorter planning horizons reduces the risk of wasted effort.\n\n- **Organizational culture** — some organizations require extensive documentation and formal approval processes, while others embrace lightweight, just-in-time planning.\n\n- **Regulatory environment** — heavily regulated industries (healthcare, aerospace, finance) often mandate comprehensive planning documentation for compliance and audit purposes.\n\n**Integrated Change Control** bridges planning and execution by providing a formal process for managing changes. When the project work reveals that the plan needs to change — whether due to new requirements, technical discoveries, or external factors — integrated change control ensures that changes are evaluated for their impact on scope, schedule, cost, and quality before being approved.\n\nThe project manager must continuously monitor the alignment between the plan and actual performance. Key tools include:\n- **Variance analysis** — comparing planned vs. actual performance\n- **Trend analysis** — identifying patterns that may indicate future problems\n- **Earned Value Management (EVM)** — integrating scope, schedule, and cost data to assess project health\n- **Burndown/burnup charts** — tracking remaining work in agile projects\n\nUltimately, the plan is a living document that serves the project — not the other way around. The best project managers know when to follow the plan and when to adapt it.",
+          "keyPoints": [
+            "Balance planning depth with the project's complexity, uncertainty, and regulatory requirements",
+            "Integrated change control manages the bridge between planning and execution",
+            "Variance analysis, trend analysis, and EVM are key monitoring tools",
+            "The project plan is a living document that should be adapted as needed"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Compare planning approaches for predictive and adaptive projects",
+        "Describe the key activities within the Project Work Performance Domain",
+        "Explain the role of change control and configuration management",
+        "Understand how to balance planning rigor with execution flexibility"
+      ],
+      "keyTerms": [
+        { "term": "Rolling Wave Planning", "definition": "An iterative planning technique where near-term work is planned in detail and future work is planned at a higher level, with details added as information becomes available." },
+        { "term": "Change Control Board (CCB)", "definition": "A formally chartered group responsible for reviewing, evaluating, approving, delaying, or rejecting changes to the project." },
+        { "term": "Configuration Management", "definition": "A system for tracking and controlling changes to deliverables and documentation, ensuring integrity and traceability." },
+        { "term": "Earned Value Management (EVM)", "definition": "A methodology that integrates scope, schedule, and cost data to assess project performance and progress." },
+        { "term": "Integrated Change Control", "definition": "The process of reviewing all change requests, approving changes, and managing changes to deliverables, project documents, and the project management plan." },
+        { "term": "Kaizen", "definition": "A philosophy of continuous improvement through small, incremental changes to processes and practices." }
+      ]
+    }
+  },
+  {
+    "title": "Delivery, Measurement & Uncertainty Domains",
+    "slug": "delivery-measurement-uncertainty-domains",
+    "order": 4,
+    "estimatedReadTime": 11,
+    "content": {
+      "sections": [
+        {
+          "heading": "Delivery Performance Domain",
+          "body": "The **Delivery Performance Domain** addresses the activities and functions associated with delivering the scope, quality, and value that the project was undertaken to achieve. This domain is fundamentally about **value realization** — ensuring that the project produces outcomes that matter to stakeholders and the organization.\n\n**Requirements and Scope**\nDelivery begins with understanding what needs to be delivered. Requirements define the conditions or capabilities that must be met, and they can be gathered through:\n- **Interviews and workshops** — direct engagement with stakeholders\n- **Prototyping** — building models or mockups to elicit feedback\n- **User stories** — short descriptions of desired functionality from the user's perspective (common in agile)\n- **Document analysis** — reviewing existing documentation, regulations, and standards\n\nIn predictive projects, requirements are defined as completely as possible upfront and documented in a **requirements traceability matrix** that links requirements to deliverables and test cases. In adaptive projects, requirements emerge through iterative development and continuous stakeholder feedback.\n\n**Quality Management**\nQuality in the Delivery domain encompasses both the quality of the **deliverables** and the quality of the **processes** used to create them:\n- **Quality planning** — determining quality standards and how to achieve them\n- **Quality assurance (QA)** — auditing processes to ensure they are capable of producing quality results\n- **Quality control (QC)** — inspecting deliverables to verify they meet standards using techniques like inspections, testing, statistical sampling, and control charts\n\nThe **cost of quality** includes the cost of conformance (prevention and appraisal activities) and the cost of nonconformance (internal and external failures). Investing in prevention is typically more cost-effective than addressing defects after they occur.\n\n**Delivering Value**\nThe ultimate measure of delivery success is not whether the project was on time and on budget, but whether it delivered the **intended value**. This requires:\n- Clear alignment between deliverables and business objectives\n- Incremental value delivery where possible (not waiting until the end)\n- Benefits realization planning and tracking beyond project completion",
+          "keyPoints": [
+            "Delivery focuses on value realization — producing outcomes that matter to stakeholders",
+            "Requirements gathering techniques include interviews, prototyping, user stories, and document analysis",
+            "Quality management includes planning, assurance (process), and control (product)",
+            "The cost of quality encompasses conformance costs (prevention, appraisal) and nonconformance costs (failures)"
+          ]
+        },
+        {
+          "heading": "Measurement Performance Domain",
+          "body": "The **Measurement Performance Domain** addresses activities associated with assessing project performance and taking appropriate actions to maintain acceptable performance. Without measurement, project managers are navigating blind — unable to detect problems early enough to take corrective action.\n\n**Key Performance Indicators (KPIs)**\nEffective measurement requires selecting metrics that are meaningful, measurable, and actionable. Common project KPIs include:\n- **Schedule Performance Index (SPI)** — ratio of earned value to planned value (SPI = EV/PV). An SPI < 1.0 indicates the project is behind schedule.\n- **Cost Performance Index (CPI)** — ratio of earned value to actual cost (CPI = EV/AC). A CPI < 1.0 indicates the project is over budget.\n- **Schedule Variance (SV)** — the difference between earned value and planned value (SV = EV - PV)\n- **Cost Variance (CV)** — the difference between earned value and actual cost (CV = EV - AC)\n- **Estimate at Completion (EAC)** — the expected total cost based on current performance\n- **Velocity** — the amount of work completed per iteration (agile metric)\n- **Lead time and cycle time** — how long work items take from request to delivery (Kanban/Lean metrics)\n\n**Earned Value Management (EVM)**\nEVM is the most comprehensive measurement technique for project performance, integrating scope, schedule, and cost into a single framework. The three foundational measurements are:\n- **Planned Value (PV)** — the authorized budget assigned to scheduled work\n- **Earned Value (EV)** — the measure of work performed, expressed in terms of the budget authorized for that work\n- **Actual Cost (AC)** — the realized cost incurred for the work performed\n\n**Dashboards and Reporting**\nMeasurement data must be presented in a way that supports decision-making. Common reporting mechanisms include:\n- **Dashboards** — visual displays of key metrics for quick status assessment\n- **Status reports** — regular written updates on project progress\n- **Burndown/burnup charts** — graphical representations of remaining vs. completed work\n- **Information radiators** — highly visible displays in team workspaces (physical or virtual)\n\nThe most important aspect of measurement is not collecting data but **using it to drive decisions**. Metrics should trigger specific actions — when SPI drops below a threshold, what corrective actions will be taken? Without predefined response triggers, measurement becomes overhead without value.",
+          "keyPoints": [
+            "SPI and CPI are fundamental performance indicators (values < 1.0 indicate problems)",
+            "EVM integrates scope, schedule, and cost into a unified measurement framework",
+            "Agile metrics include velocity, lead time, cycle time, and burndown charts",
+            "Measurement must drive decisions — metrics without action plans are overhead"
+          ]
+        },
+        {
+          "heading": "Uncertainty Performance Domain",
+          "body": "The **Uncertainty Performance Domain** addresses activities and functions associated with risk and uncertainty throughout the project. All projects exist in environments of uncertainty, and effective project managers proactively manage threats (negative risks) and exploit opportunities (positive risks).\n\n**Types of Uncertainty**\nUncertainty in projects manifests in several forms:\n- **Risk** — an uncertain event or condition that, if it occurs, has a positive or negative effect on project objectives. Risks can be identified, assessed, and managed.\n- **Ambiguity** — a state of being unclear or not knowing what to expect. Ambiguity can be addressed through prototyping, experiments, and progressive elaboration.\n- **Complexity** — behavior that emerges from interconnected elements in a system. Complex projects may have unpredictable outcomes even when individual components are well understood.\n- **Volatility** — the possibility of rapid and unpredictable change. Volatile environments require flexibility, buffers, and adaptive approaches.\n\n**Risk Management Process**\nThe structured approach to managing risk includes:\n1. **Identify risks** — brainstorming, checklists, expert judgment, SWOT analysis, assumption analysis\n2. **Qualitative risk analysis** — assessing probability and impact using a **probability-impact matrix** to prioritize risks\n3. **Quantitative risk analysis** — numerically analyzing the combined effect of identified risks using techniques like **Monte Carlo simulation**, **Expected Monetary Value (EMV)**, and **decision tree analysis**\n4. **Plan risk responses** — selecting strategies for each risk:\n   - *Threats*: avoid, mitigate, transfer, accept, escalate\n   - *Opportunities*: exploit, enhance, share, accept, escalate\n5. **Implement risk responses** — executing the planned response actions\n6. **Monitor risks** — tracking identified risks, monitoring residual risks, identifying new risks, and evaluating response effectiveness\n\n**Building Resilience**\nBeyond individual risk management, projects should build overall resilience through:\n- **Management reserves** — budget and schedule buffers for unknown unknowns\n- **Contingency reserves** — funds and time allocated for identified risks\n- **Iterative delivery** — reducing exposure by delivering value in increments\n- **Diverse teams** — bringing multiple perspectives to anticipate and respond to uncertainty\n- **Organizational agility** — the ability to pivot quickly when conditions change\n\nThe key mindset shift in the Uncertainty domain is moving from a purely **reactive** approach (responding to problems as they arise) to a **proactive** approach (anticipating and preparing for uncertainty before it materializes).",
+          "keyPoints": [
+            "Uncertainty includes risk, ambiguity, complexity, and volatility",
+            "Risk response strategies for threats: avoid, mitigate, transfer, accept, escalate",
+            "Risk response strategies for opportunities: exploit, enhance, share, accept, escalate",
+            "Contingency reserves address known risks; management reserves address unknown unknowns",
+            "Monte Carlo simulation and EMV are quantitative risk analysis techniques"
+          ]
+        }
+      ],
+      "learningObjectives": [
+        "Explain the Delivery domain's focus on value realization and quality management",
+        "Calculate and interpret SPI, CPI, SV, and CV using Earned Value Management",
+        "Describe the risk management process and response strategies for threats and opportunities",
+        "Distinguish between risk, ambiguity, complexity, and volatility as types of uncertainty"
+      ],
+      "keyTerms": [
+        { "term": "Value Realization", "definition": "The process of ensuring that project outcomes deliver the intended benefits and value to stakeholders and the organization." },
+        { "term": "Cost of Quality", "definition": "The total cost of conformance (prevention and appraisal) and nonconformance (internal and external failure) activities." },
+        { "term": "Schedule Performance Index (SPI)", "definition": "An EVM metric calculated as EV/PV that measures schedule efficiency. A value less than 1.0 indicates the project is behind schedule." },
+        { "term": "Cost Performance Index (CPI)", "definition": "An EVM metric calculated as EV/AC that measures cost efficiency. A value less than 1.0 indicates the project is over budget." },
+        { "term": "Monte Carlo Simulation", "definition": "A quantitative risk analysis technique that uses random sampling to model the probability of different outcomes in a process." },
+        { "term": "Expected Monetary Value (EMV)", "definition": "A statistical technique that calculates the average outcome by multiplying the probability of each risk by its monetary impact." },
+        { "term": "Contingency Reserve", "definition": "Time or budget allocated to identified risks that have been accepted and for which contingent responses are developed." },
+        { "term": "Management Reserve", "definition": "An amount of the project budget or schedule held outside the performance measurement baseline for unforeseen work (unknown unknowns)." }
+      ]
+    }
+  }
+]
