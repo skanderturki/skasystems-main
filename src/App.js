@@ -12,90 +12,56 @@ function BrandLogo({ className }) {
     <svg
       width="72"
       height="72"
-      viewBox="0 0 72 72"
+      viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-hidden="true"
+      aria-label="SKA Systems"
+      role="img"
     >
-      {/* Neural Network / Brain-inspired Logo */}
       <defs>
-        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-          <stop offset="100%" stopColor="#e3f2fd" stopOpacity="0.9" />
+        {/* Brand gradient — blue → cyan → violet, matches text-gradient-brand */}
+        <linearGradient id="ska-tile" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#1976d2" />
+          <stop offset="55%" stopColor="#22d3ee" />
+          <stop offset="100%" stopColor="#8b5cf6" />
         </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
+        {/* Top highlight for subtle 3D lift */}
+        <linearGradient id="ska-highlight" x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+        {/* Inner shadow for depth on the letterform */}
+        <filter id="ska-letter-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow
+            dx="0"
+            dy="1"
+            stdDeviation="0.8"
+            floodColor="#0b1220"
+            floodOpacity="0.35"
+          />
         </filter>
       </defs>
 
-      {/* Outer circle with tech pattern */}
-      <circle
-        cx="36"
-        cy="36"
-        r="34"
-        fill="rgba(255, 255, 255, 0.15)"
-        stroke="rgba(255, 255, 255, 0.3)"
-        strokeWidth="1"
-      />
+      {/* Rounded-square tile */}
+      <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#ska-tile)" />
 
-      {/* Neural network nodes */}
-      <circle cx="20" cy="20" r="4" fill="white" opacity="0.9" filter="url(#glow)" />
-      <circle cx="52" cy="20" r="4" fill="white" opacity="0.9" filter="url(#glow)" />
-      <circle cx="20" cy="52" r="4" fill="white" opacity="0.9" filter="url(#glow)" />
-      <circle cx="52" cy="52" r="4" fill="white" opacity="0.9" filter="url(#glow)" />
-      <circle cx="36" cy="36" r="5" fill="url(#logoGradient)" filter="url(#glow)" />
-      <circle cx="28" cy="28" r="3" fill="white" opacity="0.7" />
-      <circle cx="44" cy="28" r="3" fill="white" opacity="0.7" />
-      <circle cx="28" cy="44" r="3" fill="white" opacity="0.7" />
-      <circle cx="44" cy="44" r="3" fill="white" opacity="0.7" />
+      {/* Top highlight band — gives the tile a lit-from-above feel */}
+      <rect x="2" y="2" width="60" height="28" rx="14" fill="url(#ska-highlight)" />
 
-      {/* Connections - Neural network */}
+      {/* Bold "S" monogram — single smooth bezier curve */}
       <path
-        d="M20 20 L28 28 M28 28 L36 36 M36 36 L44 28 M44 28 L52 20"
-        stroke="white"
-        strokeWidth="1.5"
-        opacity="0.6"
+        d="M44 20 C44 12 20 12 20 22 C20 32 44 32 44 42 C44 52 20 52 20 44"
+        stroke="#ffffff"
+        strokeWidth="6"
         strokeLinecap="round"
-      />
-      <path
-        d="M20 52 L28 44 M28 44 L36 36 M36 36 L44 44 M44 44 L52 52"
-        stroke="white"
-        strokeWidth="1.5"
-        opacity="0.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M20 20 L28 28 M52 20 L44 28 M20 52 L28 44 M52 52 L44 44"
-        stroke="white"
-        strokeWidth="1"
-        opacity="0.4"
-        strokeLinecap="round"
-      />
-
-      {/* Data flow arrows */}
-      <path
-        d="M32 32 L36 36 L32 40"
-        stroke="white"
-        strokeWidth="2"
         fill="none"
-        opacity="0.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        filter="url(#ska-letter-shadow)"
       />
-      <path
-        d="M40 32 L36 36 L40 40"
-        stroke="white"
-        strokeWidth="2"
-        fill="none"
-        opacity="0.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+
+      {/* AI spark — neural core accent at the S's top-right */}
+      <circle cx="48" cy="17" r="5.5" fill="#22d3ee" opacity="0.35" />
+      <circle cx="48" cy="17" r="2.5" fill="#ffffff" />
     </svg>
   );
 }
