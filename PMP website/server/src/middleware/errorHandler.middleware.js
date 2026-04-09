@@ -4,6 +4,9 @@ const errorHandler = (err, req, res, next) => {
   let statusCode = err.statusCode || 500;
   let message = err.message || 'Internal Server Error';
 
+  // Always log errors so production issues are visible in `docker logs`.
+  console.error(`[error] ${req.method} ${req.originalUrl} →`, err.stack || err);
+
   // Mongoose bad ObjectId
   if (err.name === 'CastError') {
     statusCode = 400;

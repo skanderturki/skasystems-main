@@ -68,10 +68,8 @@ services:
       - MONGODB_URI=${PMP_MONGODB_URI:-mongodb+srv://user:password@cluster.mongodb.net/pmp-learning}
       - JWT_SECRET=${PMP_JWT_SECRET:-pmp-jwt-secret-change-in-production}
       - CLIENT_URL=https://pmp.skasystems.com
-      - SMTP_HOST=${PMP_SMTP_HOST:-smtp.gmail.com}
-      - SMTP_PORT=${PMP_SMTP_PORT:-587}
-      - SMTP_USER=${PMP_SMTP_USER:-}
-      - SMTP_PASS=${PMP_SMTP_PASS:-}
+      - RESEND_API_KEY=${PMP_RESEND_API_KEY:-}
+      - RESEND_FROM=${PMP_RESEND_FROM:-PMP Learn <noreply@skasystems.com>}
     networks:
       - app-network
 
