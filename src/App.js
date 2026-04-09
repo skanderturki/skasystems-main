@@ -132,10 +132,6 @@ function App() {
         {/* Navbar */}
         <nav className="relative border-b border-white/10 bg-brand-deep/80 backdrop-blur-lg supports-[backdrop-filter]:bg-brand-deep/60">
           <div className="container-page flex h-14 items-center justify-between">
-            <a href="#home" className="flex items-center gap-2 text-white font-semibold">
-              <BrandLogo className="h-8 w-auto object-contain" />
-              <span>SKA Systems</span>
-            </a>
 
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-1">
