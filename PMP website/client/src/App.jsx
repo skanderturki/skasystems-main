@@ -19,6 +19,7 @@ import Certificates from './pages/Certificates';
 import VerifyCertificate from './pages/VerifyCertificate';
 import VerifyEmail from './pages/VerifyEmail';
 import Profile from './pages/Profile';
+import Statistics from './pages/Statistics';
 
 export default function App() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/exams/take/:examId" element={<ExamTake />} />
             <Route path="/exams/result/:attemptId" element={<ExamResult />} />
             <Route path="/certificates" element={<Certificates />} />
+            <Route path="/statistics" element={<Statistics />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
 

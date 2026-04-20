@@ -5,6 +5,7 @@ import {
   ClipboardCheck,
   FileText,
   Award,
+  BarChart3,
   User,
   LogOut,
   GraduationCap,
@@ -18,6 +19,7 @@ const navItems = [
   { to: '/practice', label: 'Practice Tests', icon: ClipboardCheck },
   { to: '/exams', label: 'Exams', icon: FileText },
   { to: '/certificates', label: 'Certificates', icon: Award },
+  { to: '/statistics', label: 'Statistics', icon: BarChart3 },
   { to: '/profile', label: 'Profile', icon: User },
 ];
 
