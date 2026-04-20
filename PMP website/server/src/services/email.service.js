@@ -15,13 +15,14 @@ function generateVerificationCode() {
 }
 
 async function sendVerificationEmail(email, code) {
-  // Dev fallback: print the code to the console when Resend isn't configured,
-  // so local development works without a live API key.
+  // In development, always print the code to the server console so the developer
+  // can verify without waiting for email delivery (or without a Resend key at all).
+  if (NODE_ENV === 'development') {
+    console.log(`\n[DEV] Verification code for ${email}: ${code}\n`);
+  }
+
   if (!resend) {
-    if (NODE_ENV === 'development') {
-      console.log(`\n[DEV] Verification code for ${email}: ${code}\n`);
-      return;
-    }
+    if (NODE_ENV === 'development') return; // no key locally — console log is enough
     throw new Error('Email service not configured (RESEND_API_KEY missing)');
   }
 

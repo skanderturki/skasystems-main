@@ -1,6 +1,15 @@
 const PDFDocument = require('pdfkit');
 const QRCode = require('qrcode');
+const fs = require('fs');
+const path = require('path');
 const { CLIENT_URL } = require('../config/env');
+
+// Signature rendering
+const SIGNATURE_FONT_PATH = path.join(__dirname, '..', 'assets', 'signature-font.ttf');
+const HAS_SIGNATURE_FONT = fs.existsSync(SIGNATURE_FONT_PATH);
+const SIGNER_NAME = 'Skander Turki';
+const SIGNER_TITLE_LINE_1 = 'Skander Turki, PhD';
+const SIGNER_TITLE_LINE_2 = 'Assistant Professor, Prince Sultan University';
 
 async function generateCertificatePDF(certificate) {
   const verifyUrl = `${CLIENT_URL}/verify/${certificate.verificationToken}`;
@@ -94,15 +103,36 @@ async function generateCertificatePDF(certificate) {
       .fillColor('#9ca3af')
       .text('Scan to verify', pageWidth - 200, pageHeight - 70, { width: 100, align: 'center' });
 
-    // Signature line
-    doc.moveTo(80, pageHeight - 100)
-      .lineTo(280, pageHeight - 100)
+    // Signature block: cursive name above the line, title below.
+    const sigX = 80;
+    const sigWidth = 200;
+    const sigLineY = pageHeight - 100;
+
+    if (HAS_SIGNATURE_FONT) {
+      doc.font(SIGNATURE_FONT_PATH);
+    } else {
+      doc.font('Times-Italic');
+    }
+
+    doc.fontSize(HAS_SIGNATURE_FONT ? 32 : 26)
+      .fillColor('#1e1b4b')
+      .text(SIGNER_NAME, sigX, sigLineY - 42, { width: sigWidth, align: 'center' });
+
+    // Back to default font for the line and caption text.
+    doc.font('Helvetica');
+
+    doc.moveTo(sigX, sigLineY)
+      .lineTo(sigX + sigWidth, sigLineY)
       .lineWidth(1)
-      .stroke('#d1d5db');
+      .stroke('#9ca3af');
 
     doc.fontSize(10)
+      .fillColor('#374151')
+      .text(SIGNER_TITLE_LINE_1, sigX, sigLineY + 6, { width: sigWidth, align: 'center' });
+
+    doc.fontSize(9)
       .fillColor('#6b7280')
-      .text('Authorized Signature', 80, pageHeight - 90, { width: 200, align: 'center' });
+      .text(SIGNER_TITLE_LINE_2, sigX, sigLineY + 20, { width: sigWidth, align: 'center' });
 
     doc.end();
   });

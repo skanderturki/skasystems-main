@@ -8,14 +8,17 @@ const api = axios.create({
   },
 });
 
+// Paths where a 401 must NOT trigger an auto-redirect to /login, because they
+// are intentionally public or are the login surface itself.
+const PUBLIC_PATHS = ['/', '/login', '/register'];
+const isPublicPath = (pathname) =>
+  PUBLIC_PATHS.includes(pathname) || pathname.startsWith('/verify/');
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // If on a protected page, redirect to login
-      if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
-        window.location.href = '/login';
-      }
+    if (error.response?.status === 401 && !isPublicPath(window.location.pathname)) {
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   }
