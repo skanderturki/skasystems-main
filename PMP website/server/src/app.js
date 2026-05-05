@@ -16,6 +16,7 @@ const certificateRoutes = require('./routes/certificate.routes');
 const verifyRoutes = require('./routes/verify.routes');
 const progressRoutes = require('./routes/progress.routes');
 const statsRoutes = require('./routes/stats.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/verify', verifyRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

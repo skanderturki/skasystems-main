@@ -6,6 +6,7 @@ import {
   FileText,
   Award,
   BarChart3,
+  Shield,
   User,
   LogOut,
   GraduationCap,
@@ -13,7 +14,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import clsx from 'clsx';
 
-const navItems = [
+const baseNavItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/chapters', label: 'Course Content', icon: BookOpen },
   { to: '/practice', label: 'Practice Tests', icon: ClipboardCheck },
@@ -23,8 +24,11 @@ const navItems = [
   { to: '/profile', label: 'Profile', icon: User },
 ];
 
+const adminNavItem = { to: '/admin', label: 'Admin Console', icon: Shield };
+
 export default function Sidebar() {
   const { user, logout } = useAuth();
+  const navItems = user?.role === 'admin' ? [...baseNavItems, adminNavItem] : baseNavItems;
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-30">
