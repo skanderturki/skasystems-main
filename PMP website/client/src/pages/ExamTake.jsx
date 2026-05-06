@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Clock, AlertTriangle, ShieldAlert } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, AlertTriangle, ShieldAlert, FlaskConical } from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
 import clsx from 'clsx';
+import { useAuth } from '../context/AuthContext';
 
 const MAX_VIOLATIONS = 3;
 const FORBIDDEN_KEYS = new Set(['t', 'n', 'w', 'p']); // Ctrl/Cmd + these
@@ -16,7 +17,7 @@ const VIOLATION_LABELS = {
   'blocked-key': 'You pressed a forbidden keyboard shortcut',
 };
 
-function PreExamModal({ onAccept, onCancel, timeLimit }) {
+function PreExamModal({ onAccept, onCancel, timeLimit, isAdmin }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto">
@@ -24,6 +25,17 @@ function PreExamModal({ onAccept, onCancel, timeLimit }) {
           <ShieldAlert className="w-7 h-7 text-purple-600" />
           <h1 className="text-2xl font-bold text-gray-900">Proctored Exam — Read Carefully</h1>
         </div>
+
+        {isAdmin && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 flex items-start gap-2">
+            <FlaskConical className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <div className="text-sm text-amber-900">
+              <strong>Admin Test Mode.</strong> The proctoring UI behaves identically to a student
+              attempt, but the server will not ban your account or revoke your certificates if a
+              cheating signal fires. Use this to verify the flow safely.
+            </div>
+          </div>
+        )}
 
         <p className="text-gray-700 mb-4">
           This is a monitored certification exam. Please prepare your environment <em>before</em>{' '}
@@ -104,6 +116,8 @@ function PreExamModal({ onAccept, onCancel, timeLimit }) {
 export default function ExamTake() {
   const { examId } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const isAdmin = user?.role === 'admin';
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -331,13 +345,30 @@ export default function ExamTake() {
   }
 
   if (!started) {
-    return <PreExamModal onAccept={beginExam} onCancel={cancelExam} timeLimit={timeLimit} />;
+    return (
+      <PreExamModal
+        onAccept={beginExam}
+        onCancel={cancelExam}
+        timeLimit={timeLimit}
+        isAdmin={isAdmin}
+      />
+    );
   }
 
   const currentQ = questions[currentIdx];
 
   return (
     <div ref={containerRef} className="max-w-4xl mx-auto select-none">
+      {isAdmin && (
+        <div className="mb-3 flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-900">
+          <FlaskConical className="w-4 h-4 shrink-0" />
+          <span>
+            <strong>Admin Test Mode</strong> — proctoring will fire normally, but the server will
+            not ban your account or revoke your certificates.
+          </span>
+        </div>
+      )}
+
       {/* Proctoring banner */}
       <div className="mb-4 flex items-center justify-between gap-3 px-4 py-2 bg-purple-50 border border-purple-200 rounded-lg">
         <div className="flex items-center gap-2 text-sm text-purple-900">
