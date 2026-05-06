@@ -1,5 +1,6 @@
 const Certificate = require('../models/Certificate');
 const ExamAttempt = require('../models/ExamAttempt');
+const User = require('../models/User');
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -352,3 +353,181 @@ exports.exportExamAttemptsCsv = async (req, res, next) => {
     next(error);
   }
 };
+
+// ─── Users ─────────────────────────────────────────────────────────────────
+
+const buildUsersPipeline = (req) => {
+  const { q, role, status, hasRevoked, sortBy = 'createdAt', sortDir = 'desc' } = req.query;
+  const pipeline = [];
+
+  const initialMatch = {};
+  if (role === 'admin' || role === 'student') initialMatch.role = role;
+  if (status === 'active') initialMatch.isActive = true;
+  else if (status === 'banned') initialMatch.isActive = false;
+  if (Object.keys(initialMatch).length) pipeline.push({ $match: initialMatch });
+
+  if (q && q.trim()) {
+    const rx = new RegExp(escapeRegex(q.trim()), 'i');
+    pipeline.push({
+      $match: {
+        $or: [{ email: rx }, { firstName: rx }, { lastName: rx }],
+      },
+    });
+  }
+
+  pipeline.push({
+    $lookup: {
+      from: 'certificates',
+      localField: '_id',
+      foreignField: 'user',
+      as: 'certs',
+    },
+  });
+
+  pipeline.push({
+    $addFields: {
+      certificateCount: { $size: '$certs' },
+      revokedCertificateCount: {
+        $size: {
+          $filter: {
+            input: '$certs',
+            as: 'c',
+            cond: { $eq: ['$$c.isRevoked', true] },
+          },
+        },
+      },
+    },
+  });
+
+  if (hasRevoked === 'true') {
+    pipeline.push({ $match: { revokedCertificateCount: { $gt: 0 } } });
+  } else if (hasRevoked === 'false') {
+    pipeline.push({ $match: { revokedCertificateCount: 0 } });
+  }
+
+  const sortField = ['createdAt', 'email', 'lastLogin', 'certificateCount'].includes(sortBy)
+    ? sortBy
+    : 'createdAt';
+  pipeline.push({ $sort: { [sortField]: sortDir === 'asc' ? 1 : -1 } });
+
+  pipeline.push({
+    $project: {
+      firstName: 1,
+      lastName: 1,
+      email: 1,
+      role: 1,
+      isActive: 1,
+      isVerified: 1,
+      createdAt: 1,
+      lastLogin: 1,
+      certificateCount: 1,
+      revokedCertificateCount: 1,
+    },
+  });
+
+  return pipeline;
+};
+
+exports.listUsers = async (req, res, next) => {
+  try {
+    const { page, limit, skip } = parsePagination(req);
+    const basePipeline = buildUsersPipeline(req);
+
+    const [result] = await User.aggregate([
+      ...basePipeline,
+      {
+        $facet: {
+          items: [{ $skip: skip }, { $limit: limit }],
+          totalCount: [{ $count: 'count' }],
+        },
+      },
+    ]);
+
+    const total = result.totalCount[0]?.count || 0;
+    res.json({
+      items: result.items,
+      total,
+      page,
+      limit,
+      pageCount: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.exportUsersCsv = async (req, res, next) => {
+  try {
+    const items = await User.aggregate(buildUsersPipeline(req));
+
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="users-${new Date().toISOString().slice(0, 10)}.csv"`
+    );
+
+    res.write(
+      [
+        'First Name',
+        'Last Name',
+        'Email',
+        'Role',
+        'Status',
+        'Verified',
+        'Created',
+        'Last Login',
+        'Certificates',
+        'Revoked Certificates',
+      ].join(',') + '\n'
+    );
+
+    for (const u of items) {
+      res.write(
+        [
+          u.firstName,
+          u.lastName,
+          u.email,
+          u.role,
+          u.isActive ? 'Active' : 'Banned',
+          u.isVerified ? 'Yes' : 'No',
+          u.createdAt,
+          u.lastLogin,
+          u.certificateCount,
+          u.revokedCertificateCount,
+        ]
+          .map(csvEscape)
+          .join(',') + '\n'
+      );
+    }
+    res.end();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const setUserActive = async (req, res, next, isActive) => {
+  try {
+    const target = await User.findById(req.params.id);
+    if (!target) return res.status(404).json({ message: 'User not found' });
+    if (target.role === 'admin') {
+      return res.status(403).json({ message: 'Cannot ban another admin' });
+    }
+    if (target._id.equals(req.user._id)) {
+      return res.status(403).json({ message: 'Cannot ban yourself' });
+    }
+    target.isActive = isActive;
+    await target.save();
+    res.json({
+      user: {
+        _id: target._id,
+        email: target.email,
+        isActive: target.isActive,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.banUser = (req, res, next) => setUserActive(req, res, next, false);
+exports.unbanUser = (req, res, next) => setUserActive(req, res, next, true);

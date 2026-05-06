@@ -14,4 +14,9 @@ router.patch('/certificates/:id/reactivate', adminController.reactivateCertifica
 router.get('/exam-attempts', adminController.listExamAttempts);
 router.get('/exam-attempts.csv', adminController.exportExamAttemptsCsv);
 
+router.get('/users', adminController.listUsers);
+router.get('/users.csv', adminController.exportUsersCsv);
+router.patch('/users/:id/ban', adminController.banUser);
+router.patch('/users/:id/unban', adminController.unbanUser);
+
 module.exports = router;

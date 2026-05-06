@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Search, Download, Shield, ShieldOff, ExternalLink, FileSpreadsheet } from 'lucide-react';
+import {
+  Search,
+  Download,
+  Shield,
+  ShieldOff,
+  ExternalLink,
+  FileSpreadsheet,
+  UserX,
+  UserCheck,
+} from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
 
@@ -480,6 +489,250 @@ function ExamAttemptsTab() {
   );
 }
 
+function UsersTab() {
+  const [search, setSearch] = useState('');
+  const [role, setRole] = useState('');
+  const [status, setStatus] = useState('all');
+  const [hasRevoked, setHasRevoked] = useState('');
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState({ items: [], total: 0, pageCount: 0 });
+  const [loading, setLoading] = useState(false);
+  const debouncedSearch = useDebouncedValue(search, 300);
+
+  const params = useMemo(
+    () => ({
+      q: debouncedSearch || undefined,
+      role: role || undefined,
+      status: status === 'all' ? undefined : status,
+      hasRevoked: hasRevoked || undefined,
+      page,
+      limit: PAGE_SIZE,
+    }),
+    [debouncedSearch, role, status, hasRevoked, page]
+  );
+
+  const reload = () => {
+    setLoading(true);
+    return api
+      .get('/admin/users', { params })
+      .then((res) => setData(res.data))
+      .catch((err) => toast.error(err.response?.data?.message || 'Failed to load'))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    reload();
+  }, [params]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch, role, status, hasRevoked]);
+
+  const toggleBan = async (user) => {
+    const action = user.isActive ? 'ban' : 'unban';
+    const verb = user.isActive ? 'BAN' : 'UNBAN';
+    if (!window.confirm(`${verb} ${user.email}?\n\nThis will ${user.isActive ? 'block their next request and prevent any future login.' : 'restore their access.'}`)) {
+      return;
+    }
+    try {
+      const res = await api.patch(`/admin/users/${user._id}/${action}`);
+      setData((d) => ({
+        ...d,
+        items: d.items.map((u) =>
+          u._id === user._id ? { ...u, isActive: res.data.user.isActive } : u
+        ),
+      }));
+      toast.success(action === 'ban' ? 'User banned' : 'User unbanned');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Action failed');
+    }
+  };
+
+  const onExport = () => {
+    const qs = new URLSearchParams(
+      Object.entries(params).filter(([, v]) => v !== undefined && v !== '' && v !== null)
+    ).toString();
+    window.open(`/api/admin/users.csv?${qs}`, '_blank');
+  };
+
+  return (
+    <div>
+      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-4 space-y-3">
+        <div className="relative">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by email or name…"
+            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Role</label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+            >
+              <option value="">All roles</option>
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Status</label>
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+            >
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="banned">Banned</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Has revoked cert</label>
+            <select
+              value={hasRevoked}
+              onChange={(e) => setHasRevoked(e.target.value)}
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+            >
+              <option value="">Any</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+          <div className="flex items-end">
+            <button
+              onClick={onExport}
+              className="w-full inline-flex items-center justify-center gap-2 px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700"
+            >
+              <FileSpreadsheet className="w-4 h-4" /> Export CSV
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50 text-gray-600 text-xs uppercase">
+              <tr>
+                <th className="text-left px-4 py-3 font-medium">Name</th>
+                <th className="text-left px-4 py-3 font-medium">Email</th>
+                <th className="text-left px-4 py-3 font-medium">Role</th>
+                <th className="text-left px-4 py-3 font-medium">Status</th>
+                <th className="text-left px-4 py-3 font-medium">Verified</th>
+                <th className="text-left px-4 py-3 font-medium">Certs</th>
+                <th className="text-left px-4 py-3 font-medium">Revoked</th>
+                <th className="text-left px-4 py-3 font-medium">Last Login</th>
+                <th className="text-right px-4 py-3 font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {loading && data.items.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
+                    Loading…
+                  </td>
+                </tr>
+              ) : data.items.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
+                    No users match the current filter.
+                  </td>
+                </tr>
+              ) : (
+                data.items.map((u) => (
+                  <tr key={u._id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">
+                      {u.firstName} {u.lastName}
+                    </td>
+                    <td className="px-4 py-3 text-gray-700">{u.email}</td>
+                    <td className="px-4 py-3">
+                      {u.role === 'admin' ? (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">
+                          Admin
+                        </span>
+                      ) : (
+                        <span className="text-gray-600 text-xs">Student</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {u.isActive ? (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
+                          Active
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                          Banned
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-xs text-gray-500">
+                      {u.isVerified ? 'Yes' : 'No'}
+                    </td>
+                    <td className="px-4 py-3 text-gray-700">{u.certificateCount || 0}</td>
+                    <td className="px-4 py-3">
+                      {u.revokedCertificateCount > 0 ? (
+                        <span className="text-red-600 font-medium">
+                          {u.revokedCertificateCount}
+                        </span>
+                      ) : (
+                        <span className="text-gray-400">0</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-xs text-gray-500">
+                      {fmtDateTime(u.lastLogin)}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      {u.role === 'admin' ? (
+                        <span className="text-xs text-gray-400">—</span>
+                      ) : (
+                        <button
+                          onClick={() => toggleBan(u)}
+                          className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
+                            u.isActive
+                              ? 'text-red-700 bg-red-50 hover:bg-red-100'
+                              : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100'
+                          }`}
+                          title={u.isActive ? 'Ban user' : 'Unban user'}
+                        >
+                          {u.isActive ? (
+                            <>
+                              <UserX className="w-3.5 h-3.5" /> Ban
+                            </>
+                          ) : (
+                            <>
+                              <UserCheck className="w-3.5 h-3.5" /> Unban
+                            </>
+                          )}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-4">
+          <Pagination
+            page={data.page}
+            pageCount={data.pageCount}
+            total={data.total}
+            onPage={setPage}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AdminConsole() {
   const [tab, setTab] = useState('certificates');
 
@@ -488,7 +741,7 @@ export default function AdminConsole() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Admin Console</h1>
         <p className="text-gray-600 mt-1">
-          Search, filter, and manage certificates and exam attempts across all learners.
+          Search, filter, and manage certificates, exam attempts, and users.
         </p>
       </div>
 
@@ -497,6 +750,7 @@ export default function AdminConsole() {
           {[
             { key: 'certificates', label: 'Certificates' },
             { key: 'attempts', label: 'Exam Attempts' },
+            { key: 'users', label: 'Users' },
           ].map((t) => (
             <button
               key={t.key}
@@ -513,7 +767,9 @@ export default function AdminConsole() {
         </nav>
       </div>
 
-      {tab === 'certificates' ? <CertificatesTab /> : <ExamAttemptsTab />}
+      {tab === 'certificates' && <CertificatesTab />}
+      {tab === 'attempts' && <ExamAttemptsTab />}
+      {tab === 'users' && <UsersTab />}
     </div>
   );
 }
