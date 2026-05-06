@@ -17,6 +17,37 @@ const VIOLATION_LABELS = {
   'blocked-key': 'You pressed a forbidden keyboard shortcut',
 };
 
+function FullscreenLockOverlay({ onResume, warningsLeft }) {
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+        <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+          <ShieldAlert className="w-7 h-7 text-red-600" />
+        </div>
+        <h2 className="text-xl font-bold text-gray-900 mb-2">Fullscreen Required</h2>
+        <p className="text-sm text-gray-600 mb-1">
+          You exited fullscreen. The exam will not continue until you return.
+        </p>
+        {warningsLeft > 0 ? (
+          <p className="text-xs text-gray-500 mb-6">
+            {warningsLeft} warning{warningsLeft === 1 ? '' : 's'} remaining before auto-submit.
+          </p>
+        ) : (
+          <p className="text-xs text-red-600 font-medium mb-6">
+            Threshold reached — submitting…
+          </p>
+        )}
+        <button
+          onClick={onResume}
+          className="bg-purple-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-purple-700 text-sm"
+        >
+          Return to fullscreen
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PreExamModal({ onAccept, onCancel, timeLimit, isAdmin }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
@@ -128,6 +159,7 @@ export default function ExamTake() {
   const [submitting, setSubmitting] = useState(false);
   const [started, setStarted] = useState(false);
   const [violations, setViolations] = useState([]);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const lastViolationAtRef = useRef(0);
   const containerRef = useRef(null);
 
@@ -249,7 +281,9 @@ export default function ExamTake() {
     };
     const onBlur = () => recordViolation('window-blur');
     const onFsChange = () => {
-      if (!document.fullscreenElement) recordViolation('fullscreen-exit');
+      const inFs = !!document.fullscreenElement;
+      setIsFullscreen(inFs);
+      if (!inFs) recordViolation('fullscreen-exit');
     };
     const onKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && FORBIDDEN_KEYS.has(e.key.toLowerCase())) {
@@ -302,12 +336,26 @@ export default function ExamTake() {
       const target = containerRef.current || document.documentElement;
       if (target.requestFullscreen) {
         await target.requestFullscreen();
+        setIsFullscreen(true);
       }
     } catch {
       // Browser refused (Safari, permissions). The exam still runs; non-fullscreen
       // counts as a violation as soon as visibility/blur fires anyway.
     }
     setStarted(true);
+  };
+
+  // ── Resume fullscreen on user click (the click is the required gesture) ─
+  const resumeFullscreen = async () => {
+    try {
+      const target = containerRef.current || document.documentElement;
+      if (target.requestFullscreen) {
+        await target.requestFullscreen();
+        setIsFullscreen(true);
+      }
+    } catch {
+      toast.error('Your browser blocked fullscreen. Please allow it and try again.');
+    }
   };
 
   const cancelExam = () => {
@@ -359,6 +407,12 @@ export default function ExamTake() {
 
   return (
     <div ref={containerRef} className="max-w-4xl mx-auto select-none">
+      {!isFullscreen && !submitting && (
+        <FullscreenLockOverlay
+          onResume={resumeFullscreen}
+          warningsLeft={Math.max(0, MAX_VIOLATIONS - violations.length)}
+        />
+      )}
       {isAdmin && (
         <div className="mb-3 flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-900">
           <FlaskConical className="w-4 h-4 shrink-0" />
