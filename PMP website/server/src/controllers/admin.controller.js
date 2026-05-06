@@ -384,6 +384,27 @@ const buildUsersPipeline = (req) => {
     },
   });
 
+  // Pull the most recent completed exam attempt for each user so the table
+  // can show its duration and the admin can spot impossibly fast finishers.
+  pipeline.push({
+    $lookup: {
+      from: 'examattempts',
+      let: { userId: '$_id' },
+      pipeline: [
+        {
+          $match: {
+            $expr: { $eq: ['$user', '$$userId'] },
+            completedAt: { $ne: null },
+          },
+        },
+        { $sort: { completedAt: -1 } },
+        { $limit: 1 },
+        { $project: { timeTaken: 1, completedAt: 1, examTitle: 1, passed: 1 } },
+      ],
+      as: 'lastAttempt',
+    },
+  });
+
   pipeline.push({
     $addFields: {
       certificateCount: { $size: '$certs' },
@@ -396,6 +417,10 @@ const buildUsersPipeline = (req) => {
           },
         },
       },
+      lastAttemptDuration: { $arrayElemAt: ['$lastAttempt.timeTaken', 0] },
+      lastAttemptAt: { $arrayElemAt: ['$lastAttempt.completedAt', 0] },
+      lastAttemptExam: { $arrayElemAt: ['$lastAttempt.examTitle', 0] },
+      lastAttemptPassed: { $arrayElemAt: ['$lastAttempt.passed', 0] },
     },
   });
 
@@ -405,7 +430,15 @@ const buildUsersPipeline = (req) => {
     pipeline.push({ $match: { revokedCertificateCount: 0 } });
   }
 
-  const sortField = ['createdAt', 'email', 'lastLogin', 'certificateCount'].includes(sortBy)
+  const sortField = [
+    'createdAt',
+    'email',
+    'lastLogin',
+    'certificateCount',
+    'revokedCertificateCount',
+    'lastAttemptDuration',
+    'isActive',
+  ].includes(sortBy)
     ? sortBy
     : 'createdAt';
   pipeline.push({ $sort: { [sortField]: sortDir === 'asc' ? 1 : -1 } });
@@ -422,6 +455,10 @@ const buildUsersPipeline = (req) => {
       lastLogin: 1,
       certificateCount: 1,
       revokedCertificateCount: 1,
+      lastAttemptDuration: 1,
+      lastAttemptAt: 1,
+      lastAttemptExam: 1,
+      lastAttemptPassed: 1,
     },
   });
 
@@ -478,6 +515,10 @@ exports.exportUsersCsv = async (req, res, next) => {
         'Last Login',
         'Certificates',
         'Revoked Certificates',
+        'Last Attempt Duration (s)',
+        'Last Attempt At',
+        'Last Attempt Exam',
+        'Last Attempt Passed',
       ].join(',') + '\n'
     );
 
@@ -494,6 +535,10 @@ exports.exportUsersCsv = async (req, res, next) => {
           u.lastLogin,
           u.certificateCount,
           u.revokedCertificateCount,
+          u.lastAttemptDuration,
+          u.lastAttemptAt,
+          u.lastAttemptExam,
+          u.lastAttemptPassed === undefined ? '' : u.lastAttemptPassed ? 'Yes' : 'No',
         ]
           .map(csvEscape)
           .join(',') + '\n'

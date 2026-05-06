@@ -8,6 +8,9 @@ import {
   FileSpreadsheet,
   UserX,
   UserCheck,
+  ArrowUp,
+  ArrowDown,
+  ArrowUpDown,
 } from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
@@ -122,6 +125,25 @@ function FilterBar({
         </div>
       </div>
     </div>
+  );
+}
+
+function SortableTh({ label, col, sortBy, sortDir, onSort }) {
+  const active = sortBy === col;
+  const Icon = active ? (sortDir === 'asc' ? ArrowUp : ArrowDown) : ArrowUpDown;
+  return (
+    <th className="text-left px-4 py-3 font-medium">
+      <button
+        type="button"
+        onClick={() => onSort(col)}
+        className={`inline-flex items-center gap-1 uppercase text-xs font-medium ${
+          active ? 'text-indigo-700' : 'text-gray-600 hover:text-gray-900'
+        }`}
+      >
+        {label}
+        <Icon className="w-3 h-3" />
+      </button>
+    </th>
   );
 }
 
@@ -495,9 +517,21 @@ function UsersTab() {
   const [status, setStatus] = useState('all');
   const [hasRevoked, setHasRevoked] = useState('');
   const [page, setPage] = useState(1);
+  const [sortBy, setSortBy] = useState('createdAt');
+  const [sortDir, setSortDir] = useState('desc');
   const [data, setData] = useState({ items: [], total: 0, pageCount: 0 });
   const [loading, setLoading] = useState(false);
   const debouncedSearch = useDebouncedValue(search, 300);
+
+  const toggleSort = (col) => {
+    if (sortBy === col) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortBy(col);
+      setSortDir('desc');
+    }
+    setPage(1);
+  };
 
   const params = useMemo(
     () => ({
@@ -505,10 +539,12 @@ function UsersTab() {
       role: role || undefined,
       status: status === 'all' ? undefined : status,
       hasRevoked: hasRevoked || undefined,
+      sortBy,
+      sortDir,
       page,
       limit: PAGE_SIZE,
     }),
-    [debouncedSearch, role, status, hasRevoked, page]
+    [debouncedSearch, role, status, hasRevoked, sortBy, sortDir, page]
   );
 
   const reload = () => {
@@ -625,10 +661,29 @@ function UsersTab() {
                 <th className="text-left px-4 py-3 font-medium">Name</th>
                 <th className="text-left px-4 py-3 font-medium">Email</th>
                 <th className="text-left px-4 py-3 font-medium">Role</th>
-                <th className="text-left px-4 py-3 font-medium">Status</th>
+                <SortableTh
+                  label="Status"
+                  col="isActive"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
                 <th className="text-left px-4 py-3 font-medium">Verified</th>
                 <th className="text-left px-4 py-3 font-medium">Certs</th>
-                <th className="text-left px-4 py-3 font-medium">Revoked</th>
+                <SortableTh
+                  label="Revoked"
+                  col="revokedCertificateCount"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
+                <SortableTh
+                  label="Last Attempt"
+                  col="lastAttemptDuration"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
                 <th className="text-left px-4 py-3 font-medium">Last Login</th>
                 <th className="text-right px-4 py-3 font-medium">Actions</th>
               </tr>
@@ -636,13 +691,13 @@ function UsersTab() {
             <tbody className="divide-y divide-gray-100">
               {loading && data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={10} className="px-4 py-10 text-center text-gray-400">
                     Loading…
                   </td>
                 </tr>
               ) : data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={10} className="px-4 py-10 text-center text-gray-400">
                     No users match the current filter.
                   </td>
                 </tr>
@@ -684,6 +739,28 @@ function UsersTab() {
                         </span>
                       ) : (
                         <span className="text-gray-400">0</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {u.lastAttemptDuration != null ? (
+                        <div className="flex flex-col">
+                          <span
+                            className={
+                              u.lastAttemptDuration < 1200
+                                ? 'text-red-600 font-medium'
+                                : 'text-gray-700'
+                            }
+                          >
+                            {fmtDuration(u.lastAttemptDuration)}
+                          </span>
+                          {u.lastAttemptAt && (
+                            <span className="text-xs text-gray-400">
+                              {fmtDate(u.lastAttemptAt)}
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-gray-400">—</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-500">
