@@ -76,9 +76,18 @@ const buildCertificatePipeline = (req) => {
     });
   }
 
-  const sortField = ['issuedAt', 'score', 'recipientName', 'examTitle'].includes(sortBy)
-    ? sortBy
-    : 'issuedAt';
+  // Sort happens BEFORE $project so we sort on the source field paths.
+  // timeTaken lives on the joined exam attempt; the rest are top-level on the
+  // Certificate document.
+  const SORT_FIELD_MAP = {
+    issuedAt: 'issuedAt',
+    score: 'score',
+    recipientName: 'recipientName',
+    examTitle: 'examTitle',
+    isRevoked: 'isRevoked',
+    timeTaken: 'attemptDoc.timeTaken',
+  };
+  const sortField = SORT_FIELD_MAP[sortBy] || 'issuedAt';
   pipeline.push({ $sort: { [sortField]: sortDir === 'asc' ? 1 : -1 } });
 
   pipeline.push({

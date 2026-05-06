@@ -187,10 +187,22 @@ function CertificatesTab() {
   const [examTitle, setExamTitle] = useState('');
   const [status, setStatus] = useState('all');
   const [page, setPage] = useState(1);
+  const [sortBy, setSortBy] = useState('issuedAt');
+  const [sortDir, setSortDir] = useState('desc');
   const [data, setData] = useState({ items: [], total: 0, pageCount: 0, examTitles: [] });
   const [loading, setLoading] = useState(false);
   const debouncedSearch = useDebouncedValue(search, 300);
   const knownTitles = useRef([]);
+
+  const toggleSort = (col) => {
+    if (sortBy === col) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortBy(col);
+      setSortDir('desc');
+    }
+    setPage(1);
+  };
 
   const params = useMemo(
     () => ({
@@ -199,10 +211,12 @@ function CertificatesTab() {
       to: to || undefined,
       examTitle: examTitle || undefined,
       status: status === 'all' ? undefined : status,
+      sortBy,
+      sortDir,
       page,
       limit: PAGE_SIZE,
     }),
-    [debouncedSearch, from, to, examTitle, status, page]
+    [debouncedSearch, from, to, examTitle, status, sortBy, sortDir, page]
   );
 
   useEffect(() => {
@@ -275,11 +289,35 @@ function CertificatesTab() {
                 <th className="text-left px-4 py-3 font-medium">Recipient</th>
                 <th className="text-left px-4 py-3 font-medium">Email</th>
                 <th className="text-left px-4 py-3 font-medium">Exam</th>
-                <th className="text-left px-4 py-3 font-medium">Score</th>
-                <th className="text-left px-4 py-3 font-medium">Issued</th>
-                <th className="text-left px-4 py-3 font-medium">Duration</th>
+                <SortableTh
+                  label="Score"
+                  col="score"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
+                <SortableTh
+                  label="Issued"
+                  col="issuedAt"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
+                <SortableTh
+                  label="Duration"
+                  col="timeTaken"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
                 <th className="text-left px-4 py-3 font-medium">Cert #</th>
-                <th className="text-left px-4 py-3 font-medium">Status</th>
+                <SortableTh
+                  label="Status"
+                  col="isRevoked"
+                  sortBy={sortBy}
+                  sortDir={sortDir}
+                  onSort={toggleSort}
+                />
                 <th className="text-right px-4 py-3 font-medium">Actions</th>
               </tr>
             </thead>
@@ -304,7 +342,15 @@ function CertificatesTab() {
                     <td className="px-4 py-3 text-gray-700">{cert.examTitle}</td>
                     <td className="px-4 py-3 text-gray-900 font-medium">{cert.score}%</td>
                     <td className="px-4 py-3 text-gray-700">{fmtDate(cert.issuedAt)}</td>
-                    <td className="px-4 py-3 text-gray-700">{fmtDuration(cert.timeTaken)}</td>
+                    <td
+                      className={`px-4 py-3 ${
+                        cert.timeTaken != null && cert.timeTaken < 1200
+                          ? 'text-red-600 font-medium'
+                          : 'text-gray-700'
+                      }`}
+                    >
+                      {fmtDuration(cert.timeTaken)}
+                    </td>
                     <td className="px-4 py-3 text-xs text-gray-500 font-mono">
                       {cert.certificateNumber}
                     </td>
