@@ -16,6 +16,10 @@ const MIN_FORMAL_EXAM_SECONDS =
 // at or above which the submission is treated as cheating.
 const MAX_EXAM_VIOLATIONS = parseInt(process.env.MAX_EXAM_VIOLATIONS, 10) || 3;
 
+// Cooldown between two completed formal-exam attempts of the same exam, in
+// days. Admins are exempt so they can test the platform freely.
+const EXAM_COOLDOWN_DAYS = parseInt(process.env.EXAM_COOLDOWN_DAYS, 10) || 15;
+
 const ALLOWED_VIOLATION_TYPES = [
   'tab-hidden',
   'window-blur',
@@ -71,15 +75,51 @@ exports.start = async (req, res, next) => {
       return res.status(404).json({ message: 'Exam not found' });
     }
 
-    // Check max attempts
-    if (exam.maxAttempts) {
-      const attemptCount = await ExamAttempt.countDocuments({
+    // Admins are exempt from attempt-count limits and cooldowns so they can
+    // re-run the exam flow as often as needed for testing/QA.
+    const isAdmin = req.user.role === 'admin';
+
+    if (!isAdmin) {
+      // Max attempts (per exam definition)
+      if (exam.maxAttempts) {
+        const attemptCount = await ExamAttempt.countDocuments({
+          user: req.user._id,
+          exam: exam._id,
+          completedAt: { $ne: null },
+        });
+        if (attemptCount >= exam.maxAttempts) {
+          return res.status(400).json({
+            message: `Maximum ${exam.maxAttempts} attempts reached for this exam`,
+          });
+        }
+      }
+
+      // Cooldown: at least EXAM_COOLDOWN_DAYS must elapse between two
+      // completed attempts of the same exam.
+      const cooldownMs = EXAM_COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+      const cooldownAgo = new Date(Date.now() - cooldownMs);
+      const recentAttempt = await ExamAttempt.findOne({
         user: req.user._id,
         exam: exam._id,
-        completedAt: { $ne: null },
-      });
-      if (attemptCount >= exam.maxAttempts) {
-        return res.status(400).json({ message: `Maximum ${exam.maxAttempts} attempts reached for this exam` });
+        completedAt: { $gte: cooldownAgo },
+      })
+        .sort({ completedAt: -1 })
+        .select('completedAt');
+
+      if (recentAttempt) {
+        const elapsedMs = Date.now() - recentAttempt.completedAt.getTime();
+        const daysLeft = Math.max(
+          1,
+          Math.ceil((cooldownMs - elapsedMs) / (24 * 60 * 60 * 1000))
+        );
+        const nextEligible = new Date(
+          recentAttempt.completedAt.getTime() + cooldownMs
+        );
+        return res.status(400).json({
+          message: `You can retake this exam in ${daysLeft} day${daysLeft === 1 ? '' : 's'} (on ${nextEligible.toLocaleDateString()}).`,
+          cooldown: true,
+          nextEligibleAt: nextEligible.toISOString(),
+        });
       }
     }
 
