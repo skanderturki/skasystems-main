@@ -12,6 +12,25 @@ const { v4: uuidv4 } = require('uuid');
 const MIN_FORMAL_EXAM_SECONDS =
   parseInt(process.env.MIN_FORMAL_EXAM_SECONDS, 10) || 20 * 60;
 
+// Proctoring: number of cheating signals (tab switch, fullscreen exit, etc.)
+// at or above which the submission is treated as cheating.
+const MAX_EXAM_VIOLATIONS = parseInt(process.env.MAX_EXAM_VIOLATIONS, 10) || 3;
+
+const ALLOWED_VIOLATION_TYPES = [
+  'tab-hidden',
+  'window-blur',
+  'fullscreen-exit',
+  'blocked-key',
+];
+
+const banUserAndRevokeCerts = async (userId) => {
+  await Certificate.updateMany(
+    { user: userId, isRevoked: false },
+    { $set: { isRevoked: true } }
+  );
+  await User.findByIdAndUpdate(userId, { $set: { isActive: false } });
+};
+
 function shuffleArray(arr) {
   const shuffled = [...arr];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -116,7 +135,7 @@ exports.start = async (req, res, next) => {
 
 exports.submit = async (req, res, next) => {
   try {
-    const { attemptId, answers } = req.body;
+    const { attemptId, answers, violations: clientViolations } = req.body;
 
     const attempt = await ExamAttempt.findOne({
       _id: attemptId,
@@ -137,23 +156,58 @@ exports.submit = async (req, res, next) => {
       Math.floor((Date.now() - attempt.startedAt.getTime()) / 1000)
     );
 
-    // Anti-cheat: a formal-exam submission below the minimum elapsed time bans
-    // the user and revokes every certificate they hold. Admins are exempt.
+    // Sanitise the client-supplied violations array: keep only known types and
+    // valid timestamps. We trust the *count* (the client cannot pretend to have
+    // fewer violations than threshold without losing the submission anyway,
+    // because we additionally enforce time-taken below) but we sanitise to
+    // avoid storing arbitrary payloads.
+    const violations = Array.isArray(clientViolations)
+      ? clientViolations
+          .filter((v) => v && ALLOWED_VIOLATION_TYPES.includes(v.type))
+          .map((v) => ({ type: v.type, at: v.at ? new Date(v.at) : new Date() }))
+          .slice(0, 100) // hard cap to bound DB row size
+      : [];
+
+    // Anti-cheat #1: too many proctoring violations during the attempt.
+    if (req.user.role !== 'admin' && violations.length >= MAX_EXAM_VIOLATIONS) {
+      attempt.completedAt = new Date();
+      attempt.timeTaken = serverTimeTaken;
+      attempt.passed = false;
+      attempt.score = 0;
+      attempt.correctCount = 0;
+      attempt.violations = violations;
+      attempt.cheatingFlagged = true;
+      await attempt.save();
+
+      await banUserAndRevokeCerts(req.user._id);
+      await User.findByIdAndUpdate(req.user._id, {
+        $addToSet: { 'progress.examAttempts': attempt._id },
+      });
+
+      console.warn(
+        `[anti-cheat] banned user ${req.user.email} — ${violations.length} violations during exam ${attempt.examTitle}`
+      );
+
+      return res.status(403).json({
+        banned: true,
+        message:
+          'Your account has been suspended because too many proctoring violations were recorded during the exam. All certificates linked to your account have been revoked.',
+      });
+    }
+
+    // Anti-cheat #2: a formal-exam submission below the minimum elapsed time
+    // bans the user and revokes every certificate they hold. Admins exempt.
     if (req.user.role !== 'admin' && serverTimeTaken < MIN_FORMAL_EXAM_SECONDS) {
       attempt.completedAt = new Date();
       attempt.timeTaken = serverTimeTaken;
       attempt.passed = false;
       attempt.score = 0;
       attempt.correctCount = 0;
+      attempt.violations = violations;
       await attempt.save();
 
-      await Certificate.updateMany(
-        { user: req.user._id, isRevoked: false },
-        { $set: { isRevoked: true } }
-      );
-
+      await banUserAndRevokeCerts(req.user._id);
       await User.findByIdAndUpdate(req.user._id, {
-        $set: { isActive: false },
         $addToSet: { 'progress.examAttempts': attempt._id },
       });
 
@@ -164,7 +218,7 @@ exports.submit = async (req, res, next) => {
       return res.status(403).json({
         banned: true,
         message:
-          'Your account has been suspended because the exam was completed in less than the minimum allowed time. All certificates linked to your account have been revoked.',
+          'Your account has been suspended due to suspicious activity during the exam. All certificates linked to your account have been revoked. Contact your instructor if you believe this is an error.',
       });
     }
 
@@ -196,6 +250,7 @@ exports.submit = async (req, res, next) => {
     attempt.score = Math.round((correctCount / attempt.totalQuestions) * 100);
     attempt.passed = attempt.score >= (exam?.passingScore || 80);
     attempt.timeTaken = serverTimeTaken;
+    attempt.violations = violations;
     attempt.completedAt = new Date();
 
     // Generate certificate if passed

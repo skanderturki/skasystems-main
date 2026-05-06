@@ -30,6 +30,15 @@ const examAttemptSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Certificate',
     },
+    // Proctoring: each entry records a cheating signal observed in the browser
+    // (tab visibility change, window blur, fullscreen exit, forbidden key).
+    violations: [
+      {
+        type: { type: String },
+        at: Date,
+      },
+    ],
+    cheatingFlagged: { type: Boolean, default: false },
     startedAt: Date,
     completedAt: Date,
   },
