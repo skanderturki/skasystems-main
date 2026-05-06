@@ -68,17 +68,25 @@ export default function ExamTake() {
 
     setSubmitting(true);
     try {
-      const timeTaken = Math.round((Date.now() - startTimeRef.current) / 1000);
       const res = await api.post('/exams/submit', {
         attemptId,
         answers: Object.entries(answers).map(([questionId, selectedOption]) => ({
           questionId,
           selectedOption,
         })),
-        timeTaken,
       });
       navigate(`/exams/result/${res.data.attemptId}`);
     } catch (err) {
+      // Anti-cheat: server returns 403 with banned:true when the exam is
+      // submitted suspiciously fast. Show the message, then force the user
+      // out so the next request lands them at /login.
+      if (err.response?.status === 403 && err.response?.data?.banned) {
+        toast.error(err.response.data.message, { duration: 10000 });
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 4000);
+        return;
+      }
       toast.error(err.response?.data?.message || 'Failed to submit exam');
       setSubmitting(false);
     }

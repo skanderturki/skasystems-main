@@ -5,6 +5,13 @@ const Certificate = require('../models/Certificate');
 const User = require('../models/User');
 const { v4: uuidv4 } = require('uuid');
 
+// Anti-cheat: minimum acceptable elapsed time on a formal exam, in seconds.
+// Below this threshold the submission is treated as suspicious — the attempt
+// is failed, all the user's existing certificates are revoked, and the user
+// is banned. Configurable via env so the threshold can be tuned without code.
+const MIN_FORMAL_EXAM_SECONDS =
+  parseInt(process.env.MIN_FORMAL_EXAM_SECONDS, 10) || 20 * 60;
+
 function shuffleArray(arr) {
   const shuffled = [...arr];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -109,7 +116,7 @@ exports.start = async (req, res, next) => {
 
 exports.submit = async (req, res, next) => {
   try {
-    const { attemptId, answers, timeTaken } = req.body;
+    const { attemptId, answers } = req.body;
 
     const attempt = await ExamAttempt.findOne({
       _id: attemptId,
@@ -122,6 +129,43 @@ exports.submit = async (req, res, next) => {
 
     if (attempt.completedAt) {
       return res.status(400).json({ message: 'This exam has already been submitted' });
+    }
+
+    // Server-authoritative time-taken — never trust the client value.
+    const serverTimeTaken = Math.max(
+      0,
+      Math.floor((Date.now() - attempt.startedAt.getTime()) / 1000)
+    );
+
+    // Anti-cheat: a formal-exam submission below the minimum elapsed time bans
+    // the user and revokes every certificate they hold. Admins are exempt.
+    if (req.user.role !== 'admin' && serverTimeTaken < MIN_FORMAL_EXAM_SECONDS) {
+      attempt.completedAt = new Date();
+      attempt.timeTaken = serverTimeTaken;
+      attempt.passed = false;
+      attempt.score = 0;
+      attempt.correctCount = 0;
+      await attempt.save();
+
+      await Certificate.updateMany(
+        { user: req.user._id, isRevoked: false },
+        { $set: { isRevoked: true } }
+      );
+
+      await User.findByIdAndUpdate(req.user._id, {
+        $set: { isActive: false },
+        $addToSet: { 'progress.examAttempts': attempt._id },
+      });
+
+      console.warn(
+        `[anti-cheat] banned user ${req.user.email} — submitted exam ${attempt.examTitle} after ${serverTimeTaken}s (min ${MIN_FORMAL_EXAM_SECONDS}s)`
+      );
+
+      return res.status(403).json({
+        banned: true,
+        message:
+          'Your account has been suspended because the exam was completed in less than the minimum allowed time. All certificates linked to your account have been revoked.',
+      });
     }
 
     const answerMap = {};
@@ -151,7 +195,7 @@ exports.submit = async (req, res, next) => {
     attempt.correctCount = correctCount;
     attempt.score = Math.round((correctCount / attempt.totalQuestions) * 100);
     attempt.passed = attempt.score >= (exam?.passingScore || 80);
-    attempt.timeTaken = timeTaken;
+    attempt.timeTaken = serverTimeTaken;
     attempt.completedAt = new Date();
 
     // Generate certificate if passed
