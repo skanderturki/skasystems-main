@@ -5,8 +5,8 @@ const { Resend } = require('resend');
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const RESEND_FROM = process.env.RESEND_FROM || 'SKA Systems <noreply@skasystems.com>';
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'skanderturki@gmail.com';
+const RESEND_FROM = process.env.RESEND_FROM || 'Academix <noreply@academix.tn>';
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'contact@academix.tn';
 
 if (!RESEND_API_KEY) {
   console.warn('[Resend] RESEND_API_KEY is not set — /api/contact will fail in production');
@@ -80,7 +80,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h2 style="color: #0d47a1;">New contact from skasystems.com</h2>
+      <h2 style="color: #0e2a47;">New contact from academix.tn</h2>
       <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
         <tr><td style="padding: 8px; font-weight: bold; width: 140px;">Name:</td><td style="padding: 8px;">${escapeHtml(name)}</td></tr>
         <tr><td style="padding: 8px; font-weight: bold;">Email:</td><td style="padding: 8px;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
@@ -97,7 +97,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       from: RESEND_FROM,
       to: CONTACT_TO_EMAIL,
       replyTo: email,
-      subject: `[skasystems.com] ${serviceType} — ${name}`,
+      subject: `[academix.tn] ${serviceType} — ${name}`,
       html,
     });
 
@@ -129,5 +129,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`[skasystems] Main website server running on port ${PORT}`);
+  console.log(`[academix] Main website server running on port ${PORT}`);
 });
