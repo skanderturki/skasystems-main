@@ -11,7 +11,7 @@ const buttonVariants = cva(
         default:
           'bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5',
         brand:
-          'text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 [background-image:linear-gradient(135deg,#1976d2_0%,#22d3ee_50%,#8b5cf6_100%)] [background-size:200%_100%] hover:[background-position:100%_0%] transition-[background-position,transform,box-shadow] duration-500',
+          'text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 [background-image:linear-gradient(135deg,#0e2a47_0%,#4a90b8_50%,#6ba4cf_100%)] [background-size:200%_100%] hover:[background-position:100%_0%] transition-[background-position,transform,box-shadow] duration-500',
         outline:
           'border border-white/20 bg-white/5 text-foreground backdrop-blur hover:bg-white/10 hover:border-white/40',
         'outline-light':

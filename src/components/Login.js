@@ -39,16 +39,16 @@ function Login() {
         <div className="mx-auto max-w-md">
           <div className="relative">
             <div
-              className="absolute -inset-2 rounded-[28px] bg-gradient-to-r from-brand-blue/30 via-brand-cyan/20 to-brand-violet/30 blur-2xl opacity-70"
+              className="absolute -inset-2 rounded-[28px] bg-gradient-to-r from-brand-navy/30 via-brand-steel/20 to-brand-light/30 blur-2xl opacity-70"
               aria-hidden="true"
             />
             <div className="relative rounded-2xl border border-white/10 bg-card/60 backdrop-blur-xl p-8 shadow-2xl">
               <div className="text-center mb-6">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue/30 to-brand-violet/30 border border-white/10 mb-4">
-                  <LogIn className="h-6 w-6 text-brand-cyan" />
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-navy/30 to-brand-light/30 border border-white/10 mb-4">
+                  <LogIn className="h-6 w-6 text-brand-steel" />
                 </div>
                 <h2 className="text-2xl font-semibold text-white">Login</h2>
-                <p className="text-sm text-white/60 mt-1">Welcome back to SKA Systems</p>
+                <p className="text-sm text-white/60 mt-1">Welcome back to Academix</p>
               </div>
 
               {error && (
@@ -95,7 +95,7 @@ function Login() {
 
                 <p className="text-center text-sm text-white/60">
                   Don't have an account?{' '}
-                  <a href="#register" className="text-brand-cyan hover:text-brand-glow transition">
+                  <a href="#register" className="text-brand-steel hover:text-brand-glow transition">
                     Register here
                   </a>
                 </p>

@@ -8,13 +8,13 @@ import { Alert, AlertDescription } from './ui/alert';
 import { cn } from '../lib/utils';
 
 const SERVICE_TYPES = [
-  'Personalized Learning Platform',
-  'Academic Automation (n8n)',
-  'AI Student Advisor',
+  'University Quality / Accreditation Platform',
+  'Academic Process Automation (n8n)',
+  'AI-Powered Academic Tools',
   'Other / Not sure yet',
 ];
 
-const CONTACT_EMAIL = 'skanderturki@gmail.com';
+const CONTACT_EMAIL = 'contact@academix.tn';
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -89,7 +89,7 @@ function ContactForm() {
     <div className="relative">
       {/* Glow aura behind the card */}
       <div
-        className="absolute -inset-2 rounded-[28px] bg-gradient-to-r from-brand-blue/30 via-brand-cyan/20 to-brand-violet/30 blur-2xl opacity-70"
+        className="absolute -inset-2 rounded-[28px] bg-gradient-to-r from-brand-navy/30 via-brand-steel/20 to-brand-light/30 blur-2xl opacity-70"
         aria-hidden="true"
       />
 
@@ -100,7 +100,7 @@ function ContactForm() {
             Or reach us directly at{' '}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-1 text-brand-cyan hover:text-brand-glow transition"
+              className="inline-flex items-center gap-1 text-brand-steel hover:text-brand-glow transition"
             >
               <Mail className="h-3.5 w-3.5" />
               {CONTACT_EMAIL}

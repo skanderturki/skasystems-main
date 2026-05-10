@@ -1,6 +1,6 @@
 {
-  "short_name": "SKA Systems",
-  "name": "SKA Systems — Intelligent Software for Education & Academia",
+  "short_name": "Academix",
+  "name": "Academix — University Software Solutions | Quality Assurance",
   "icons": [
     {
       "src": "logo.png",
@@ -12,5 +12,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#0a1628",
-  "background_color": "#0b1220"
+  "background_color": "#0a1628"
 }

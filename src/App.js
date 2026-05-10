@@ -11,7 +11,7 @@ function BrandLogo({ className }) {
   return (
     <img
       src="/logo.png"
-      alt="SKA Systems"
+      alt="Academix"
       className={className}
       draggable={false}
     />
@@ -19,9 +19,9 @@ function BrandLogo({ className }) {
 }
 
 const FEATURE_CHIPS = [
-  { label: 'Learning Platforms', Icon: GraduationCap },
-  { label: 'Academic Automation', Icon: Workflow },
-  { label: 'AI Student Advisors', Icon: Bot },
+  { label: 'Quality & Accreditation', Icon: GraduationCap },
+  { label: 'Process Automation', Icon: Workflow },
+  { label: 'AI for Academia', Icon: Bot },
 ];
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
     { href: '#services', label: 'Services' },
     { href: '#contact', label: 'Contact' },
     {
-      href: 'https://pmp.skasystems.com',
+      href: 'https://pmp.academix.tn',
       label: 'PMP Platform',
       external: true,
     },
@@ -77,11 +77,11 @@ function App() {
 
           {/* Floating glow orbs */}
           <div
-            className="pointer-events-none absolute -top-24 -right-16 h-80 w-80 rounded-full bg-brand-blue/30 blur-3xl animate-float"
+            className="pointer-events-none absolute -top-24 -right-16 h-80 w-80 rounded-full bg-brand-navy/30 blur-3xl animate-float"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-brand-violet/25 blur-3xl animate-float-reverse"
+            className="pointer-events-none absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-brand-light/25 blur-3xl animate-float-reverse"
             aria-hidden="true"
           />
 
@@ -98,17 +98,17 @@ function App() {
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div
-                    className="absolute inset-0 rounded-full bg-brand-blue/40 blur-xl animate-glow"
+                    className="absolute inset-0 rounded-full bg-brand-navy/40 blur-xl animate-glow"
                     aria-hidden="true"
                   />
                   <BrandLogo className="relative h-14 w-auto sm:h-[72px] object-contain animate-pulse-slow drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition hover:scale-105 hover:rotate-3" />
                 </div>
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
-                    SKA Systems
+                    Academix
                   </h1>
                   <p className="text-xs sm:text-sm text-white/80 mt-1">
-                    Intelligent Software for Education &amp; Academia
+                    University Software Solutions <span className="text-white/40">|</span> Quality Assurance
                   </p>
                 </div>
               </div>
@@ -120,7 +120,7 @@ function App() {
                     key={label}
                     className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 backdrop-blur px-3 py-1.5 text-xs font-medium text-white/90 transition hover:bg-white/20 hover:border-white/30 hover:-translate-y-0.5"
                   >
-                    <Icon className="h-3.5 w-3.5 text-brand-cyan" />
+                    <Icon className="h-3.5 w-3.5 text-brand-steel" />
                     <span>{label}</span>
                   </div>
                 ))}
@@ -149,7 +149,7 @@ function App() {
               {isAuthenticated && (
                 <>
                   <a
-                    href="https://n8n.skasystems.com"
+                    href="https://n8n.academix.tn"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition hover:text-white hover:bg-white/10"
@@ -202,7 +202,7 @@ function App() {
               {isAuthenticated && (
                 <>
                   <a
-                    href="https://n8n.skasystems.com"
+                    href="https://n8n.academix.tn"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileOpen(false)}
@@ -238,7 +238,7 @@ function App() {
 
       <footer className="relative bg-brand-deep text-white/80 border-t border-white/10">
         {/* Gradient hairline */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-violet" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-navy via-brand-steel to-brand-light" />
 
         <div className="container-page py-12 md:py-16">
           <div className="grid gap-10 md:grid-cols-3">
@@ -246,11 +246,11 @@ function App() {
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <BrandLogo className="h-10 w-auto object-contain" />
-                <span className="font-bold text-white text-lg">SKA Systems</span>
+                <span className="font-bold text-white text-lg">Academix</span>
               </div>
               <p className="text-sm text-white/60 leading-relaxed max-w-sm">
-                Intelligent software for education and academia — personalized learning
-                platforms, academic automation, and AI advising tools.
+                University software solutions and quality assurance — accreditation
+                evidence, learning outcome assessment, and academic process automation.
               </p>
             </div>
 
@@ -262,26 +262,26 @@ function App() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
-                    href="https://pmp.skasystems.com"
+                    href="https://pmp.academix.tn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-brand-cyan transition"
+                    className="text-white/70 hover:text-brand-steel transition"
                   >
                     PMP Platform
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://n8n.skasystems.com"
+                    href="https://n8n.academix.tn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-brand-cyan transition"
+                    className="text-white/70 hover:text-brand-steel transition"
                   >
                     n8n Server
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-white/70 hover:text-brand-cyan transition">
+                  <a href="#services" className="text-white/70 hover:text-brand-steel transition">
                     All Services
                   </a>
                 </li>
@@ -296,15 +296,15 @@ function App() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
-                    href="mailto:skanderturki@gmail.com"
-                    className="inline-flex items-center gap-2 text-white/70 hover:text-brand-cyan transition"
+                    href="mailto:contact@academix.tn"
+                    className="inline-flex items-center gap-2 text-white/70 hover:text-brand-steel transition"
                   >
                     <Mail className="h-4 w-4" />
-                    skanderturki@gmail.com
+                    contact@academix.tn
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-white/70 hover:text-brand-cyan transition">
+                  <a href="#contact" className="text-white/70 hover:text-brand-steel transition">
                     Contact form
                   </a>
                 </li>
@@ -313,8 +313,8 @@ function App() {
           </div>
 
           <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
-            <p>© {new Date().getFullYear()} SKA Systems — Intelligent Software for Education &amp; Academia</p>
-            <p className="font-mono">Built with care for educators.</p>
+            <p>© {new Date().getFullYear()} Academix — University Software Solutions for Quality Assurance</p>
+            <p className="font-mono">Built with care for universities.</p>
           </div>
         </div>
       </footer>

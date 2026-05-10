@@ -45,14 +45,15 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // Brand gradient anchors — fixed hex so gradient meshes are deterministic
+        // Academix brand palette — navy + steel-blue, matches the
+        // graduation-cap mark. Two-tone, no AI gradient.
         brand: {
-          deep: '#0b1220',
-          navy: '#0a1a3a',
-          blue: '#1976d2',
-          cyan: '#22d3ee',
-          violet: '#8b5cf6',
-          glow: '#60a5fa',
+          deep: '#0a1628',   // dark site chrome base
+          navy: '#0e2a47',   // primary brand color (logo deep navy)
+          blue: '#1e3a5f',   // secondary navy
+          steel: '#4a90b8',  // accent / highlight (replaces cyan)
+          light: '#a8c8e0',  // soft tint for backgrounds
+          glow: '#6ba4cf',   // hover/focus glow
         },
       },
       borderRadius: {
