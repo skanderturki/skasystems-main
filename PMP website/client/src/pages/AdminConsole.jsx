@@ -11,6 +11,11 @@ import {
   ArrowUp,
   ArrowDown,
   ArrowUpDown,
+  Mail,
+  X,
+  CheckSquare,
+  Square,
+  Eye,
 } from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
@@ -557,16 +562,148 @@ function ExamAttemptsTab() {
   );
 }
 
+function BulkEmailModal({ open, onClose, selectedCount, previewUser, onSend }) {
+  const [subject, setSubject] = useState('');
+  const [body, setBody] = useState('');
+  const [sending, setSending] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
+  if (!open) return null;
+
+  const renderedPreviewBody = (body || '')
+    .replace(/\{\{\s*firstName\s*\}\}/g, previewUser?.firstName || '[firstName]')
+    .replace(/\{\{\s*lastName\s*\}\}/g, previewUser?.lastName || '[lastName]');
+
+  const handleSend = async () => {
+    if (!subject.trim() || !body.trim()) {
+      toast.error('Subject and body are required');
+      return;
+    }
+    if (!window.confirm(`Send this email to ${selectedCount} student${selectedCount === 1 ? '' : 's'}?`)) {
+      return;
+    }
+    setSending(true);
+    try {
+      await onSend({ subject: subject.trim(), body });
+      setSubject('');
+      setBody('');
+      setShowPreview(false);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white">
+          <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            <Mail className="w-5 h-5 text-indigo-600" /> Send bulk email
+          </h2>
+          <button
+            onClick={onClose}
+            disabled={sending}
+            className="text-gray-400 hover:text-gray-600 disabled:opacity-40"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <div className="text-sm text-gray-600">
+            Sending to <strong>{selectedCount}</strong> selected student
+            {selectedCount === 1 ? '' : 's'}. Each recipient gets their own email.
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Subject</label>
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              placeholder="A brief subject line"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              disabled={sending}
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">Body</label>
+            <textarea
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              rows={10}
+              placeholder={'Hi {{firstName}},\n\nWrite your message here.\n\nBest regards,\nThe PMP Learn team'}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+              disabled={sending}
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Use <code className="bg-gray-100 px-1 rounded">{'{{firstName}}'}</code> and{' '}
+              <code className="bg-gray-100 px-1 rounded">{'{{lastName}}'}</code> for personalization.
+              Line breaks are preserved.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowPreview((s) => !s)}
+            disabled={!body.trim()}
+            className="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700 disabled:text-gray-400"
+          >
+            <Eye className="w-4 h-4" />
+            {showPreview ? 'Hide preview' : 'Show preview'}
+          </button>
+
+          {showPreview && (
+            <div className="border border-gray-200 rounded-lg bg-gray-50 p-4">
+              <p className="text-xs text-gray-500 mb-2">
+                Preview as it will appear to{' '}
+                <strong>{previewUser?.firstName || '[firstName]'}</strong>:
+              </p>
+              <div className="bg-white border border-gray-200 rounded p-4 text-sm whitespace-pre-wrap">
+                <p className="text-xs text-gray-500 mb-2">Subject: {subject || '(empty)'}</p>
+                <hr className="my-2" />
+                {renderedPreviewBody}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-gray-200 sticky bottom-0 bg-white">
+          <button
+            onClick={onClose}
+            disabled={sending}
+            className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg disabled:opacity-40"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSend}
+            disabled={sending || !subject.trim() || !body.trim()}
+            className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
+          >
+            {sending ? 'Sending…' : `Send to ${selectedCount}`}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function UsersTab() {
   const [search, setSearch] = useState('');
   const [role, setRole] = useState('');
   const [status, setStatus] = useState('all');
   const [hasRevoked, setHasRevoked] = useState('');
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
   const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState('createdAt');
   const [sortDir, setSortDir] = useState('desc');
   const [data, setData] = useState({ items: [], total: 0, pageCount: 0 });
   const [loading, setLoading] = useState(false);
+  const [selectedIds, setSelectedIds] = useState(() => new Set());
+  const [bulkEmailOpen, setBulkEmailOpen] = useState(false);
   const debouncedSearch = useDebouncedValue(search, 300);
 
   const toggleSort = (col) => {
@@ -585,13 +722,125 @@ function UsersTab() {
       role: role || undefined,
       status: status === 'all' ? undefined : status,
       hasRevoked: hasRevoked || undefined,
+      from: from || undefined,
+      to: to || undefined,
       sortBy,
       sortDir,
       page,
       limit: PAGE_SIZE,
     }),
-    [debouncedSearch, role, status, hasRevoked, sortBy, sortDir, page]
+    [debouncedSearch, role, status, hasRevoked, from, to, sortBy, sortDir, page]
   );
+
+  // ── Selection helpers ───────────────────────────────────────────────────
+  const toggleSelectOne = (id) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const togglePageSelect = () => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      const pageIds = data.items.map((u) => u._id);
+      const allOnPage = pageIds.length > 0 && pageIds.every((id) => next.has(id));
+      if (allOnPage) pageIds.forEach((id) => next.delete(id));
+      else pageIds.forEach((id) => next.add(id));
+      return next;
+    });
+  };
+
+  const clearSelection = () => setSelectedIds(new Set());
+
+  const addIdsToSelection = (ids) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      ids.forEach((id) => next.add(id));
+      return next;
+    });
+  };
+
+  // ── Quick-filter presets ────────────────────────────────────────────────
+  const presetBanned = async () => {
+    setStatus('banned');
+    setRole('');
+    setHasRevoked('');
+    try {
+      const res = await api.get('/admin/user-ids', {
+        params: { status: 'banned' },
+      });
+      addIdsToSelection(res.data.ids || []);
+      toast.success(`Selected ${res.data.ids?.length || 0} banned user(s)`);
+      if (res.data.capped) toast(`Selection capped at the bulk maximum.`);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to fetch matching users');
+    }
+  };
+
+  const presetRevoked = async () => {
+    setHasRevoked('true');
+    setStatus('all');
+    setRole('');
+    try {
+      const res = await api.get('/admin/user-ids', {
+        params: { hasRevoked: 'true' },
+      });
+      addIdsToSelection(res.data.ids || []);
+      toast.success(`Selected ${res.data.ids?.length || 0} user(s) with revoked certs`);
+      if (res.data.capped) toast(`Selection capped at the bulk maximum.`);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to fetch matching users');
+    }
+  };
+
+  const presetDateRange = async () => {
+    if (!from && !to) {
+      toast.error('Set a From and/or To date first');
+      return;
+    }
+    try {
+      const res = await api.get('/admin/user-ids', {
+        params: { from: from || undefined, to: to || undefined },
+      });
+      addIdsToSelection(res.data.ids || []);
+      toast.success(`Selected ${res.data.ids?.length || 0} user(s) in date range`);
+      if (res.data.capped) toast(`Selection capped at the bulk maximum.`);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to fetch matching users');
+    }
+  };
+
+  const sendBulkEmail = async ({ subject, body }) => {
+    try {
+      const res = await api.post('/admin/bulk-email', {
+        userIds: Array.from(selectedIds),
+        subject,
+        body,
+      });
+      const { sent, failed, eligible } = res.data;
+      if (failed?.length) {
+        toast.error(
+          `Sent ${sent} / ${eligible}. ${failed.length} failed. Check logs for details.`,
+          { duration: 8000 }
+        );
+        console.warn('[bulk-email] failed recipients:', failed);
+      } else {
+        toast.success(`Sent ${sent} email${sent === 1 ? '' : 's'}.`);
+      }
+      setBulkEmailOpen(false);
+      clearSelection();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to send');
+    }
+  };
+
+  const previewUser = useMemo(() => {
+    // Use the first selected user we can find on the current page for preview.
+    return data.items.find((u) => selectedIds.has(u._id)) || null;
+  }, [data.items, selectedIds]);
 
   const reload = () => {
     setLoading(true);
@@ -651,7 +900,7 @@ function UsersTab() {
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
           <div>
             <label className="block text-xs text-gray-600 mb-1">Role</label>
             <select
@@ -688,6 +937,24 @@ function UsersTab() {
               <option value="false">No</option>
             </select>
           </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Registered from</label>
+            <input
+              type="date"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Registered to</label>
+            <input
+              type="date"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+            />
+          </div>
           <div className="flex items-end">
             <button
               onClick={onExport}
@@ -697,13 +964,80 @@ function UsersTab() {
             </button>
           </div>
         </div>
+
+        <div className="flex items-center gap-2 pt-2 border-t border-gray-100 flex-wrap">
+          <span className="text-xs text-gray-500 mr-1">Quick select:</span>
+          <button
+            onClick={presetBanned}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700 hover:bg-red-100"
+          >
+            All banned
+          </button>
+          <button
+            onClick={presetRevoked}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 hover:bg-amber-100"
+          >
+            All with revoked cert
+          </button>
+          <button
+            onClick={presetDateRange}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
+          >
+            All in date range
+          </button>
+        </div>
       </div>
+
+      {selectedIds.size > 0 && (
+        <div className="mb-4 flex items-center justify-between gap-3 px-4 py-2 bg-indigo-50 border border-indigo-200 rounded-lg">
+          <span className="text-sm text-indigo-900">
+            <strong>{selectedIds.size}</strong> selected
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={clearSelection}
+              className="px-3 py-1 text-xs text-gray-700 hover:bg-white rounded"
+            >
+              Clear
+            </button>
+            <button
+              onClick={() => setBulkEmailOpen(true)}
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700"
+            >
+              <Mail className="w-4 h-4" /> Email {selectedIds.size} selected
+            </button>
+          </div>
+        </div>
+      )}
+
+      <BulkEmailModal
+        open={bulkEmailOpen}
+        onClose={() => setBulkEmailOpen(false)}
+        selectedCount={selectedIds.size}
+        previewUser={previewUser}
+        onSend={sendBulkEmail}
+      />
 
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-gray-600 text-xs uppercase">
               <tr>
+                <th className="px-4 py-3 w-10">
+                  <button
+                    type="button"
+                    onClick={togglePageSelect}
+                    className="text-gray-500 hover:text-indigo-600"
+                    title="Select/deselect current page"
+                  >
+                    {data.items.length > 0 &&
+                    data.items.every((u) => selectedIds.has(u._id)) ? (
+                      <CheckSquare className="w-4 h-4 text-indigo-600" />
+                    ) : (
+                      <Square className="w-4 h-4" />
+                    )}
+                  </button>
+                </th>
                 <th className="text-left px-4 py-3 font-medium">Name</th>
                 <th className="text-left px-4 py-3 font-medium">Email</th>
                 <th className="text-left px-4 py-3 font-medium">Role</th>
@@ -737,19 +1071,38 @@ function UsersTab() {
             <tbody className="divide-y divide-gray-100">
               {loading && data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={10} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={11} className="px-4 py-10 text-center text-gray-400">
                     Loading…
                   </td>
                 </tr>
               ) : data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={10} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={11} className="px-4 py-10 text-center text-gray-400">
                     No users match the current filter.
                   </td>
                 </tr>
               ) : (
                 data.items.map((u) => (
-                  <tr key={u._id} className="hover:bg-gray-50">
+                  <tr
+                    key={u._id}
+                    className={
+                      'hover:bg-gray-50' +
+                      (selectedIds.has(u._id) ? ' bg-indigo-50/40' : '')
+                    }
+                  >
+                    <td className="px-4 py-3">
+                      <button
+                        type="button"
+                        onClick={() => toggleSelectOne(u._id)}
+                        className="text-gray-500 hover:text-indigo-600"
+                      >
+                        {selectedIds.has(u._id) ? (
+                          <CheckSquare className="w-4 h-4 text-indigo-600" />
+                        ) : (
+                          <Square className="w-4 h-4" />
+                        )}
+                      </button>
+                    </td>
                     <td className="px-4 py-3 font-medium text-gray-900">
                       {u.firstName} {u.lastName}
                     </td>

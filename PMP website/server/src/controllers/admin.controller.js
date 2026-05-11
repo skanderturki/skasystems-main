@@ -1,6 +1,7 @@
 const Certificate = require('../models/Certificate');
 const ExamAttempt = require('../models/ExamAttempt');
 const User = require('../models/User');
+const { sendBulkEmail } = require('../services/email.service');
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -369,7 +370,7 @@ const buildUsersPipeline = (req) => {
   const { q, role, status, hasRevoked, sortBy = 'createdAt', sortDir = 'desc' } = req.query;
   const pipeline = [];
 
-  const initialMatch = {};
+  const initialMatch = { ...parseDateRange(req, 'createdAt') };
   if (role === 'admin' || role === 'student') initialMatch.role = role;
   if (status === 'active') initialMatch.isActive = true;
   else if (status === 'banned') initialMatch.isActive = false;
@@ -585,3 +586,101 @@ const setUserActive = async (req, res, next, isActive) => {
 
 exports.banUser = (req, res, next) => setUserActive(req, res, next, false);
 exports.unbanUser = (req, res, next) => setUserActive(req, res, next, true);
+
+// ─── Bulk email ────────────────────────────────────────────────────────────
+
+const BULK_MAX = 500;
+
+// Returns just the user IDs matching the current filter — used by the admin UI
+// to "select all matching" without paginating. Hard-capped at BULK_MAX.
+exports.listUserIds = async (req, res, next) => {
+  try {
+    const pipeline = buildUsersPipeline(req);
+    // Drop the heavy $project, $lookup-derived fields are still in the doc
+    // by the time we collect IDs.
+    pipeline.push({ $project: { _id: 1 } });
+    pipeline.push({ $limit: BULK_MAX });
+
+    const docs = await User.aggregate(pipeline);
+    res.json({ ids: docs.map((d) => d._id), capped: docs.length === BULK_MAX });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Minimal escape for HTML body — body content is user-supplied (admin) and
+// goes straight into a rendered email. We're not building rich HTML, just
+// preserving line breaks and preventing tag injection.
+const escapeHtml = (s) =>
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const renderEmailHtml = (recipient, body) => {
+  const safeBody = escapeHtml(body)
+    .replace(/\{\{\s*firstName\s*\}\}/g, escapeHtml(recipient.firstName || ''))
+    .replace(/\{\{\s*lastName\s*\}\}/g, escapeHtml(recipient.lastName || ''))
+    .replace(/\n/g, '<br>');
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px;">
+      <h2 style="color: #4f46e5; text-align: center; margin-bottom: 24px;">PMP Learn</h2>
+      <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; color: #1f2937; line-height: 1.6; font-size: 14px;">
+        ${safeBody}
+      </div>
+      <p style="color: #9ca3af; font-size: 12px; text-align: center; margin-top: 24px;">
+        Sent from the PMP Learn administrative console.
+      </p>
+    </div>
+  `;
+};
+
+exports.sendBulkEmail = async (req, res, next) => {
+  try {
+    const { userIds, subject, body } = req.body || {};
+
+    if (!Array.isArray(userIds) || userIds.length === 0) {
+      return res.status(400).json({ message: 'At least one recipient is required' });
+    }
+    if (userIds.length > BULK_MAX) {
+      return res.status(400).json({ message: `At most ${BULK_MAX} recipients per send` });
+    }
+    if (!subject || !subject.trim()) {
+      return res.status(400).json({ message: 'Subject is required' });
+    }
+    if (!body || !body.trim()) {
+      return res.status(400).json({ message: 'Body is required' });
+    }
+
+    const users = await User.find({ _id: { $in: userIds } })
+      .select('firstName lastName email')
+      .lean();
+
+    const recipients = users.filter((u) => u.email);
+    if (recipients.length === 0) {
+      return res.status(400).json({ message: 'None of the selected users have an email' });
+    }
+
+    const result = await sendBulkEmail({
+      recipients,
+      subject: subject.trim(),
+      renderHtml: (r) => renderEmailHtml(r, body),
+    });
+
+    console.log(
+      `[bulk-email] admin ${req.user.email} sent "${subject.trim()}" to ${result.sent} recipient(s) (${result.failed.length} failed)`
+    );
+
+    res.json({
+      requested: userIds.length,
+      eligible: recipients.length,
+      sent: result.sent,
+      failed: result.failed,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

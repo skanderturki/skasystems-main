@@ -16,7 +16,9 @@ router.get('/exam-attempts.csv', adminController.exportExamAttemptsCsv);
 
 router.get('/users', adminController.listUsers);
 router.get('/users.csv', adminController.exportUsersCsv);
+router.get('/user-ids', adminController.listUserIds);
 router.patch('/users/:id/ban', adminController.banUser);
 router.patch('/users/:id/unban', adminController.unbanUser);
+router.post('/bulk-email', adminController.sendBulkEmail);
 
 module.exports = router;
