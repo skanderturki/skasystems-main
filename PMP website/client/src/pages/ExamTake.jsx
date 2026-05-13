@@ -151,6 +151,7 @@ export default function ExamTake() {
   const { user } = useAuth();
   const isAdmin = user?.role === 'admin';
   const examPassword = location.state?.examPassword;
+  const examMode = location.state?.examMode || 'standard';
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -195,7 +196,7 @@ export default function ExamTake() {
   // ── Load attempt ────────────────────────────────────────────────────────
   useEffect(() => {
     api
-      .post('/exams/start', { examId, password: examPassword })
+      .post('/exams/start', { examId, mode: examMode, password: examPassword })
       .then((res) => {
         setQuestions(res.data.questions);
         setAttemptId(res.data.attemptId);

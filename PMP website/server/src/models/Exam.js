@@ -9,13 +9,14 @@ const examSchema = new mongoose.Schema(
     description: String,
     examType: {
       type: String,
-      enum: ['practice', 'formal', 'instructor-led'],
+      enum: ['practice', 'formal'],
       required: true,
     },
-    // Set only for examType='instructor-led'. The admin sees this in the
-    // admin console and communicates it (verbally or by typing it in
-    // themselves) to the student before they can start the exam. It is
-    // NEVER returned by /api/exams/available to students.
+    // Optional instructor-led password. When set, the admin can share it with
+    // a student so they can take this formal exam in 'instructor-led' mode
+    // (with the 20-min rule + cooldown + maxAttempts skipped). Without a
+    // password, the exam can still be taken normally — every formal exam
+    // supports both modes. NEVER returned to /api/exams/available.
     password: {
       type: String,
       default: null,

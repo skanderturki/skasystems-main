@@ -558,6 +558,14 @@ function ExamAttemptsTab() {
                             Fast-finish
                           </span>
                         )}
+                        {a.mode === 'instructor-led' && (
+                          <span
+                            className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700"
+                            title="Taken under instructor supervision (20-minute rule and cooldown were skipped)"
+                          >
+                            Instructor-led
+                          </span>
+                        )}
                       </div>
                     </td>
                     <td className="px-4 py-3 text-gray-600 text-xs">{fmtDateTime(a.startedAt)}</td>
@@ -1273,7 +1281,6 @@ function ExamsTab() {
   };
 
   const formal = exams.filter((e) => e.examType === 'formal');
-  const instructorLed = exams.filter((e) => e.examType === 'instructor-led');
   const practice = exams.filter((e) => e.examType === 'practice');
 
   if (loading) {
@@ -1282,30 +1289,33 @@ function ExamsTab() {
 
   return (
     <div className="space-y-8">
-      {instructorLed.length > 0 && (
+      {formal.length > 0 && (
         <section>
           <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
-            Instructor-led exams
+            Formal certification exams
           </h2>
           <p className="text-xs text-gray-500 mb-3">
-            Each instructor-led exam needs a password to start. Communicate it to the student in
-            person, or type it on their machine yourself. The 20-minute rule and cooldown are NOT
-            enforced on these exams.
+            Each exam can be taken in <strong>standard mode</strong> (full anti-cheat — 20-minute
+            minimum, 15-day cooldown, 3-violation proctoring) or in{' '}
+            <strong>instructor-led mode</strong> (cooldown and 20-minute rule skipped; password
+            required). Set or rotate the password below, then share or type it on the student's
+            machine.
           </p>
           <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-            {instructorLed.map((e) => (
-              <div key={e._id} className="p-4 flex items-center gap-4">
-                <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
-                  <FileText className="w-5 h-5 text-indigo-600" />
+            {formal.map((e) => (
+              <div key={e._id} className="p-4 flex flex-wrap items-center gap-4">
+                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-purple-600" />
                 </div>
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 min-w-[200px]">
                   <p className="font-medium text-gray-900 truncate">{e.title}</p>
                   <p className="text-xs text-gray-500">
                     {e.questionCount} questions · Pass {e.passingScore}% ·{' '}
                     {e.timeLimit ? `${e.timeLimit} min` : 'No time limit'}
+                    {e.maxAttempts ? ` · Max ${e.maxAttempts} attempts` : ''}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   {e.password ? (
                     <>
                       <span className="font-mono text-lg font-semibold tracking-widest bg-gray-50 border border-gray-200 rounded px-3 py-1 text-gray-900">
@@ -1327,43 +1337,16 @@ function ExamsTab() {
                       </button>
                     </>
                   ) : (
-                    <span className="text-xs text-gray-400 italic">No password set</span>
+                    <span className="text-xs text-gray-400 italic">
+                      No instructor password — standard mode only
+                    </span>
                   )}
                   <button
                     onClick={() => regenerate(e)}
                     className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700"
                   >
-                    <RefreshCw className="w-3.5 h-3.5" /> Regenerate
+                    <RefreshCw className="w-3.5 h-3.5" /> {e.password ? 'Regenerate' : 'Generate'}
                   </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {formal.length > 0 && (
-        <section>
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
-            Formal certification exams
-          </h2>
-          <p className="text-xs text-gray-500 mb-3">
-            Standard online exams subject to the 20-minute minimum, 3-violation proctoring rule,
-            and 15-day cooldown. No password.
-          </p>
-          <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-            {formal.map((e) => (
-              <div key={e._id} className="p-4 flex items-center gap-4">
-                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
-                  <FileText className="w-5 h-5 text-purple-600" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 truncate">{e.title}</p>
-                  <p className="text-xs text-gray-500">
-                    {e.questionCount} questions · Pass {e.passingScore}% ·{' '}
-                    {e.timeLimit ? `${e.timeLimit} min` : 'No time limit'}
-                    {e.maxAttempts ? ` · Max ${e.maxAttempts} attempts` : ''}
-                  </p>
                 </div>
               </div>
             ))}

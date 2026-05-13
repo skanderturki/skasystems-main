@@ -288,6 +288,7 @@ const buildExamAttemptPipeline = (req) => {
       completedAt: 1,
       cheatingFlagged: 1,
       fastFinishFlagged: 1,
+      mode: 1,
       hasCertificate: { $cond: [{ $ifNull: ['$certificate', false] }, true, false] },
       email: '$userDoc.email',
       firstName: '$userDoc.firstName',
@@ -717,9 +718,10 @@ exports.listExams = async (req, res, next) => {
         timeLimit: e.timeLimit,
         passingScore: e.passingScore,
         maxAttempts: e.maxAttempts,
-        // Password is only meaningful for instructor-led exams. We always
-        // include the field so the UI can render a Regenerate button.
-        password: e.examType === 'instructor-led' ? e.password || null : null,
+        // Every formal exam can have an optional instructor-led password.
+        // When set, students/admins can opt into instructor-led mode at
+        // start time; when null, only standard mode is available.
+        password: e.examType === 'formal' ? e.password || null : null,
         chapters: e.chapters,
       })),
     });
@@ -732,10 +734,10 @@ exports.regenerateExamPassword = async (req, res, next) => {
   try {
     const exam = await Exam.findById(req.params.id);
     if (!exam) return res.status(404).json({ message: 'Exam not found' });
-    if (exam.examType !== 'instructor-led') {
+    if (exam.examType !== 'formal') {
       return res
         .status(400)
-        .json({ message: 'Only instructor-led exams have passwords' });
+        .json({ message: 'Only formal exams support instructor-led passwords' });
     }
 
     exam.password = generateExamPassword();

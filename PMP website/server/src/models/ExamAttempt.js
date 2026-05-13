@@ -43,6 +43,15 @@ const examAttemptSchema = new mongoose.Schema(
     // MIN_FORMAL_EXAM_SECONDS threshold. No automatic ban — the admin
     // reviews these manually from the Exam Attempts tab.
     fastFinishFlagged: { type: Boolean, default: false },
+    // Per-attempt mode. Standard = full anti-cheat (cooldown, 20-min flag,
+    // 3-violation rule). Instructor-led = instructor was physically present
+    // and entered the exam password, so cooldown, maxAttempts and 20-min
+    // rule are all skipped. The 3-violation rule still applies.
+    mode: {
+      type: String,
+      enum: ['standard', 'instructor-led'],
+      default: 'standard',
+    },
     startedAt: Date,
     completedAt: Date,
   },

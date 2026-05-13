@@ -58,16 +58,23 @@ function shuffleAndRelabel(options) {
 
 exports.getAvailable = async (req, res, next) => {
   try {
-    // Both formal and instructor-led are listed on the student exam page.
-    // The password is never serialised (it's select:false on the model and we
-    // never explicitly select it here).
-    const exams = await Exam.find({
-      examType: { $in: ['formal', 'instructor-led'] },
-      isPublished: true,
-    })
+    // Returns formal exams. Each can be taken in standard or instructor-led
+    // mode at start time (a password unlocks the latter). We expose a
+    // `hasPassword` boolean so the client knows whether instructor-led mode
+    // is offered for each exam — without leaking the password itself.
+    const exams = await Exam.find({ examType: 'formal', isPublished: true })
+      .select('+password')
       .populate('chapters', 'title')
       .sort({ createdAt: 1 });
-    res.json({ exams });
+
+    res.json({
+      exams: exams.map((e) => {
+        const obj = e.toObject();
+        obj.hasPassword = !!obj.password;
+        delete obj.password;
+        return obj;
+      }),
+    });
   } catch (error) {
     next(error);
   }
@@ -75,35 +82,42 @@ exports.getAvailable = async (req, res, next) => {
 
 exports.start = async (req, res, next) => {
   try {
-    const { examId, password: clientPassword } = req.body;
+    const { examId, password: clientPassword, mode: requestedMode } = req.body;
     const exam = await Exam.findById(examId).select('+password');
-    if (!exam || !['formal', 'instructor-led'].includes(exam.examType)) {
+    if (!exam || exam.examType !== 'formal') {
       return res.status(404).json({ message: 'Exam not found' });
     }
 
     const isAdmin = req.user.role === 'admin';
-    const isInstructorLed = exam.examType === 'instructor-led';
 
-    // Instructor-led exams require a password the admin (instructor) has
-    // shared with the student in person. Admins bypass this check so they
-    // can test the flow.
-    if (isInstructorLed && !isAdmin) {
-      if (!exam.password) {
-        return res.status(400).json({
-          message: 'This exam is not yet available. Please contact your instructor.',
-        });
-      }
-      if (!clientPassword || clientPassword !== exam.password) {
-        return res.status(401).json({
-          message: 'Incorrect exam password.',
-          requiresPassword: true,
-        });
+    // Determine the mode for THIS attempt. The client can request
+    // 'instructor-led' by sending the exam password. Without a valid
+    // password the attempt runs in standard mode (admins bypass).
+    let mode = 'standard';
+    if (requestedMode === 'instructor-led') {
+      if (isAdmin) {
+        mode = 'instructor-led';
+      } else {
+        if (!exam.password) {
+          return res.status(400).json({
+            message: 'Instructor-led mode is not available for this exam yet.',
+          });
+        }
+        if (!clientPassword || clientPassword !== exam.password) {
+          return res.status(401).json({
+            message: 'Incorrect instructor password.',
+            requiresPassword: true,
+          });
+        }
+        mode = 'instructor-led';
       }
     }
 
+    const isInstructorLed = mode === 'instructor-led';
+
     // Admins are exempt from attempt-count limits and cooldowns so they can
     // re-run the exam flow as often as needed for testing/QA.
-    // Instructor-led exams ALSO skip cooldown + maxAttempts because the
+    // Instructor-led mode ALSO skips cooldown + maxAttempts because the
     // instructor is physically present and explicitly authorising each take.
     if (!isAdmin && !isInstructorLed) {
       // Max attempts (per exam definition)
@@ -171,6 +185,7 @@ exports.start = async (req, res, next) => {
       user: req.user._id,
       exam: exam._id,
       examTitle: exam.title,
+      mode,
       questions: questions.map((q) => ({
         question: q._id,
         correctOption: q.options.find((o) => o.isCorrect)?.label,
@@ -269,13 +284,13 @@ exports.submit = async (req, res, next) => {
       });
     }
 
-    // Fast-finish detection: only applies to non-admin, formal exams.
-    // Instructor-led exams skip the rule entirely (instructor is physically
-    // present). The attempt is FLAGGED for admin review but the actual score
-    // is preserved and the user is NOT banned — the admin decides what to
-    // do from the Exam Attempts tab.
+    // Fast-finish detection: only applies to non-admin, standard-mode
+    // attempts. Instructor-led-mode attempts skip the rule entirely (an
+    // instructor is physically present). The attempt is FLAGGED for admin
+    // review but the actual score is preserved and the user is NOT banned —
+    // the admin decides what to do from the Exam Attempts tab.
     const exam = await Exam.findById(attempt.exam);
-    const isInstructorLed = exam?.examType === 'instructor-led';
+    const isInstructorLed = attempt.mode === 'instructor-led';
     const isFastFinish =
       req.user.role !== 'admin' &&
       !isInstructorLed &&
