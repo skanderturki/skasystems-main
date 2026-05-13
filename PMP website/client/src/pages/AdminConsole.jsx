@@ -16,6 +16,10 @@ import {
   CheckSquare,
   Square,
   Eye,
+  Key,
+  RefreshCw,
+  Copy,
+  FileText,
 } from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
@@ -528,15 +532,33 @@ function ExamAttemptsTab() {
                       </span>
                     </td>
                     <td className="px-4 py-3">
-                      {a.passed ? (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
-                          Passed
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
-                          Failed
-                        </span>
-                      )}
+                      <div className="flex flex-wrap items-center gap-1">
+                        {a.passed ? (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
+                            Passed
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                            Failed
+                          </span>
+                        )}
+                        {a.cheatingFlagged && (
+                          <span
+                            className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800"
+                            title="Auto-flagged: too many proctoring violations during the exam"
+                          >
+                            Cheating
+                          </span>
+                        )}
+                        {a.fastFinishFlagged && (
+                          <span
+                            className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800"
+                            title="Auto-flagged for admin review: completed in under 20 minutes"
+                          >
+                            Fast-finish
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-gray-600 text-xs">{fmtDateTime(a.startedAt)}</td>
                     <td className="px-4 py-3 text-gray-600 text-xs">
@@ -1209,6 +1231,172 @@ function UsersTab() {
   );
 }
 
+function ExamsTab() {
+  const [exams, setExams] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [reveal, setReveal] = useState({}); // examId -> bool
+
+  const reload = () =>
+    api
+      .get('/admin/exams')
+      .then((res) => setExams(res.data.exams))
+      .catch((err) => toast.error(err.response?.data?.message || 'Failed to load'))
+      .finally(() => setLoading(false));
+
+  useEffect(() => {
+    reload();
+  }, []);
+
+  const regenerate = async (exam) => {
+    if (!window.confirm(`Generate a new password for "${exam.title}"? Any password you previously shared will stop working.`)) {
+      return;
+    }
+    try {
+      const res = await api.post(`/admin/exams/${exam._id}/regenerate-password`);
+      setExams((list) =>
+        list.map((e) => (e._id === exam._id ? { ...e, password: res.data.exam.password } : e))
+      );
+      setReveal((r) => ({ ...r, [exam._id]: true }));
+      toast.success('New password generated');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Could not regenerate password');
+    }
+  };
+
+  const copy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success('Copied to clipboard');
+    } catch {
+      toast.error('Could not copy');
+    }
+  };
+
+  const formal = exams.filter((e) => e.examType === 'formal');
+  const instructorLed = exams.filter((e) => e.examType === 'instructor-led');
+  const practice = exams.filter((e) => e.examType === 'practice');
+
+  if (loading) {
+    return <div className="text-sm text-gray-500">Loading exams…</div>;
+  }
+
+  return (
+    <div className="space-y-8">
+      {instructorLed.length > 0 && (
+        <section>
+          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+            Instructor-led exams
+          </h2>
+          <p className="text-xs text-gray-500 mb-3">
+            Each instructor-led exam needs a password to start. Communicate it to the student in
+            person, or type it on their machine yourself. The 20-minute rule and cooldown are NOT
+            enforced on these exams.
+          </p>
+          <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+            {instructorLed.map((e) => (
+              <div key={e._id} className="p-4 flex items-center gap-4">
+                <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-indigo-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-900 truncate">{e.title}</p>
+                  <p className="text-xs text-gray-500">
+                    {e.questionCount} questions · Pass {e.passingScore}% ·{' '}
+                    {e.timeLimit ? `${e.timeLimit} min` : 'No time limit'}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  {e.password ? (
+                    <>
+                      <span className="font-mono text-lg font-semibold tracking-widest bg-gray-50 border border-gray-200 rounded px-3 py-1 text-gray-900">
+                        {reveal[e._id] ? e.password : '•'.repeat(e.password.length)}
+                      </span>
+                      <button
+                        onClick={() => setReveal((r) => ({ ...r, [e._id]: !r[e._id] }))}
+                        className="p-1.5 text-gray-500 hover:text-gray-700 rounded hover:bg-gray-50"
+                        title={reveal[e._id] ? 'Hide' : 'Reveal'}
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => copy(e.password)}
+                        className="p-1.5 text-gray-500 hover:text-gray-700 rounded hover:bg-gray-50"
+                        title="Copy"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
+                    </>
+                  ) : (
+                    <span className="text-xs text-gray-400 italic">No password set</span>
+                  )}
+                  <button
+                    onClick={() => regenerate(e)}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" /> Regenerate
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {formal.length > 0 && (
+        <section>
+          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+            Formal certification exams
+          </h2>
+          <p className="text-xs text-gray-500 mb-3">
+            Standard online exams subject to the 20-minute minimum, 3-violation proctoring rule,
+            and 15-day cooldown. No password.
+          </p>
+          <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+            {formal.map((e) => (
+              <div key={e._id} className="p-4 flex items-center gap-4">
+                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-purple-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-900 truncate">{e.title}</p>
+                  <p className="text-xs text-gray-500">
+                    {e.questionCount} questions · Pass {e.passingScore}% ·{' '}
+                    {e.timeLimit ? `${e.timeLimit} min` : 'No time limit'}
+                    {e.maxAttempts ? ` · Max ${e.maxAttempts} attempts` : ''}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {practice.length > 0 && (
+        <section>
+          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+            Practice tests
+          </h2>
+          <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+            {practice.map((e) => (
+              <div key={e._id} className="p-4 flex items-center gap-4">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-green-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-900 truncate">{e.title}</p>
+                  <p className="text-xs text-gray-500">
+                    {e.questionCount} questions · {e.chapters?.length || 0} chapter(s)
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}
+
 export default function AdminConsole() {
   const [tab, setTab] = useState('certificates');
 
@@ -1217,7 +1405,7 @@ export default function AdminConsole() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Admin Console</h1>
         <p className="text-gray-600 mt-1">
-          Search, filter, and manage certificates, exam attempts, and users.
+          Search, filter, and manage certificates, exam attempts, users, and exams.
         </p>
       </div>
 
@@ -1227,6 +1415,7 @@ export default function AdminConsole() {
             { key: 'certificates', label: 'Certificates' },
             { key: 'attempts', label: 'Exam Attempts' },
             { key: 'users', label: 'Users' },
+            { key: 'exams', label: 'Exams' },
           ].map((t) => (
             <button
               key={t.key}
@@ -1246,6 +1435,7 @@ export default function AdminConsole() {
       {tab === 'certificates' && <CertificatesTab />}
       {tab === 'attempts' && <ExamAttemptsTab />}
       {tab === 'users' && <UsersTab />}
+      {tab === 'exams' && <ExamsTab />}
     </div>
   );
 }

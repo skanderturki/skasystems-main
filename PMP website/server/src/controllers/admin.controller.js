@@ -1,7 +1,18 @@
+const crypto = require('crypto');
 const Certificate = require('../models/Certificate');
 const ExamAttempt = require('../models/ExamAttempt');
 const User = require('../models/User');
+const Exam = require('../models/Exam');
 const { sendBulkEmail } = require('../services/email.service');
+
+// Readable, unambiguous (no 0/O/1/I/L) password chars — easy to dictate.
+const PASSWORD_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const generateExamPassword = (len = 8) => {
+  const bytes = crypto.randomBytes(len);
+  let out = '';
+  for (let i = 0; i < len; i++) out += PASSWORD_ALPHABET[bytes[i] % PASSWORD_ALPHABET.length];
+  return out;
+};
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -275,6 +286,8 @@ const buildExamAttemptPipeline = (req) => {
       timeTaken: 1,
       startedAt: 1,
       completedAt: 1,
+      cheatingFlagged: 1,
+      fastFinishFlagged: 1,
       hasCertificate: { $cond: [{ $ifNull: ['$certificate', false] }, true, false] },
       email: '$userDoc.email',
       firstName: '$userDoc.firstName',
@@ -680,6 +693,59 @@ exports.sendBulkEmail = async (req, res, next) => {
       sent: result.sent,
       failed: result.failed,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ─── Exams (passwords) ─────────────────────────────────────────────────────
+
+exports.listExams = async (req, res, next) => {
+  try {
+    const exams = await Exam.find({ isPublished: true })
+      .select('+password')
+      .populate('chapters', 'title')
+      .sort({ examType: 1, title: 1 });
+
+    res.json({
+      exams: exams.map((e) => ({
+        _id: e._id,
+        title: e.title,
+        description: e.description,
+        examType: e.examType,
+        questionCount: e.questionCount,
+        timeLimit: e.timeLimit,
+        passingScore: e.passingScore,
+        maxAttempts: e.maxAttempts,
+        // Password is only meaningful for instructor-led exams. We always
+        // include the field so the UI can render a Regenerate button.
+        password: e.examType === 'instructor-led' ? e.password || null : null,
+        chapters: e.chapters,
+      })),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.regenerateExamPassword = async (req, res, next) => {
+  try {
+    const exam = await Exam.findById(req.params.id);
+    if (!exam) return res.status(404).json({ message: 'Exam not found' });
+    if (exam.examType !== 'instructor-led') {
+      return res
+        .status(400)
+        .json({ message: 'Only instructor-led exams have passwords' });
+    }
+
+    exam.password = generateExamPassword();
+    await exam.save();
+
+    console.log(
+      `[exam-password] admin ${req.user.email} regenerated password for exam "${exam.title}" (${exam._id})`
+    );
+
+    res.json({ exam: { _id: exam._id, password: exam.password } });
   } catch (error) {
     next(error);
   }

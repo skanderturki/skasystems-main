@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Clock, AlertTriangle, ShieldAlert, FlaskConical } from 'lucide-react';
 import api from '../api/axiosInstance';
 import toast from 'react-hot-toast';
@@ -147,8 +147,10 @@ function PreExamModal({ onAccept, onCancel, timeLimit, isAdmin }) {
 export default function ExamTake() {
   const { examId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const isAdmin = user?.role === 'admin';
+  const examPassword = location.state?.examPassword;
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -193,7 +195,7 @@ export default function ExamTake() {
   // ── Load attempt ────────────────────────────────────────────────────────
   useEffect(() => {
     api
-      .post('/exams/start', { examId })
+      .post('/exams/start', { examId, password: examPassword })
       .then((res) => {
         setQuestions(res.data.questions);
         setAttemptId(res.data.attemptId);
@@ -203,7 +205,13 @@ export default function ExamTake() {
         }
       })
       .catch((err) => {
-        toast.error(err.response?.data?.message || 'Failed to start exam');
+        // If the server says we need a password and we don't have one,
+        // bounce back to /exams where the password modal lives.
+        if (err.response?.data?.requiresPassword) {
+          toast.error(err.response.data.message || 'Incorrect exam password');
+        } else {
+          toast.error(err.response?.data?.message || 'Failed to start exam');
+        }
         navigate('/exams');
       })
       .finally(() => setLoading(false));

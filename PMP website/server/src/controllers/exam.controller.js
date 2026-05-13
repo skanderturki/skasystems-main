@@ -58,7 +58,13 @@ function shuffleAndRelabel(options) {
 
 exports.getAvailable = async (req, res, next) => {
   try {
-    const exams = await Exam.find({ examType: 'formal', isPublished: true })
+    // Both formal and instructor-led are listed on the student exam page.
+    // The password is never serialised (it's select:false on the model and we
+    // never explicitly select it here).
+    const exams = await Exam.find({
+      examType: { $in: ['formal', 'instructor-led'] },
+      isPublished: true,
+    })
       .populate('chapters', 'title')
       .sort({ createdAt: 1 });
     res.json({ exams });
@@ -69,17 +75,37 @@ exports.getAvailable = async (req, res, next) => {
 
 exports.start = async (req, res, next) => {
   try {
-    const { examId } = req.body;
-    const exam = await Exam.findById(examId);
-    if (!exam || exam.examType !== 'formal') {
+    const { examId, password: clientPassword } = req.body;
+    const exam = await Exam.findById(examId).select('+password');
+    if (!exam || !['formal', 'instructor-led'].includes(exam.examType)) {
       return res.status(404).json({ message: 'Exam not found' });
+    }
+
+    const isAdmin = req.user.role === 'admin';
+    const isInstructorLed = exam.examType === 'instructor-led';
+
+    // Instructor-led exams require a password the admin (instructor) has
+    // shared with the student in person. Admins bypass this check so they
+    // can test the flow.
+    if (isInstructorLed && !isAdmin) {
+      if (!exam.password) {
+        return res.status(400).json({
+          message: 'This exam is not yet available. Please contact your instructor.',
+        });
+      }
+      if (!clientPassword || clientPassword !== exam.password) {
+        return res.status(401).json({
+          message: 'Incorrect exam password.',
+          requiresPassword: true,
+        });
+      }
     }
 
     // Admins are exempt from attempt-count limits and cooldowns so they can
     // re-run the exam flow as often as needed for testing/QA.
-    const isAdmin = req.user.role === 'admin';
-
-    if (!isAdmin) {
+    // Instructor-led exams ALSO skip cooldown + maxAttempts because the
+    // instructor is physically present and explicitly authorising each take.
+    if (!isAdmin && !isInstructorLed) {
       // Max attempts (per exam definition)
       if (exam.maxAttempts) {
         const attemptCount = await ExamAttempt.countDocuments({
@@ -243,31 +269,23 @@ exports.submit = async (req, res, next) => {
       });
     }
 
-    // Anti-cheat #2: a formal-exam submission below the minimum elapsed time
-    // bans the user and revokes every certificate they hold. Admins exempt.
-    if (req.user.role !== 'admin' && serverTimeTaken < MIN_FORMAL_EXAM_SECONDS) {
-      attempt.completedAt = new Date();
-      attempt.timeTaken = serverTimeTaken;
-      attempt.passed = false;
-      attempt.score = 0;
-      attempt.correctCount = 0;
-      attempt.violations = violations;
-      await attempt.save();
+    // Fast-finish detection: only applies to non-admin, formal exams.
+    // Instructor-led exams skip the rule entirely (instructor is physically
+    // present). The attempt is FLAGGED for admin review but the actual score
+    // is preserved and the user is NOT banned — the admin decides what to
+    // do from the Exam Attempts tab.
+    const exam = await Exam.findById(attempt.exam);
+    const isInstructorLed = exam?.examType === 'instructor-led';
+    const isFastFinish =
+      req.user.role !== 'admin' &&
+      !isInstructorLed &&
+      serverTimeTaken < MIN_FORMAL_EXAM_SECONDS;
 
-      await banUserAndRevokeCerts(req.user._id);
-      await User.findByIdAndUpdate(req.user._id, {
-        $addToSet: { 'progress.examAttempts': attempt._id },
-      });
-
+    if (isFastFinish) {
+      attempt.fastFinishFlagged = true;
       console.warn(
-        `[anti-cheat] banned user ${req.user.email} — fast-finish ${serverTimeTaken}s (min ${MIN_FORMAL_EXAM_SECONDS}s) on exam "${attempt.examTitle}" (attempt ${attempt._id}, violations=${violations.length})`
+        `[anti-cheat] flagged ${req.user.email} — fast-finish ${serverTimeTaken}s (min ${MIN_FORMAL_EXAM_SECONDS}s) on exam "${attempt.examTitle}" (attempt ${attempt._id}, violations=${violations.length})`
       );
-
-      return res.status(403).json({
-        banned: true,
-        message:
-          'Your account has been suspended due to suspicious activity during the exam. All certificates linked to your account have been revoked. Contact your instructor if you believe this is an error.',
-      });
     }
 
     const answerMap = {};
@@ -293,7 +311,6 @@ exports.submit = async (req, res, next) => {
       };
     });
 
-    const exam = await Exam.findById(attempt.exam);
     attempt.correctCount = correctCount;
     attempt.score = Math.round((correctCount / attempt.totalQuestions) * 100);
     attempt.passed = attempt.score >= (exam?.passingScore || 80);

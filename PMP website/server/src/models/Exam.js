@@ -9,8 +9,17 @@ const examSchema = new mongoose.Schema(
     description: String,
     examType: {
       type: String,
-      enum: ['practice', 'formal'],
+      enum: ['practice', 'formal', 'instructor-led'],
       required: true,
+    },
+    // Set only for examType='instructor-led'. The admin sees this in the
+    // admin console and communicates it (verbally or by typing it in
+    // themselves) to the student before they can start the exam. It is
+    // NEVER returned by /api/exams/available to students.
+    password: {
+      type: String,
+      default: null,
+      select: false,
     },
     chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapter' }],
     questionCount: {

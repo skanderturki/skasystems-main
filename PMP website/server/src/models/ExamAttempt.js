@@ -39,6 +39,10 @@ const examAttemptSchema = new mongoose.Schema(
       },
     ],
     cheatingFlagged: { type: Boolean, default: false },
+    // Flagged when a non-instructor-led submission lands under the
+    // MIN_FORMAL_EXAM_SECONDS threshold. No automatic ban — the admin
+    // reviews these manually from the Exam Attempts tab.
+    fastFinishFlagged: { type: Boolean, default: false },
     startedAt: Date,
     completedAt: Date,
   },

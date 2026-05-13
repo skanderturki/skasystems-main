@@ -21,4 +21,7 @@ router.patch('/users/:id/ban', adminController.banUser);
 router.patch('/users/:id/unban', adminController.unbanUser);
 router.post('/bulk-email', adminController.sendBulkEmail);
 
+router.get('/exams', adminController.listExams);
+router.post('/exams/:id/regenerate-password', adminController.regenerateExamPassword);
+
 module.exports = router;
