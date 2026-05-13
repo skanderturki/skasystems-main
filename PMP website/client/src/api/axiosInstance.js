@@ -10,7 +10,7 @@ const api = axios.create({
 
 // Paths where a 401 must NOT trigger an auto-redirect to /login, because they
 // are intentionally public or are the login surface itself.
-const PUBLIC_PATHS = ['/', '/login', '/register'];
+const PUBLIC_PATHS = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
 const isPublicPath = (pathname) =>
   PUBLIC_PATHS.includes(pathname) || pathname.startsWith('/verify/');
 

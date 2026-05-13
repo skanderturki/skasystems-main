@@ -224,8 +224,16 @@ exports.submit = async (req, res, next) => {
         $addToSet: { 'progress.examAttempts': attempt._id },
       });
 
+      const breakdown = violations.reduce((acc, v) => {
+        acc[v.type] = (acc[v.type] || 0) + 1;
+        return acc;
+      }, {});
+      const breakdownStr =
+        Object.entries(breakdown)
+          .map(([t, c]) => `${t}×${c}`)
+          .join(', ') || 'none';
       console.warn(
-        `[anti-cheat] banned user ${req.user.email} — ${violations.length} violations during exam ${attempt.examTitle}`
+        `[anti-cheat] banned user ${req.user.email} — ${violations.length} violation(s) [${breakdownStr}] during exam "${attempt.examTitle}" (attempt ${attempt._id}, timeTaken=${serverTimeTaken}s)`
       );
 
       return res.status(403).json({
@@ -252,7 +260,7 @@ exports.submit = async (req, res, next) => {
       });
 
       console.warn(
-        `[anti-cheat] banned user ${req.user.email} — submitted exam ${attempt.examTitle} after ${serverTimeTaken}s (min ${MIN_FORMAL_EXAM_SECONDS}s)`
+        `[anti-cheat] banned user ${req.user.email} — fast-finish ${serverTimeTaken}s (min ${MIN_FORMAL_EXAM_SECONDS}s) on exam "${attempt.examTitle}" (attempt ${attempt._id}, violations=${violations.length})`
       );
 
       return res.status(403).json({

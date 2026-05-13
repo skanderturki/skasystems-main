@@ -19,6 +19,8 @@ import Certificates from './pages/Certificates';
 import VerifyCertificate from './pages/VerifyCertificate';
 import VerifyEmail from './pages/VerifyEmail';
 import Profile from './pages/Profile';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Statistics from './pages/Statistics';
 import AdminConsole from './pages/AdminConsole';
 import AdminRoute from './components/layout/AdminRoute';
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify/:token" element={<VerifyCertificate />} />
           <Route path="/verify-email" element={
             <ProtectedRoute>

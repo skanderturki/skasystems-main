@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, ShieldAlert } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Login() {
@@ -10,6 +10,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const wasSuspended = searchParams.get('suspended') === '1';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +45,20 @@ export default function Login() {
           <p className="text-gray-600 mt-2">Sign in to continue your learning journey</p>
         </div>
 
+        {wasSuspended && (
+          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-4 flex gap-3">
+            <ShieldAlert className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+            <div className="text-sm text-red-900">
+              <p className="font-semibold mb-1">Your account has been suspended</p>
+              <p>
+                Suspicious activity was detected during your last exam. All certificates linked to
+                your account have been revoked. Please contact your instructor if you believe this
+                is an error.
+              </p>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
           <div className="space-y-4">
             <div>
@@ -73,6 +89,15 @@ export default function Login() {
                 placeholder="Enter your password"
               />
             </div>
+          </div>
+
+          <div className="mt-2 text-right">
+            <Link
+              to="/forgot-password"
+              className="text-xs text-indigo-600 hover:text-indigo-700 font-medium"
+            >
+              Forgot password?
+            </Link>
           </div>
 
           <button

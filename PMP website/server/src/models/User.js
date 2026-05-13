@@ -50,6 +50,14 @@ const userSchema = new mongoose.Schema(
       type: Date,
       select: false,
     },
+    passwordResetTokenHash: {
+      type: String,
+      select: false,
+    },
+    passwordResetExpires: {
+      type: Date,
+      select: false,
+    },
     progress: {
       completedTopics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Topic' }],
       practiceAttempts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PracticeAttempt' }],

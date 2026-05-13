@@ -1,8 +1,16 @@
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
-const { JWT_SECRET, NODE_ENV } = require('../config/env');
-const { generateVerificationCode, sendVerificationEmail } = require('../services/email.service');
+const { JWT_SECRET, NODE_ENV, CLIENT_URL } = require('../config/env');
+const {
+  generateVerificationCode,
+  sendVerificationEmail,
+  sendPasswordResetEmail,
+} = require('../services/email.service');
+
+const PASSWORD_RESET_TTL_MS =
+  (parseInt(process.env.PASSWORD_RESET_TTL_MINUTES, 10) || 60) * 60 * 1000;
 
 const generateToken = (userId) => {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
@@ -193,6 +201,85 @@ exports.resendVerification = async (req, res, next) => {
     await sendVerificationEmail(user.email, verificationCode);
 
     res.json({ message: 'Verification code sent' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.forgotPassword = async (req, res, next) => {
+  // Generic response — never reveal whether the email is registered.
+  const genericResponse = {
+    message:
+      'If an account exists with that email, a password reset link has been sent.',
+  };
+
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    }
+
+    const { email } = req.body;
+    const user = await User.findOne({ email: email.toLowerCase() });
+
+    // Silently no-op for unknown or banned accounts.
+    if (!user || !user.isActive) {
+      return res.json(genericResponse);
+    }
+
+    const rawToken = crypto.randomBytes(32).toString('hex');
+    user.passwordResetTokenHash = crypto
+      .createHash('sha256')
+      .update(rawToken)
+      .digest('hex');
+    user.passwordResetExpires = new Date(Date.now() + PASSWORD_RESET_TTL_MS);
+    await user.save({ validateBeforeSave: false });
+
+    const resetUrl = `${CLIENT_URL}/reset-password?token=${rawToken}`;
+
+    try {
+      await sendPasswordResetEmail(user.email, user.firstName, resetUrl);
+    } catch (mailErr) {
+      // Don't leak email-send failure back to the caller; just log it.
+      console.error('[forgotPassword] email send failed:', mailErr.message || mailErr);
+    }
+
+    res.json(genericResponse);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.resetPassword = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    }
+
+    const { token, newPassword } = req.body;
+
+    const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
+
+    const user = await User.findOne({
+      passwordResetTokenHash: tokenHash,
+      passwordResetExpires: { $gt: new Date() },
+    }).select('+passwordResetTokenHash +passwordResetExpires +passwordHash');
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: 'Invalid or expired reset link. Please request a new one.' });
+    }
+
+    user.passwordHash = newPassword; // pre-save hook bcrypts it
+    user.passwordResetTokenHash = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    res.json({
+      message: 'Password reset. You can now sign in with your new password.',
+    });
   } catch (error) {
     next(error);
   }

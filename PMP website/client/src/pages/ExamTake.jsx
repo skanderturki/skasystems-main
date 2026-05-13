@@ -167,6 +167,10 @@ export default function ExamTake() {
   const violationsRef = useRef([]);
   const startedRef = useRef(false);
   const submittingRef = useRef(false);
+  // Set true around modal interactions (window.confirm) where a browser MIGHT
+  // fire blur during the dialog — belt-and-suspenders. Modern browsers don't
+  // fire blur for confirm(), but Edge / older WebView builds can.
+  const interactionLockedRef = useRef(false);
   const answersRef = useRef({});
   const attemptIdRef = useRef(null);
 
@@ -232,8 +236,10 @@ export default function ExamTake() {
           if (document.fullscreenElement) {
             document.exitFullscreen?.().catch(() => {});
           }
+          // Land on /login?suspended=1 so the login page can show a
+          // persistent banner explaining what happened.
           setTimeout(() => {
-            window.location.href = '/login';
+            window.location.href = '/login?suspended=1';
           }, 4000);
           return;
         }
@@ -248,7 +254,7 @@ export default function ExamTake() {
   // ── Violation tracking ───────────────────────────────────────────────────
   const recordViolation = useCallback(
     (type) => {
-      if (!startedRef.current || submittingRef.current) return;
+      if (!startedRef.current || submittingRef.current || interactionLockedRef.current) return;
       const now = Date.now();
       // Debounce — visibility, blur and fullscreen-exit often fire together.
       if (now - lastViolationAtRef.current < VIOLATION_DEBOUNCE_MS) return;
@@ -363,14 +369,23 @@ export default function ExamTake() {
   };
 
   // ── Manual submit ────────────────────────────────────────────────────────
-  const handleSubmitClick = async () => {
+  const handleSubmitClick = () => {
     const unanswered = questions.length - Object.keys(answers).length;
     const msg =
       unanswered > 0
         ? `You have ${unanswered} unanswered question(s). Submit anyway?`
         : 'Are you sure you want to submit your exam?';
-    if (!window.confirm(msg)) return;
-    doSubmit();
+
+    // Suppress proctoring signals while the confirm dialog is on screen, in
+    // case a browser fires blur/visibility for the modal. doSubmit will
+    // set submittingRef on entry, so the lock is short-lived.
+    interactionLockedRef.current = true;
+    try {
+      if (!window.confirm(msg)) return;
+      doSubmit();
+    } finally {
+      interactionLockedRef.current = false;
+    }
   };
 
   const formatTime = (seconds) => {

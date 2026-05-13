@@ -8,3 +8,5 @@ export const updateProfile = (data) => api.put('/auth/profile', data);
 export const changePassword = (data) => api.put('/auth/change-password', data);
 export const verifyEmail = (code) => api.post('/auth/verify-email', { code });
 export const resendVerification = () => api.post('/auth/resend-verification');
+export const requestPasswordReset = (data) => api.post('/auth/forgot-password', data);
+export const resetPassword = (data) => api.post('/auth/reset-password', data);

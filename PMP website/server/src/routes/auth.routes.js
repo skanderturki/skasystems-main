@@ -30,6 +30,25 @@ router.post(
   authController.login
 );
 
+router.post(
+  '/forgot-password',
+  authLimiter,
+  [body('email').isEmail().withMessage('Please provide a valid email')],
+  authController.forgotPassword
+);
+
+router.post(
+  '/reset-password',
+  authLimiter,
+  [
+    body('token').notEmpty().withMessage('Reset token is required'),
+    body('newPassword')
+      .isLength({ min: 6 })
+      .withMessage('New password must be at least 6 characters'),
+  ],
+  authController.resetPassword
+);
+
 router.post('/logout', protect, authController.logout);
 router.post('/verify-email', protect, authController.verifyEmail);
 router.post('/resend-verification', protect, authLimiter, authController.resendVerification);
