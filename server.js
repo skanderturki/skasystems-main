@@ -1,4 +1,5 @@
 const path = require('path');
+const crypto = require('crypto');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const { Resend } = require('resend');
@@ -8,11 +9,30 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const RESEND_FROM = process.env.RESEND_FROM || 'Academix <noreply@academix.tn>';
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'contact@academix.tn';
 
+// Optional preview password gate. When SITE_PASSWORD is empty, the gate is a
+// no-op and the site is fully public. Setting SITE_PASSWORD activates HTTP
+// Basic Auth on all non-/api routes.
+const SITE_USERNAME = process.env.SITE_USERNAME || 'preview';
+const SITE_PASSWORD = process.env.SITE_PASSWORD || '';
+
 if (!RESEND_API_KEY) {
   console.warn('[Resend] RESEND_API_KEY is not set — /api/contact will fail in production');
 }
 
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
+
+// Constant-time string comparison. Pads to equal length first so the early
+// return on length mismatch doesn't leak via timing.
+function safeEqual(a, b) {
+  const ab = Buffer.from(String(a));
+  const bb = Buffer.from(String(b));
+  const len = Math.max(ab.length, bb.length, 1);
+  const ap = Buffer.alloc(len);
+  const bp = Buffer.alloc(len);
+  ab.copy(ap);
+  bb.copy(bp);
+  return crypto.timingSafeEqual(ap, bp) && ab.length === bb.length;
+}
 
 const app = express();
 
@@ -20,6 +40,32 @@ const app = express();
 app.set('trust proxy', 1);
 
 app.use(express.json({ limit: '100kb' }));
+
+// Site-wide HTTP Basic Auth gate — activates only when SITE_PASSWORD is set.
+// /api/* routes always bypass so the contact form and health checks keep
+// working for monitors and form submissions from the gated preview.
+if (SITE_PASSWORD) {
+  console.log('[auth] Site password gate is ENABLED (user: %s)', SITE_USERNAME);
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/api/')) return next();
+
+    const header = req.headers.authorization || '';
+    const [scheme, encoded] = header.split(' ');
+
+    if (scheme === 'Basic' && encoded) {
+      const decoded = Buffer.from(encoded, 'base64').toString('utf-8');
+      const idx = decoded.indexOf(':');
+      const user = idx >= 0 ? decoded.slice(0, idx) : '';
+      const pass = idx >= 0 ? decoded.slice(idx + 1) : '';
+      if (safeEqual(user, SITE_USERNAME) && safeEqual(pass, SITE_PASSWORD)) {
+        return next();
+      }
+    }
+
+    res.set('WWW-Authenticate', 'Basic realm="skasystems.com preview"');
+    res.status(401).type('text/plain').send('Authentication required.');
+  });
+}
 
 // Rate limit the contact endpoint: 5 requests per 15 minutes per IP
 const contactLimiter = rateLimit({
