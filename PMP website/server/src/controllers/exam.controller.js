@@ -214,6 +214,55 @@ exports.start = async (req, res, next) => {
   }
 };
 
+// Persist a single answer as soon as the student selects it. The client fires
+// this fire-and-forget on every option click so that even if the final submit
+// is interrupted (network blip, auto-submit on violations, tablet sleep) the
+// student's progress is already on the server.
+exports.saveAnswer = async (req, res, next) => {
+  try {
+    const { attemptId } = req.params;
+    const { questionId, selectedOption } = req.body || {};
+
+    if (!questionId) {
+      return res.status(400).json({ message: 'questionId is required' });
+    }
+
+    // Match the post-shuffle label set used at start time.
+    if (selectedOption != null && !['A', 'B', 'C', 'D', 'E', 'F'].includes(selectedOption)) {
+      return res.status(400).json({ message: 'Invalid selectedOption' });
+    }
+
+    const attempt = await ExamAttempt.findOne({
+      _id: attemptId,
+      user: req.user._id,
+    });
+
+    if (!attempt) {
+      return res.status(404).json({ message: 'Attempt not found' });
+    }
+    if (attempt.completedAt) {
+      return res.status(400).json({ message: 'Attempt is already submitted' });
+    }
+
+    // Find the question on this attempt and update its selectedOption in
+    // place. Falls back to null when the student clears a selection.
+    const idx = attempt.questions.findIndex(
+      (q) => q.question?.toString() === String(questionId)
+    );
+    if (idx === -1) {
+      return res.status(400).json({ message: 'Question is not part of this attempt' });
+    }
+
+    attempt.questions[idx].selectedOption = selectedOption || null;
+    attempt.markModified('questions');
+    await attempt.save();
+
+    res.json({ ok: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.submit = async (req, res, next) => {
   try {
     const { attemptId, answers, violations: clientViolations } = req.body;
@@ -310,11 +359,17 @@ exports.submit = async (req, res, next) => {
       });
     }
 
-    // Grade using the per-attempt correctOption stored at start time
-    // (the shuffled+relabeled correct answer).
+    // Grade using the per-attempt correctOption stored at start time.
+    // Per-question selectedOption is sourced from (in priority order):
+    //   1. The answers map in this submit request (last-second changes)
+    //   2. The selectedOption already persisted on the attempt via the
+    //      PATCH /:attemptId/answer endpoint (saved as the student answered)
+    // This makes the submit path resilient to lost client state — e.g.,
+    // tablet sleep, network blip during auto-submit, React state reset.
     let correctCount = 0;
     attempt.questions = attempt.questions.map((aq) => {
-      const selected = answerMap[aq.question.toString()] || null;
+      const fromClient = answerMap[aq.question.toString()];
+      const selected = fromClient != null ? fromClient : aq.selectedOption || null;
       const isCorrect = selected != null && selected === aq.correctOption;
       if (isCorrect) correctCount++;
 

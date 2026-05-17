@@ -406,6 +406,16 @@ export default function ExamTake() {
 
   const selectAnswer = (questionId, label) => {
     setAnswers({ ...answers, [questionId]: label });
+    // Fire-and-forget: persist this single answer to the server immediately so
+    // it survives a network drop / tablet sleep / forced auto-submit. Failures
+    // are silent — the next click retries automatically, and the final submit
+    // payload includes everything as a belt-and-suspenders backup.
+    const id = attemptIdRef.current;
+    if (id) {
+      api
+        .patch(`/exams/${id}/answer`, { questionId, selectedOption: label })
+        .catch(() => {});
+    }
   };
 
   if (loading) {
