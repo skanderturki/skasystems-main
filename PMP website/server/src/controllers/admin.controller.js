@@ -289,6 +289,7 @@ const buildExamAttemptPipeline = (req) => {
       cheatingFlagged: 1,
       fastFinishFlagged: 1,
       mode: 1,
+      violations: 1,
       hasCertificate: { $cond: [{ $ifNull: ['$certificate', false] }, true, false] },
       email: '$userDoc.email',
       firstName: '$userDoc.firstName',
@@ -344,6 +345,7 @@ exports.exportExamAttemptsCsv = async (req, res, next) => {
       'Last Name',
       'Email',
       'Exam',
+      'Mode',
       'Score (%)',
       'Correct',
       'Total',
@@ -351,16 +353,30 @@ exports.exportExamAttemptsCsv = async (req, res, next) => {
       'Started At',
       'Completed At',
       'Duration (s)',
+      'Cheating Flagged',
+      'Fast Finish Flagged',
+      'Violations',
       'Has Certificate',
     ];
     res.write(header.join(',') + '\n');
 
     for (const it of items) {
+      // Compact "type@offsetS" list, ordered, useful for spreadsheet scan.
+      const startMs = it.startedAt ? new Date(it.startedAt).getTime() : null;
+      const violationsStr = (it.violations || [])
+        .map((v) => {
+          if (!startMs || !v.at) return v.type || '';
+          const offsetS = Math.round((new Date(v.at).getTime() - startMs) / 1000);
+          return `${v.type}@${offsetS}s`;
+        })
+        .join(', ');
+
       const row = [
         it.firstName,
         it.lastName,
         it.email,
         it.examTitle,
+        it.mode || 'standard',
         it.score,
         it.correctCount,
         it.totalQuestions,
@@ -368,6 +384,9 @@ exports.exportExamAttemptsCsv = async (req, res, next) => {
         it.startedAt,
         it.completedAt,
         it.timeTaken,
+        it.cheatingFlagged ? 'Yes' : 'No',
+        it.fastFinishFlagged ? 'Yes' : 'No',
+        violationsStr,
         it.hasCertificate ? 'Yes' : 'No',
       ].map(csvEscape);
       res.write(row.join(',') + '\n');

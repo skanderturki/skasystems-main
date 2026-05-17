@@ -421,6 +421,183 @@ function CertificatesTab() {
   );
 }
 
+const VIOLATION_BADGES = {
+  'tab-hidden': { label: 'Tab hidden', cls: 'bg-amber-100 text-amber-800' },
+  'window-blur': { label: 'Window blur', cls: 'bg-amber-100 text-amber-800' },
+  'fullscreen-exit': { label: 'Fullscreen exit', cls: 'bg-orange-100 text-orange-800' },
+  'blocked-key': { label: 'Forbidden key', cls: 'bg-red-100 text-red-700' },
+};
+
+const fmtElapsed = (sec) => {
+  if (sec == null || isNaN(sec)) return '—';
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}m ${s}s`;
+};
+
+function AttemptViolationsModal({ attempt, onClose }) {
+  if (!attempt) return null;
+
+  const startMs = attempt.startedAt ? new Date(attempt.startedAt).getTime() : null;
+  const rows = (attempt.violations || []).map((v, i, arr) => {
+    const at = v.at ? new Date(v.at) : null;
+    const elapsedSec =
+      at && startMs ? Math.max(0, Math.round((at.getTime() - startMs) / 1000)) : null;
+    const prev = arr[i - 1];
+    const prevAt = prev?.at ? new Date(prev.at).getTime() : null;
+    const gapSec = at && prevAt ? Math.max(0, Math.round((at.getTime() - prevAt) / 1000)) : null;
+    return { ...v, at, elapsedSec, gapSec };
+  });
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">Attempt details</h2>
+            <p className="text-xs text-gray-500 mt-0.5">
+              {fullName(attempt)} · {attempt.email || '—'}
+            </p>
+          </div>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Exam</p>
+              <p className="text-gray-900 font-medium">{attempt.examTitle}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Mode</p>
+              <p className="text-gray-900 font-medium">
+                {attempt.mode === 'instructor-led' ? 'Instructor-led' : 'Standard'}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Started</p>
+              <p className="text-gray-900">{fmtDateTime(attempt.startedAt)}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Completed</p>
+              <p className="text-gray-900">{fmtDateTime(attempt.completedAt)}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Duration</p>
+              <p className="text-gray-900">{fmtDuration(attempt.timeTaken)}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Score</p>
+              <p className="text-gray-900 font-medium">
+                {attempt.score}%{' '}
+                <span className="text-gray-400 text-xs">
+                  ({attempt.correctCount}/{attempt.totalQuestions})
+                </span>
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Result</p>
+              <p className="text-gray-900 font-medium">{attempt.passed ? 'Passed' : 'Failed'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 uppercase">Flags</p>
+              <div className="flex flex-wrap gap-1">
+                {attempt.cheatingFlagged && (
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                    Cheating
+                  </span>
+                )}
+                {attempt.fastFinishFlagged && (
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                    Fast-finish
+                  </span>
+                )}
+                {!attempt.cheatingFlagged && !attempt.fastFinishFlagged && (
+                  <span className="text-xs text-gray-400">None</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 mb-2">
+              Proctoring signals ({rows.length})
+            </h3>
+            {rows.length === 0 ? (
+              <p className="text-sm text-gray-500 italic px-1">
+                No proctoring signals fired during this attempt.
+              </p>
+            ) : (
+              <div className="border border-gray-200 rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 text-gray-600 text-xs uppercase">
+                    <tr>
+                      <th className="text-left px-3 py-2 font-medium w-10">#</th>
+                      <th className="text-left px-3 py-2 font-medium">Type</th>
+                      <th className="text-left px-3 py-2 font-medium">Absolute time</th>
+                      <th className="text-left px-3 py-2 font-medium">Elapsed from start</th>
+                      <th className="text-left px-3 py-2 font-medium">Gap from previous</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {rows.map((r, i) => {
+                      const badge = VIOLATION_BADGES[r.type] || {
+                        label: r.type,
+                        cls: 'bg-gray-100 text-gray-700',
+                      };
+                      const tight = r.gapSec != null && r.gapSec < 2;
+                      return (
+                        <tr key={i} className={tight ? 'bg-red-50/40' : 'hover:bg-gray-50'}>
+                          <td className="px-3 py-2 text-gray-500">{i + 1}</td>
+                          <td className="px-3 py-2">
+                            <span
+                              className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${badge.cls}`}
+                            >
+                              {badge.label}
+                            </span>
+                          </td>
+                          <td className="px-3 py-2 text-gray-700 text-xs">
+                            {r.at ? r.at.toLocaleString() : '—'}
+                          </td>
+                          <td className="px-3 py-2 text-gray-700">{fmtElapsed(r.elapsedSec)}</td>
+                          <td
+                            className={`px-3 py-2 ${
+                              tight ? 'text-red-600 font-medium' : 'text-gray-700'
+                            }`}
+                          >
+                            {r.gapSec == null ? '—' : fmtElapsed(r.gapSec)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {rows.length > 0 && (
+              <p className="text-xs text-gray-500 mt-2">
+                Rows highlighted in red fired within 2 seconds of the previous one — suggests a
+                burst from a single OS/browser event rather than spread-out cheating.
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 px-6 py-3 border-t border-gray-200 sticky bottom-0 bg-white">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ExamAttemptsTab() {
   const [search, setSearch] = useState('');
   const [from, setFrom] = useState('');
@@ -430,6 +607,7 @@ function ExamAttemptsTab() {
   const [page, setPage] = useState(1);
   const [data, setData] = useState({ items: [], total: 0, pageCount: 0, examTitles: [] });
   const [loading, setLoading] = useState(false);
+  const [selectedAttempt, setSelectedAttempt] = useState(null);
   const debouncedSearch = useDebouncedValue(search, 300);
   const knownTitles = useRef([]);
 
@@ -504,18 +682,19 @@ function ExamAttemptsTab() {
                 <th className="text-left px-4 py-3 font-medium">Started</th>
                 <th className="text-left px-4 py-3 font-medium">Completed</th>
                 <th className="text-left px-4 py-3 font-medium">Duration</th>
+                <th className="text-left px-4 py-3 font-medium">Violations</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {loading && data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
                     Loading…
                   </td>
                 </tr>
               ) : data.items.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-gray-400">
+                  <td colSpan={9} className="px-4 py-10 text-center text-gray-400">
                     No attempts match the current filter.
                   </td>
                 </tr>
@@ -573,6 +752,21 @@ function ExamAttemptsTab() {
                       {fmtDateTime(a.completedAt)}
                     </td>
                     <td className="px-4 py-3 text-gray-700">{fmtDuration(a.timeTaken)}</td>
+                    <td className="px-4 py-3">
+                      {(a.violations?.length || 0) > 0 ? (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedAttempt(a)}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          title="View per-violation timeline"
+                        >
+                          <Eye className="w-3 h-3" />
+                          {a.violations.length}
+                        </button>
+                      ) : (
+                        <span className="text-xs text-gray-300">0</span>
+                      )}
+                    </td>
                   </tr>
                 ))
               )}
@@ -588,6 +782,11 @@ function ExamAttemptsTab() {
           />
         </div>
       </div>
+
+      <AttemptViolationsModal
+        attempt={selectedAttempt}
+        onClose={() => setSelectedAttempt(null)}
+      />
     </div>
   );
 }
