@@ -1,40 +1,42 @@
-# Build stage
-FROM node:20-alpine as build
+# Build stage — full dev install, runs the CRA production build
+FROM node:20-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Install necessary build tools
+# Native build tools — some transitive devDependencies may compile gyp modules
 RUN apk add --no-cache python3 make g++
 
-# Copy package files first
+# Install all deps (incl. devDependencies) using the lockfile for reproducibility
 COPY package*.json ./
-
-# Install dependencies with legacy peer deps
-RUN npm install --legacy-peer-deps
-
-# Copy the rest of the source code
-COPY . .
+RUN npm install --legacy-peer-deps --no-audit --no-fund
 
 # Build the React application (CRA outputs to /app/build)
+COPY . .
 RUN npm run build
 
-# Production stage
+# ---------------------------------------------------------------------------
+# Production stage — fresh slim image, installs ONLY runtime dependencies.
+# This avoids carrying the ~500 MB devDependencies tree (react-scripts,
+# tailwindcss, framer-motion, etc.) into the runtime image. The Express
+# server only needs the packages declared in `dependencies` that are
+# actually imported by server.js: express, express-rate-limit, resend.
+# ---------------------------------------------------------------------------
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy built React app, server, and node_modules from build stage
+# Copy build output + server entrypoint
 COPY --from=build /app/build ./build
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/server.js ./server.js
+COPY --from=build /app/package.json /app/package-lock.json ./
 
-# Environment
+# Install production dependencies only
+RUN npm install --omit=dev --legacy-peer-deps --no-audit --no-fund \
+    && npm cache clean --force
+
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Expose port
 EXPOSE 3000
 
 # Start Node server (serves build/ and handles /api/contact)
