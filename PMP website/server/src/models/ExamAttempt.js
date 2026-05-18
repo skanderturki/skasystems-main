@@ -16,6 +16,15 @@ const examAttemptSchema = new mongoose.Schema(
     questions: [
       {
         question: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+        // The shuffled options as the student saw them on this attempt. Stored
+        // so the attempt can be resumed (e.g. after a refresh) with the same
+        // option order, so the persisted selectedOption stays meaningful.
+        options: [
+          {
+            label: String, // 'A' / 'B' / ...
+            text: String,
+          },
+        ],
         correctOption: String, // post-shuffle label (A/B/C/D) of the correct answer
         selectedOption: String,
         isCorrect: Boolean,

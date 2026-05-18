@@ -200,9 +200,28 @@ export default function ExamTake() {
       .then((res) => {
         setQuestions(res.data.questions);
         setAttemptId(res.data.attemptId);
+
+        // Hydrate previously-selected answers when resuming an in-progress
+        // attempt so the student picks up exactly where they left off.
+        if (res.data.resumed && Array.isArray(res.data.questions)) {
+          const hydrated = {};
+          for (const q of res.data.questions) {
+            if (q.selectedOption) hydrated[q._id] = q.selectedOption;
+          }
+          setAnswers(hydrated);
+          toast.success('Resumed your in-progress attempt.', { duration: 4000 });
+        }
+
         if (res.data.timeLimit) {
           setTimeLimit(res.data.timeLimit);
-          setTimeLeft(res.data.timeLimit * 60);
+          // timeLeft from server (resumed attempts) takes precedence — it
+          // already accounts for elapsed time. Falls back to full timeLimit
+          // for fresh attempts.
+          const initialSeconds =
+            typeof res.data.timeLeft === 'number'
+              ? res.data.timeLeft
+              : res.data.timeLimit * 60;
+          setTimeLeft(initialSeconds);
         }
       })
       .catch((err) => {

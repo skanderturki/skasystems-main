@@ -115,6 +115,86 @@ exports.start = async (req, res, next) => {
 
     const isInstructorLed = mode === 'instructor-led';
 
+    // Resume path — if the student already has an in-progress attempt for this
+    // exam, return THAT one (with its stored questions, shuffled options, and
+    // already-selected answers) instead of creating a new one. This prevents
+    // a Submit failure from spawning a fresh empty attempt on every refresh.
+    const existing = await ExamAttempt.findOne({
+      user: req.user._id,
+      exam: exam._id,
+      completedAt: null,
+    });
+
+    // Only attempts created with the new schema (options stored) can be
+    // safely resumed. Legacy in-progress attempts are ignored and a fresh
+    // attempt is created — the legacy one stays orphaned but harmless.
+    const canResume =
+      existing &&
+      Array.isArray(existing.questions) &&
+      existing.questions.length > 0 &&
+      existing.questions.every(
+        (q) => Array.isArray(q.options) && q.options.length > 0
+      );
+
+    if (canResume) {
+      // Security: the mode of an in-progress attempt is locked. A student
+      // can't downgrade an instructor-led attempt to standard (which would
+      // bypass the instructor password) and vice versa.
+      if (existing.mode !== mode) {
+        return res.status(400).json({
+          message:
+            existing.mode === 'instructor-led'
+              ? 'You have an in-progress instructor-led attempt for this exam. Ask your instructor to enter the password to resume.'
+              : 'You have an in-progress attempt for this exam. Click "Take exam now" to resume.',
+          requiresMode: existing.mode,
+        });
+      }
+
+      // Time-remaining is computed from the original startedAt + timeLimit.
+      // If 0 or negative the client's timer fires auto-submit immediately,
+      // which gracefully turns the dead attempt into a graded one.
+      const elapsedS = Math.floor(
+        (Date.now() - existing.startedAt.getTime()) / 1000
+      );
+      const timeLeftS = exam.timeLimit
+        ? Math.max(0, exam.timeLimit * 60 - elapsedS)
+        : null;
+
+      // We need questionText for the UI but we already have shuffled options
+      // stored on the attempt, so one Question.find() suffices.
+      const questionIds = existing.questions.map((q) => q.question);
+      const textsById = new Map(
+        (
+          await Question.find({ _id: { $in: questionIds } }).select(
+            'questionText questionType'
+          )
+        ).map((q) => [q._id.toString(), q])
+      );
+
+      const sanitizedQuestions = existing.questions.map((aq) => {
+        const src = textsById.get(aq.question?.toString());
+        return {
+          _id: aq.question,
+          questionText: src?.questionText || '(question text unavailable)',
+          questionType: src?.questionType,
+          options: (aq.options || []).map((o) => ({ label: o.label, text: o.text })),
+          selectedOption: aq.selectedOption || null,
+        };
+      });
+
+      console.log(
+        `[exam] resume user=${req.user.email} exam="${exam.title}" attempt=${existing._id} mode=${mode} timeLeft=${timeLeftS}s`
+      );
+
+      return res.json({
+        attemptId: existing._id,
+        questions: sanitizedQuestions,
+        timeLimit: exam.timeLimit,
+        timeLeft: timeLeftS,
+        resumed: true,
+      });
+    }
+
     // Admins are exempt from attempt-count limits and cooldowns so they can
     // re-run the exam flow as often as needed for testing/QA.
     // Instructor-led mode ALSO skips cooldown + maxAttempts because the
@@ -188,6 +268,9 @@ exports.start = async (req, res, next) => {
       mode,
       questions: questions.map((q) => ({
         question: q._id,
+        // Persist the shuffled options as shown to the student so the attempt
+        // can be resumed with the same option order across refreshes.
+        options: q.options.map((o) => ({ label: o.label, text: o.text })),
         correctOption: q.options.find((o) => o.isCorrect)?.label,
         selectedOption: null,
         isCorrect: false,
