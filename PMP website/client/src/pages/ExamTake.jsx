@@ -238,7 +238,17 @@ export default function ExamTake() {
         if (document.fullscreenElement) {
           document.exitFullscreen?.().catch(() => {});
         }
-        navigate(`/exams/result/${res.data.attemptId}`);
+        // Defensive: if the server response is missing the attempt id for any
+        // reason, send the student to the exam list (where their result will
+        // show up under History) instead of navigating to
+        // /exams/result/undefined and rendering a useless "not found" page.
+        const resultId = res?.data?.attemptId;
+        if (resultId) {
+          navigate(`/exams/result/${resultId}`);
+        } else {
+          toast.success('Your exam has been submitted. See your history for the result.');
+          navigate('/exams');
+        }
       } catch (err) {
         if (err.response?.status === 403 && err.response?.data?.banned) {
           toast.error(err.response.data.message, { duration: 10000 });

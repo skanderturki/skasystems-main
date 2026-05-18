@@ -24,11 +24,13 @@ import ResetPassword from './pages/ResetPassword';
 import Statistics from './pages/Statistics';
 import AdminConsole from './pages/AdminConsole';
 import AdminRoute from './components/layout/AdminRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AuthProvider>
         <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
         <Routes>
           {/* Public routes */}
@@ -76,7 +78,8 @@ export default function App() {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+        </AuthProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }

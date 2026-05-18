@@ -9,7 +9,15 @@ export default function ExamResult() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get(`/exams/${attemptId}`)
+    // Guard: a bad route or a submit response that lacked attemptId would
+    // otherwise fire a request for /api/exams/undefined and we'd get a 4xx
+    // CastError. Just render the "not found" state instead.
+    if (!attemptId || attemptId === 'undefined') {
+      setLoading(false);
+      return;
+    }
+    api
+      .get(`/exams/${attemptId}`)
       .then((res) => setAttempt(res.data.attempt))
       .catch(() => {})
       .finally(() => setLoading(false));

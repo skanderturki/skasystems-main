@@ -196,6 +196,10 @@ exports.start = async (req, res, next) => {
       startedAt: new Date(),
     });
 
+    console.log(
+      `[exam] start user=${req.user.email} exam="${exam.title}" attempt=${attempt._id} mode=${mode} questions=${questions.length}`
+    );
+
     // Strip answers
     const sanitizedQuestions = questions.map((q) => ({
       _id: q._id,
@@ -256,6 +260,10 @@ exports.saveAnswer = async (req, res, next) => {
     attempt.questions[idx].selectedOption = selectedOption || null;
     attempt.markModified('questions');
     await attempt.save();
+
+    console.log(
+      `[exam] answer user=${req.user.email} attempt=${attempt._id} question=${questionId} selected=${selectedOption || 'null'}`
+    );
 
     res.json({ ok: true });
   } catch (error) {
@@ -420,6 +428,10 @@ exports.submit = async (req, res, next) => {
     }
 
     await attempt.save();
+
+    console.log(
+      `[exam] submit user=${req.user.email} attempt=${attempt._id} mode=${attempt.mode} score=${attempt.score} passed=${attempt.passed} duration=${serverTimeTaken}s violations=${violations.length} fastFinish=${attempt.fastFinishFlagged} cert=${attempt.certificate || 'none'}`
+    );
 
     res.json({
       attemptId: attempt._id,
