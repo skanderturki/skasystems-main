@@ -363,6 +363,55 @@ export default function ExamTake() {
     };
   }, [started, recordViolation]);
 
+  // ── Screen wake lock ─────────────────────────────────────────────────────
+  // Keep the screen on while the exam is active so a tablet (or laptop with
+  // aggressive power settings) doesn't go to sleep and either lock the
+  // student out or fire a phantom visibility-hidden violation. Browsers
+  // automatically release the lock when the tab is hidden, so we re-acquire
+  // it whenever the page becomes visible again.
+  useEffect(() => {
+    if (!started) return;
+    if (typeof navigator === 'undefined' || !('wakeLock' in navigator)) return;
+
+    let lock = null;
+    let cancelled = false;
+
+    const acquire = async () => {
+      try {
+        const l = await navigator.wakeLock.request('screen');
+        if (cancelled) {
+          l.release().catch(() => {});
+          return;
+        }
+        lock = l;
+        lock.addEventListener('release', () => {
+          if (lock === l) lock = null;
+        });
+        console.log('[wake-lock] acquired');
+      } catch (err) {
+        // Common refusals: low battery, browser policy, lost gesture.
+        // Best-effort — silent in production.
+        console.warn('[wake-lock] request failed:', err?.message);
+      }
+    };
+
+    const onVisibilityForWakeLock = () => {
+      if (document.visibilityState === 'visible' && !lock) acquire();
+    };
+
+    acquire();
+    document.addEventListener('visibilitychange', onVisibilityForWakeLock);
+
+    return () => {
+      cancelled = true;
+      document.removeEventListener('visibilitychange', onVisibilityForWakeLock);
+      if (lock) {
+        lock.release().catch(() => {});
+        lock = null;
+      }
+    };
+  }, [started]);
+
   // ── Timer ────────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!started || timeLeft === null) return;
