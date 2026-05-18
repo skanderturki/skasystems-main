@@ -437,6 +437,7 @@ const fmtElapsed = (sec) => {
 
 function AttemptViolationsModal({ attempt, onClose }) {
   if (!attempt) return null;
+  const inProgress = !attempt.completedAt;
 
   const startMs = attempt.startedAt ? new Date(attempt.startedAt).getTime() : null;
   const rows = (attempt.violations || []).map((v, i, arr) => {
@@ -482,24 +483,42 @@ function AttemptViolationsModal({ attempt, onClose }) {
             </div>
             <div>
               <p className="text-xs text-gray-500 uppercase">Completed</p>
-              <p className="text-gray-900">{fmtDateTime(attempt.completedAt)}</p>
+              <p className="text-gray-900">
+                {inProgress ? <span className="text-amber-700">In progress</span> : fmtDateTime(attempt.completedAt)}
+              </p>
             </div>
             <div>
               <p className="text-xs text-gray-500 uppercase">Duration</p>
-              <p className="text-gray-900">{fmtDuration(attempt.timeTaken)}</p>
+              <p className="text-gray-900">
+                {inProgress ? <span className="text-gray-400">—</span> : fmtDuration(attempt.timeTaken)}
+              </p>
             </div>
             <div>
               <p className="text-xs text-gray-500 uppercase">Score</p>
               <p className="text-gray-900 font-medium">
-                {attempt.score}%{' '}
-                <span className="text-gray-400 text-xs">
-                  ({attempt.correctCount}/{attempt.totalQuestions})
-                </span>
+                {inProgress ? (
+                  <span className="text-gray-400">—</span>
+                ) : (
+                  <>
+                    {attempt.score}%{' '}
+                    <span className="text-gray-400 text-xs">
+                      ({attempt.correctCount}/{attempt.totalQuestions})
+                    </span>
+                  </>
+                )}
               </p>
             </div>
             <div>
               <p className="text-xs text-gray-500 uppercase">Result</p>
-              <p className="text-gray-900 font-medium">{attempt.passed ? 'Passed' : 'Failed'}</p>
+              <p className="text-gray-900 font-medium">
+                {inProgress ? (
+                  <span className="text-amber-700">Not submitted</span>
+                ) : attempt.passed ? (
+                  'Passed'
+                ) : (
+                  'Failed'
+                )}
+              </p>
             </div>
             <div>
               <p className="text-xs text-gray-500 uppercase">Flags</p>
@@ -663,8 +682,10 @@ function ExamAttemptsTab() {
         setStatus={setStatus}
         statusOptions={[
           { value: 'all', label: 'All' },
+          { value: 'completed', label: 'Completed' },
           { value: 'passed', label: 'Passed' },
           { value: 'failed', label: 'Failed' },
+          { value: 'in-progress', label: 'In progress' },
         ]}
         onExport={onExport}
       />
@@ -699,20 +720,40 @@ function ExamAttemptsTab() {
                   </td>
                 </tr>
               ) : (
-                data.items.map((a) => (
-                  <tr key={a._id} className="hover:bg-gray-50">
+                data.items.map((a) => {
+                  const inProgress = !a.completedAt;
+                  return (
+                  <tr
+                    key={a._id}
+                    className={
+                      inProgress ? 'bg-amber-50/30 hover:bg-amber-50/60' : 'hover:bg-gray-50'
+                    }
+                  >
                     <td className="px-4 py-3 font-medium text-gray-900">{fullName(a)}</td>
                     <td className="px-4 py-3 text-gray-600">{a.email || '—'}</td>
                     <td className="px-4 py-3 text-gray-700">{a.examTitle}</td>
                     <td className="px-4 py-3 text-gray-900 font-medium">
-                      {a.score}%
-                      <span className="text-gray-400 text-xs ml-1">
-                        ({a.correctCount}/{a.totalQuestions})
-                      </span>
+                      {inProgress ? (
+                        <span className="text-gray-300">—</span>
+                      ) : (
+                        <>
+                          {a.score}%
+                          <span className="text-gray-400 text-xs ml-1">
+                            ({a.correctCount}/{a.totalQuestions})
+                          </span>
+                        </>
+                      )}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap items-center gap-1">
-                        {a.passed ? (
+                        {inProgress ? (
+                          <span
+                            className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800"
+                            title="Attempt was started but never submitted (completedAt is null)"
+                          >
+                            In progress
+                          </span>
+                        ) : a.passed ? (
                           <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
                             Passed
                           </span>
@@ -749,9 +790,19 @@ function ExamAttemptsTab() {
                     </td>
                     <td className="px-4 py-3 text-gray-600 text-xs">{fmtDateTime(a.startedAt)}</td>
                     <td className="px-4 py-3 text-gray-600 text-xs">
-                      {fmtDateTime(a.completedAt)}
+                      {inProgress ? (
+                        <span className="text-gray-300">—</span>
+                      ) : (
+                        fmtDateTime(a.completedAt)
+                      )}
                     </td>
-                    <td className="px-4 py-3 text-gray-700">{fmtDuration(a.timeTaken)}</td>
+                    <td className="px-4 py-3 text-gray-700">
+                      {inProgress ? (
+                        <span className="text-gray-300">—</span>
+                      ) : (
+                        fmtDuration(a.timeTaken)
+                      )}
+                    </td>
                     <td className="px-4 py-3">
                       {(a.violations?.length || 0) > 0 ? (
                         <button
@@ -768,7 +819,8 @@ function ExamAttemptsTab() {
                       )}
                     </td>
                   </tr>
-                ))
+                  );
+                })
               )}
             </tbody>
           </table>

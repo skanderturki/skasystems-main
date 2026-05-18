@@ -233,15 +233,28 @@ exports.reactivateCertificate = async (req, res, next) => {
 // ─── Exam attempts ─────────────────────────────────────────────────────────
 
 const buildExamAttemptPipeline = (req) => {
-  const { q, examTitle, status, sortBy = 'completedAt', sortDir = 'desc' } = req.query;
+  const { q, examTitle, status, sortBy = 'startedAt', sortDir = 'desc' } = req.query;
   const pipeline = [];
 
-  const initialMatch = {
-    completedAt: { $ne: null },
-    ...parseDateRange(req, 'completedAt'),
-  };
-  if (status === 'passed') initialMatch.passed = true;
-  else if (status === 'failed') initialMatch.passed = false;
+  // Date range now operates on startedAt (always set), so the filter works
+  // for in-progress attempts as well as completed ones.
+  const initialMatch = { ...parseDateRange(req, 'startedAt') };
+
+  // Completion status filter — supports 'in-progress' and 'completed' in
+  // addition to the existing pass/fail. 'all' = no completion constraint.
+  if (status === 'passed') {
+    initialMatch.passed = true;
+    initialMatch.completedAt = { $ne: null };
+  } else if (status === 'failed') {
+    initialMatch.passed = false;
+    initialMatch.completedAt = { $ne: null };
+  } else if (status === 'in-progress') {
+    initialMatch.completedAt = null;
+  } else if (status === 'completed') {
+    initialMatch.completedAt = { $ne: null };
+  }
+  // status === 'all' or undefined: no completion filter
+
   if (examTitle) initialMatch.examTitle = examTitle;
   pipeline.push({ $match: initialMatch });
 
